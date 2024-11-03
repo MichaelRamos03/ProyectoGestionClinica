@@ -19,14 +19,13 @@ public class Empleado {
     private String genero;
     private Date fechaNacimiento;
     private String correo;
-    private String contrasenia;
     private int estado;
     private Rol rol;
 
     public Empleado() {
     }
 
-    public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, String contrasenia, int estado, Rol rol) {
+    public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, int estado, Rol rol) {
         this.idEmpleado = idEmpleado;
         this.dui = dui;
         this.nombre = nombre;
@@ -34,7 +33,6 @@ public class Empleado {
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
-        this.contrasenia = contrasenia;
         this.estado = estado;
         this.rol = rol;
     }
@@ -95,14 +93,6 @@ public class Empleado {
         this.correo = correo;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
     public int getEstado() {
         return estado;
     }
@@ -118,7 +108,7 @@ public class Empleado {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
+
     
     
 }
