@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class LoginDao extends Conexion{
     
+    // falta completar
+    
     private Conexion conexion;
     private Usuario usuario;
 

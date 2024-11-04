@@ -3,6 +3,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -13,6 +14,9 @@ public class Medicamento {
     private int idMedicamento;
     private String nombre;
     private int cantidadDisponible;
+    private Date fechaCaducidad;
+    private String descripcion;
+    private Double precio;
     ArrayList<EntregaMedicina> EntregaMedicinas; 
 
     public Medicamento() {
@@ -57,4 +61,30 @@ public class Medicamento {
     public void setEntregaMedicinas(ArrayList<EntregaMedicina> EntregaMedicinas) {
         this.EntregaMedicinas = EntregaMedicinas;
     }
+
+    public Date getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(Date fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+    
+    
 }
