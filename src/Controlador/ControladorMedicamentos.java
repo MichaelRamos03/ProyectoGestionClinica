@@ -7,6 +7,7 @@ package Controlador;
 import Estructuras.ListaCircular;
 import Modelo.Medicamento;
 import Vista.VistaCrudMedicamentos;
+
 import Vista.VistaRegistrarMedicamento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +27,8 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
      
     private VistaCrudMedicamentos vistaMedicamentos;
     private VistaRegistrarMedicamento vistaRegistrar;
+    private ControladorAgregarMedicamento controladorAgregar;
+
     private Medicamento medicamento;
     private ListaCircular<Medicamento> medicamentoList;
     private DefaultTableModel md;
@@ -36,6 +39,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaMedicamentos.setDefaultCloseOperation(vistaMedicamentos.EXIT_ON_CLOSE);
         this.vistaMedicamentos.setLocationRelativeTo(null);
         this.vistaMedicamentos.btnRegistrarMedicamento.addActionListener(this);
+        this.vistaMedicamentos.btnModificar.addActionListener(this);
         this.md= new DefaultTableModel();
         this.md.addColumn("id");
         this.md.addColumn("Nombre");
@@ -49,10 +53,9 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.medicamentoList= new ListaCircular<Medicamento>();
         
         this.vistaRegistrar= new VistaRegistrarMedicamento();
-        this.vistaRegistrar.setLocationRelativeTo(null);
-        this.vistaRegistrar.btnRegistrar.addActionListener(this);
         
-        
+        this.controladorAgregar= new ControladorAgregarMedicamento(this.vistaRegistrar,this);
+       
     }
 
     @Override
@@ -62,11 +65,9 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
             this.vistaRegistrar.setVisible(true);
  
         }
-                    if(e.getSource()==this.vistaRegistrar.btnRegistrar){
-            String nombre= this.vistaRegistrar.txtNombreMedicamento.getText();
-                System.out.println("NOMBRE MEDICAMENTO: "+nombre);
-            } 
+                   
         
+                    
   }
 
 }
