@@ -42,6 +42,9 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaMedicamentos.setLocationRelativeTo(null);
         this.vistaMedicamentos.btnRegistrarMedicamento.addActionListener(this);
         this.vistaMedicamentos.btnModificar.addActionListener(this);
+        this.vistaMedicamentos.btnModificar.setEnabled(false);
+        this.vistaMedicamentos.btnEliminar.addActionListener(this);
+        this.vistaMedicamentos.btnEliminar.setEnabled(false);
         this.md= new DefaultTableModel();
         this.md.addColumn("id");
         this.md.addColumn("Nombre");

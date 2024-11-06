@@ -31,7 +31,7 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnRegistrarMedicamento = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         labelMedicine = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMedicamentos = new javax.swing.JTable();
@@ -58,11 +58,15 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
         btnModificar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(0, 0, 0));
         btnModificar.setText("Modificar medicamento ");
+        btnModificar.setToolTipText("Seleccione un medicamento");
+        btnModificar.setFocusable(false);
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Eliminar medicamento");
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setText("Eliminar medicamento");
+        btnEliminar.setToolTipText("Seleccione un medicamento");
+        btnEliminar.setFocusable(false);
 
         labelMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ant-design--medicine-box-filled (2).png"))); // NOI18N
 
@@ -84,7 +88,7 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(btnModificar)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton4)
+                        .addComponent(btnEliminar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -101,12 +105,14 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrarMedicamento)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(btnEliminar))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 120));
 
+        tablaMedicamentos.setBackground(new java.awt.Color(255, 255, 255));
+        tablaMedicamentos.setForeground(new java.awt.Color(0, 0, 0));
         tablaMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -118,6 +124,8 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaMedicamentos.setSelectionBackground(new java.awt.Color(204, 255, 255));
+        tablaMedicamentos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tablaMedicamentos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 660, 350));
@@ -179,9 +187,9 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnRegistrarMedicamento;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -43,16 +43,19 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
          if(e.getSource()==this.vistaRegistrar.btnRegistrar){
              System.out.println("ENTRA VISTA REGISTRAR");
             String nombre= this.vistaRegistrar.txtNombreMedicamento.getText();
-            int cantidad =Integer.parseInt(this.vistaRegistrar.txtCantidad.getText());
-            Double precio=Double.parseDouble(this.vistaRegistrar.txtPrecio.getText());
+            String cantidad =(this.vistaRegistrar.txtCantidad.getText());
+            String precio=(this.vistaRegistrar.txtPrecio.getText());
             String descripcion= this.vistaRegistrar.textAreaDescripcion.getText();
             Date fechaCaducidad= this.vistaRegistrar.fechaCaducidad.getDate();
             if(validarDatos(nombre,cantidad,precio,descripcion,fechaCaducidad)){
             
+             int cant=Integer.parseInt(cantidad);
+             Double precio1=Double.parseDouble(precio);
+                
             Medicamento nuevoMedicamento= new Medicamento();
             nuevoMedicamento.setNombre(nombre);
-            nuevoMedicamento.setCantidadDisponible(cantidad);
-            nuevoMedicamento.setPrecio(precio);
+            nuevoMedicamento.setCantidadDisponible(cant);
+            nuevoMedicamento.setPrecio(precio1);
             nuevoMedicamento.setFechaCaducidad(fechaCaducidad);
             nuevoMedicamento.setDescripcion(descripcion);
             this.medicamentoDao.insert(nuevoMedicamento);
@@ -63,7 +66,7 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
         
   }
     
-    public Boolean validarDatos(String nombre,int cantidad,Double precio,String descripcion,Date fechaCaducidad){
+    public Boolean validarDatos(String nombre,String cantidad,String precio,String descripcion,Date fechaCaducidad){
         // validaciones nombre
         nombre=nombre.replace(" ", "");
         if(nombre.equals("") || nombre.isEmpty()){
