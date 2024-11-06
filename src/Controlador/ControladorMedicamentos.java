@@ -6,6 +6,7 @@ package Controlador;
 
 import Estructuras.ListaCircular;
 import Modelo.Medicamento;
+import ModeloDao.MedicamentoDao;
 import Vista.VistaCrudMedicamentos;
 
 import Vista.VistaRegistrarMedicamento;
@@ -28,6 +29,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
     private VistaCrudMedicamentos vistaMedicamentos;
     private VistaRegistrarMedicamento vistaRegistrar;
     private ControladorAgregarMedicamento controladorAgregar;
+    private MedicamentoDao daoMedicamento;
 
     private Medicamento medicamento;
     private ListaCircular<Medicamento> medicamentoList;
@@ -50,12 +52,14 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
         
         
+        this.daoMedicamento= new MedicamentoDao();
         this.medicamentoList= new ListaCircular<Medicamento>();
         
         this.vistaRegistrar= new VistaRegistrarMedicamento();
         
         this.controladorAgregar= new ControladorAgregarMedicamento(this.vistaRegistrar,this);
        
+        mostrarDatos();
     }
 
     @Override
@@ -69,5 +73,24 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         
                     
   }
+    
+    public void mostrarDatos(){
+        DefaultTableModel md = new DefaultTableModel();
+        String columnas[]={"Id","Nombre","Cantidad Disponible","Fecha-caducidad","Descripcion","Precio"};
+        md.setColumnIdentifiers(columnas);
+        this.medicamentoList=this.daoMedicamento.mostrar();
+        for(Medicamento m: this.medicamentoList.toArray()){
+            Object datos[]={m.getIdMedicamento(),m.getNombre(),m.getCantidadDisponible(),m.getFechaCaducidad(),m.getDescripcion(),m.getPrecio()};
+            md.addRow(datos);
+            
+        }
+        this.vistaMedicamentos.tablaMedicamentos.setModel(md);
+        
+        
+        
+        
+    }
+    
+    
 
 }

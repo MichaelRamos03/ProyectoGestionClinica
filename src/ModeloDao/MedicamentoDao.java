@@ -4,6 +4,7 @@
  */
 package ModeloDao;
 
+import Estructuras.ListaCircular;
 import Interfaces.IMedicamento;
 import Modelo.Conexion;
 import Modelo.Medicamento;
@@ -20,14 +21,14 @@ import java.sql.SQLException;
  * @author karla
  */
 public class MedicamentoDao implements IMedicamento {
-    
+
     Conexion conectar; //clase conexion para conectar a la base de datos
     Connection con; // para agarra la conexion 
     PreparedStatement ps; //para compilar la consulta sql (no tenga ningun error de sintaxis)
     ResultSet rs; //para agarra todos registros de la base
 
     public MedicamentoDao() {
-        conectar= new Conexion();
+        conectar = new Conexion();
     }
 
     public Conexion getConectar() {
@@ -62,8 +63,6 @@ public class MedicamentoDao implements IMedicamento {
         this.rs = rs;
     }
 
-    
-    
     @Override
     public boolean insert(Medicamento medicamento) {
         String sql = "INSERT INTO medicamento(\n"
@@ -74,35 +73,80 @@ public class MedicamentoDao implements IMedicamento {
 
     private boolean alterarRegistro(String sql, Medicamento medicamento) {
         try {
-                con=conectar.getConexion();
-                ps=con.prepareStatement(sql);
-                //id_medicamento, nombre, cantidad_disponible, fecha_caducidad, descripcion, precio)\n"
-                
-                //ps.setInt(1, medicamento.getIdMedicamento());
-                ps.setString(1, medicamento.getNombre());
-                ps.setInt(2, medicamento.getCantidadDisponible());
-                 ps.setDate(3, new java.sql.Date(medicamento.getFechaCaducidad().getTime()));
-                ps.setString(4, medicamento.getDescripcion());
-                ps.setDouble(5, medicamento.getPrecio());
-                ps.execute();
-                return true;
-                
-                
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            //id_medicamento, nombre, cantidad_disponible, fecha_caducidad, descripcion, precio)\n"
+
+            //ps.setInt(1, medicamento.getIdMedicamento());
+            ps.setString(1, medicamento.getNombre());
+            ps.setInt(2, medicamento.getCantidadDisponible());
+            ps.setDate(3, new java.sql.Date(medicamento.getFechaCaducidad().getTime()));
+            ps.setString(4, medicamento.getDescripcion());
+            ps.setDouble(5, medicamento.getPrecio());
+            ps.execute();
+            return true;
+
         } catch (Exception e) {
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Error", "Error en el sql",
                     DesktopNotify.ERROR, 3000);
             e.printStackTrace();
-        }finally{
-            try{
+        } finally {
+            try {
                 ps.close();
                 conectar.closeConexion(con);
-            }catch(SQLException ex){
-                   
+            } catch (SQLException ex) {
+
             }
-            
+
         }
 
         return false;
+    }
+
+    @Override
+    public ListaCircular<Medicamento> mostrar() {
+
+        String sql = "select * from medicamento";
+        return select(sql);
+    }
+
+    private ListaCircular<Medicamento> select(String sql) {
+        ListaCircular<Medicamento> listaC = new ListaCircular();
+
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Medicamento med = new Medicamento();
+                med.setIdMedicamento(rs.getInt("id_medicamento"));
+                med.setNombre(rs.getString("nombre"));
+                med.setCantidadDisponible(rs.getInt("cantidad_disponible"));
+                med.setFechaCaducidad(rs.getDate("fecha_caducidad"));
+                med.setDescripcion(rs.getString("descripcion"));
+                med.setPrecio(rs.getDouble("precio"));
+                listaC.insertar(med);
+                
+                
+
+            }
+
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.showDesktopMessage("Error", "Error en la base",
+                    DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+
+            }
+            conectar.closeConexion(con);
+
+        }
+        return listaC;
+
     }
 }

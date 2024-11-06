@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Estructuras.ListaCircular;
 import Modelo.Medicamento;
 
 /**
@@ -12,5 +13,6 @@ import Modelo.Medicamento;
  */
 public interface IMedicamento {
     public boolean insert(Medicamento obj);
+    public ListaCircular<Medicamento> mostrar();
     
 }

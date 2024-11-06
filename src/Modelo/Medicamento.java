@@ -9,7 +9,7 @@ import java.util.Date;
  *
  * @author Michael Ramos;
 **/
-public class Medicamento {
+public class Medicamento implements Comparable<Medicamento>{
     
     private int idMedicamento;
     private String nombre;
@@ -84,6 +84,13 @@ public class Medicamento {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    @Override
+    public int compareTo(Medicamento o) {
+    Medicamento actual=this;
+    return actual.nombre.compareToIgnoreCase(o.nombre);
+    
     }
     
     
