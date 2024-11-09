@@ -7,19 +7,17 @@ package Modelo;
 **/
 public class EntregaMedicina {
     private int idEntregaMedicina;
-    private int integer;
-    private String dosis;
-    private Consulta consulta;
+    private Receta receta;
+    private Recepcion recepcion;
     private Medicamento medicamento;
 
     public EntregaMedicina() {
     }
 
-    public EntregaMedicina(int idEntregaMedicina, int integer, String dosis, Consulta consulta, Medicamento medicamento) {
+    public EntregaMedicina(int idEntregaMedicina, Receta receta, Recepcion recepcion, Medicamento medicamento) {
         this.idEntregaMedicina = idEntregaMedicina;
-        this.integer = integer;
-        this.dosis = dosis;
-        this.consulta = consulta;
+        this.receta = receta;
+        this.recepcion = recepcion;
         this.medicamento = medicamento;
     }
 
@@ -31,28 +29,20 @@ public class EntregaMedicina {
         this.idEntregaMedicina = idEntregaMedicina;
     }
 
-    public int getInteger() {
-        return integer;
+    public Receta getReceta() {
+        return receta;
     }
 
-    public void setInteger(int integer) {
-        this.integer = integer;
+    public void setReceta(Receta receta) {
+        this.receta = receta;
     }
 
-    public String getDosis() {
-        return dosis;
+    public Recepcion getRecepcion() {
+        return recepcion;
     }
 
-    public void setDosis(String dosis) {
-        this.dosis = dosis;
-    }
-
-    public Consulta getConsulta() {
-        return consulta;
-    }
-
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setRecepcion(Recepcion recepcion) {
+        this.recepcion = recepcion;
     }
 
     public Medicamento getMedicamento() {

@@ -92,6 +92,4 @@ public class Medicamento implements Comparable<Medicamento>{
     return actual.nombre.compareToIgnoreCase(o.nombre);
     
     }
-    
-    
 }

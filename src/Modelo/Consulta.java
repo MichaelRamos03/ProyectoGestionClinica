@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author MINEDUCYT
@@ -12,24 +14,26 @@ public class Consulta {
     private int idConsulta;
     private int consultorio;
     private String diagnostico;
-    private String presion;
-    private String peso;
-    private String altura;
-    private Expediente expediente;
+    private Recepcion recepcion;
     private MedicoEspecialista medicoEspecialista;
+    private Expediente expediente;
+    private ArrayList<Examen> examenes;
+    private ArrayList<Receta> recetas;
 
-    public Consulta(int idConsulta, int consultorio, String diagnostico, String presion, String peso, String altura, Expediente expediente, MedicoEspecialista medicoEspecialista) {
+    public Consulta() {
+        this.examenes = new ArrayList();
+        this.recetas = new ArrayList();
+    }
+
+    public Consulta(int idConsulta, int consultorio, String diagnostico, Recepcion recepcion, MedicoEspecialista medicoEspecialista, Expediente expediente) {
         this.idConsulta = idConsulta;
         this.consultorio = consultorio;
         this.diagnostico = diagnostico;
-        this.presion = presion;
-        this.peso = peso;
-        this.altura = altura;
-        this.expediente = expediente;
+        this.recepcion = recepcion;
         this.medicoEspecialista = medicoEspecialista;
-    }
-
-    public Consulta() {
+        this.expediente = expediente;
+        this.examenes = new ArrayList();
+        this.recetas = new ArrayList();
     }
 
     public int getIdConsulta() {
@@ -56,28 +60,20 @@ public class Consulta {
         this.diagnostico = diagnostico;
     }
 
-    public String getPresion() {
-        return presion;
+    public Recepcion getRecepcion() {
+        return recepcion;
     }
 
-    public void setPresion(String presion) {
-        this.presion = presion;
+    public void setRecepcion(Recepcion recepcion) {
+        this.recepcion = recepcion;
     }
 
-    public String getPeso() {
-        return peso;
+    public MedicoEspecialista getMedicoEspecialista() {
+        return medicoEspecialista;
     }
 
-    public void setPeso(String peso) {
-        this.peso = peso;
-    }
-
-    public String getAltura() {
-        return altura;
-    }
-
-    public void setAltura(String altura) {
-        this.altura = altura;
+    public void setMedicoEspecialista(MedicoEspecialista medicoEspecialista) {
+        this.medicoEspecialista = medicoEspecialista;
     }
 
     public Expediente getExpediente() {
@@ -88,13 +84,19 @@ public class Consulta {
         this.expediente = expediente;
     }
 
-    public MedicoEspecialista getMedicoEspecialista() {
-        return medicoEspecialista;
+    public ArrayList<Examen> getExamenes() {
+        return examenes;
     }
 
-    public void setMedicoEspecialista(MedicoEspecialista medicoEspecialista) {
-        this.medicoEspecialista = medicoEspecialista;
+    public void setExamenes(ArrayList<Examen> examenes) {
+        this.examenes = examenes;
     }
-    
-    
+
+    public ArrayList<Receta> getRecetas() {
+        return recetas;
+    }
+
+    public void setRecetas(ArrayList<Receta> recetas) {
+        this.recetas = recetas;
+    }  
 }

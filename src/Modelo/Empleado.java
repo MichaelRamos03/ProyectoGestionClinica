@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,8 +22,13 @@ public class Empleado {
     private String correo;
     private int estado;
     private Rol rol;
+    private ArrayList<Usuario> usuarios;
+    private ArrayList<MedicoEspecialista> especialistas;
+    
 
     public Empleado() {
+        this.usuarios = new ArrayList();
+        this.especialistas = new ArrayList();
     }
 
     public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, int estado, Rol rol) {
@@ -35,6 +41,8 @@ public class Empleado {
         this.correo = correo;
         this.estado = estado;
         this.rol = rol;
+        this.usuarios = new ArrayList();
+        this.especialistas = new ArrayList();
     }
 
     public int getIdEmpleado() {
@@ -109,6 +117,19 @@ public class Empleado {
         this.rol = rol;
     }
 
-    
-    
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public ArrayList<MedicoEspecialista> getEspecialistas() {
+        return especialistas;
+    }
+
+    public void setEspecialistas(ArrayList<MedicoEspecialista> especialistas) {
+        this.especialistas = especialistas;
+    }
 }

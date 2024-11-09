@@ -45,7 +45,4 @@ public class Rol {
     public void setListEmpleado(ArrayList<Empleado> listEmpleado) {
         this.listEmpleado = listEmpleado;
     }
-
-    
-    
 }

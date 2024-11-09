@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Modelo;
 
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ public class Especialidad {
     private ArrayList<MedicoEspecialista> listMedicoEspecialista;
 
     public Especialidad() {
+        this.listMedicoEspecialista = new ArrayList();
     }
 
     public Especialidad(int idEspecialidad, String especialidad, ArrayList<MedicoEspecialista> listMedicoEspecialista) {
@@ -47,8 +45,4 @@ public class Especialidad {
     public void setListMedicoEspecialista(ArrayList<MedicoEspecialista> listMedicoEspecialista) {
         this.listMedicoEspecialista = listMedicoEspecialista;
     }
-
-    
-    
-    
 }
