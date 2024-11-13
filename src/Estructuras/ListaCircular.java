@@ -1,6 +1,8 @@
 package Estructuras;
 
 
+import Modelo.Medicamento;
+import ModeloDao.MedicamentoDao;
 import java.util.ArrayList;
 
 /*
@@ -16,9 +18,35 @@ public class ListaCircular<T> {
     // lista simple (ordenada)
     //private NodoDoble<T> lista1;
     private Nodo<T> lista;
-
+    private MedicamentoDao medicamentoDao;
     public ListaCircular() {
         lista = null;
+        medicamentoDao= new MedicamentoDao();
+    }  
+    
+    
+     public <T extends Comparable> void insertarMedicamento(T contenido) {
+        Nodo nodito = new Nodo(contenido);
+        Medicamento medicamento=  (Medicamento) contenido;
+        
+        if (isEmpty()) {
+            lista = nodito;
+            lista.setSiguiente(nodito);
+            medicamentoDao.insert(medicamento);
+        } else if (contenido.compareTo(lista.getDato()) < 0) { // almacena datos de mayor a menor
+            // insertando valores que sean menores a los de la lista
+            Nodo aux = fin();
+            nodito.setSiguiente(lista);
+            lista = nodito;
+            aux.setSiguiente(nodito);
+            medicamentoDao.insert(medicamento);
+        } else {
+            Nodo aux = ubicar(contenido);
+            nodito.setSiguiente(aux.getSiguiente());
+            aux.setSiguiente(nodito);
+            medicamentoDao.insert(medicamento);
+        }
+
     }
 
     public <T extends Comparable> void insertar(T contenido) {
@@ -33,7 +61,7 @@ public class ListaCircular<T> {
             nodito.setSiguiente(lista);
             lista = nodito;
             aux.setSiguiente(nodito);
-
+            
         } else {
             Nodo aux = ubicar(contenido);
             nodito.setSiguiente(aux.getSiguiente());

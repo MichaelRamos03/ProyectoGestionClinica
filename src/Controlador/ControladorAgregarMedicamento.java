@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Estructuras.ListaCircular;
 import Modelo.Medicamento;
 import ModeloDao.MedicamentoDao;
 import Vista.VistaRegistrarMedicamento;
@@ -24,10 +25,10 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
     private ControladorMedicamentos controladorMedicamento;
     private Medicamento medicamento;
     private MedicamentoDao medicamentoDao;
-
-    public ControladorAgregarMedicamento(VistaRegistrarMedicamento vistaRegistrar, ControladorMedicamentos controladorMedicamento) {
+    private ListaCircular<Medicamento> medicamentoList;
+    public ControladorAgregarMedicamento(VistaRegistrarMedicamento vistaRegistrar, ControladorMedicamentos controladorMedicamento,ListaCircular<Medicamento> medicamentoList) {
         this.vistaRegistrar = vistaRegistrar;
-        
+        this.medicamentoList= medicamentoList;
         this.controladorMedicamento = controladorMedicamento;
          this.vistaRegistrar.setLocationRelativeTo(null);
         this.vistaRegistrar.btnRegistrar.addActionListener(this); 
@@ -58,7 +59,8 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
             nuevoMedicamento.setPrecio(precio1);
             nuevoMedicamento.setFechaCaducidad(fechaCaducidad);
             nuevoMedicamento.setDescripcion(descripcion);
-            this.medicamentoDao.insert(nuevoMedicamento);
+            this.medicamentoList.insertarMedicamento(nuevoMedicamento);
+            
             JOptionPane.showMessageDialog(null, "El medicamento: "+nuevoMedicamento.getNombre()+ " Ha sido registrado exitosamente");
             this.controladorMedicamento.mostrarDatos();
             this.vistaRegistrar.dispose();

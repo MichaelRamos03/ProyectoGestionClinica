@@ -71,7 +71,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaModificar= new VistaModificarMedicamento();
         
         
-        this.controladorAgregar= new ControladorAgregarMedicamento(this.vistaRegistrar,this);
+        this.controladorAgregar= new ControladorAgregarMedicamento(this.vistaRegistrar,this,medicamentoList);
        this.controladorModificar= new ControladorModificarMedicamento(this.vistaModificar,this);
         
         mostrarDatos();
