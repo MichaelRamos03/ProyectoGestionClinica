@@ -8,14 +8,18 @@ import Estructuras.ListaCircular;
 import Modelo.Medicamento;
 import ModeloDao.MedicamentoDao;
 import Vista.VistaCrudMedicamentos;
+import Vista.VistaModificarMedicamento;
 
 import Vista.VistaRegistrarMedicamento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
+import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,14 +28,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorMedicamentos extends MouseAdapter implements ActionListener, MouseListener {
 
-    // medicamento listaCircular
-     
     private VistaCrudMedicamentos vistaMedicamentos;
     private VistaRegistrarMedicamento vistaRegistrar;
+    private VistaModificarMedicamento vistaModificar;
+    
     private ControladorAgregarMedicamento controladorAgregar;
+    private ControladorModificarMedicamento controladorModificar;
     private MedicamentoDao daoMedicamento;
 
     private Medicamento medicamento;
+    private int filaMedicamentoSeleccionado;
+    private Medicamento medicamentoSeleccionado;
     private ListaCircular<Medicamento> medicamentoList;
     private DefaultTableModel md;
 
@@ -53,16 +60,37 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.md.addColumn("Descripcion");
         this.md.addColumn("Precio");
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
-        
+        //escuchando la tabla
+        this.vistaMedicamentos.tablaMedicamentos.addMouseListener(this);
         
         this.daoMedicamento= new MedicamentoDao();
+        this.medicamentoSeleccionado= new Medicamento();
         this.medicamentoList= new ListaCircular<Medicamento>();
         
         this.vistaRegistrar= new VistaRegistrarMedicamento();
+        this.vistaModificar= new VistaModificarMedicamento();
+        
         
         this.controladorAgregar= new ControladorAgregarMedicamento(this.vistaRegistrar,this);
-       
+       this.controladorModificar= new ControladorModificarMedicamento(this.vistaModificar,this);
+        
         mostrarDatos();
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent e){
+        if(e.getSource()==this.vistaMedicamentos.tablaMedicamentos){
+            this.filaMedicamentoSeleccionado= this.vistaMedicamentos.tablaMedicamentos.getSelectedRow();
+            if(filaMedicamentoSeleccionado >=0){
+                this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(false);
+                this.vistaMedicamentos.btnEliminar.setEnabled(true);
+                this.vistaMedicamentos.btnModificar.setEnabled(true);
+            }else if(filaMedicamentoSeleccionado <0){
+                this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(true);
+                this.vistaMedicamentos.btnEliminar.setEnabled(false);
+                this.vistaMedicamentos.btnModificar.setEnabled(false);
+            }
+        }
     }
 
     @Override
@@ -71,6 +99,36 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
             System.out.println("entra");
             this.vistaRegistrar.setVisible(true);
  
+        }
+        if(e.getSource()==this.vistaMedicamentos.btnModificar){
+            this.vistaModificar.setVisible(true);
+        }
+        
+        if(e.getSource()== this.vistaMedicamentos.btnEliminar){
+            this.medicamentoSeleccionado= new Medicamento();
+            String nombre=this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 1).toString();
+            this.medicamentoSeleccionado.setNombre(nombre);
+           //int id=Integer.parseInt(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado,0).toString());
+            this.medicamentoSeleccionado= this.medicamentoList.buscarDato(this.medicamentoSeleccionado);
+            
+            /*
+            String nombre=this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 1).toString();
+            int cantidadDisponible=Integer.parseInt(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 2).toString());
+            Date fechaCaducidad= (Date) this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 3);
+            String des= this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 4).toString();
+            Double precio=Double.parseDouble(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 5).toString());
+         
+             this.medicamentoSeleccionado.setIdMedicamento(id);
+             this.medicamentoSeleccionado.setNombre(nombre);
+             this.medicamentoSeleccionado.setCantidadDisponible(cantidadDisponible);
+             this.medicamentoSeleccionado.setFechaCaducidad(fechaCaducidad);
+             this.medicamentoSeleccionado.setDescripcion(des);
+             this.medicamentoSeleccionado.setPrecio(precio);
+            
+            
+        */
+            System.out.println("Medicamento seleccionado cant:"+this.medicamentoSeleccionado.getCantidadDisponible());
+             eliminarMedicamento(this.medicamentoSeleccionado);
         }
                    
         
@@ -94,6 +152,15 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         
     }
     
+    public void eliminarMedicamento(Medicamento medicamento){
+        
+        // NO hace falta la  eliminacion desde la listaCicurlar 
+       // this.medicamentoList.eliminar(medicamento);
+        // eliminando desde la bd;
+        this.daoMedicamento.delete(medicamento);
+        JOptionPane.showMessageDialog(null,"Medicamento: "+medicamento.getNombre()+ " Eliminado con exito");
+        mostrarDatos();
+    }
     
 
 }

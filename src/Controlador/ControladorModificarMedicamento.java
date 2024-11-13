@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Medicamento;
 import ModeloDao.MedicamentoDao;
+import Vista.VistaModificarMedicamento;
 import Vista.VistaRegistrarMedicamento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,19 +19,19 @@ import javax.swing.JOptionPane;
  *
  * @author karla
  */
-public class ControladorAgregarMedicamento extends MouseAdapter implements ActionListener,MouseListener {
+public class ControladorModificarMedicamento extends MouseAdapter implements ActionListener,MouseListener {
     
-    private VistaRegistrarMedicamento vistaRegistrar;
+    private VistaModificarMedicamento vistaModificar;
     private ControladorMedicamentos controladorMedicamento;
     private Medicamento medicamento;
     private MedicamentoDao medicamentoDao;
 
-    public ControladorAgregarMedicamento(VistaRegistrarMedicamento vistaRegistrar, ControladorMedicamentos controladorMedicamento) {
-        this.vistaRegistrar = vistaRegistrar;
+    public ControladorModificarMedicamento(VistaModificarMedicamento vistaModificar, ControladorMedicamentos controladorMedicamento) {
+        this.vistaModificar = vistaModificar;
         
         this.controladorMedicamento = controladorMedicamento;
-         this.vistaRegistrar.setLocationRelativeTo(null);
-        this.vistaRegistrar.btnRegistrar.addActionListener(this); 
+         this.vistaModificar.setLocationRelativeTo(null);
+        this.vistaModificar.btnModificar.addActionListener(this); 
         this.medicamentoDao= new MedicamentoDao();
     }
     
@@ -40,13 +41,15 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
     @Override
     public void actionPerformed(ActionEvent e) {
         
-         if(e.getSource()==this.vistaRegistrar.btnRegistrar){
+         if(e.getSource()==this.vistaModificar.btnModificar){
              System.out.println("ENTRA VISTA REGISTRAR");
+             /*
             String nombre= this.vistaRegistrar.txtNombreMedicamento.getText();
             String cantidad =(this.vistaRegistrar.txtCantidad.getText());
             String precio=(this.vistaRegistrar.txtPrecio.getText());
             String descripcion= this.vistaRegistrar.textAreaDescripcion.getText();
             Date fechaCaducidad= this.vistaRegistrar.fechaCaducidad.getDate();
+
             if(validarDatos(nombre,cantidad,precio,descripcion,fechaCaducidad)){
             
              int cant=Integer.parseInt(cantidad);
@@ -61,12 +64,13 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
             this.medicamentoDao.insert(nuevoMedicamento);
             JOptionPane.showMessageDialog(null, "El medicamento: "+nuevoMedicamento.getNombre()+ " Ha sido registrado exitosamente");
             this.controladorMedicamento.mostrarDatos();
-            this.vistaRegistrar.dispose();
+            //this.vistaRegistrar.dispose();
+*/
             }
             } 
         
   }
-    
+    /*
     public Boolean validarDatos(String nombre,String cantidad,String precio,String descripcion,Date fechaCaducidad){
         // validaciones nombre
         nombre=nombre.replace(" ", "");
@@ -87,9 +91,9 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
         return true;
     }
     
+    */
     
     
     
     
-    
-}
+

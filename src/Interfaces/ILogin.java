@@ -4,16 +4,12 @@
  */
 package Interfaces;
 
-import Estructuras.ListaCircular;
-import Modelo.Medicamento;
+import Modelo.Usuario;
 
 /**
  *
  * @author karla
  */
-public interface IMedicamento {
-    public boolean insert(Medicamento obj);
-    public ListaCircular<Medicamento> mostrar();
-    public boolean delete(Medicamento obj);
-    
+public interface ILogin {
+    public Usuario validarLogin(String usuario,String contrasenia);
 }

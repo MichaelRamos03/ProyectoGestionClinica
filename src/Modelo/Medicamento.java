@@ -20,9 +20,22 @@ public class Medicamento implements Comparable<Medicamento>{
     ArrayList<EntregaMedicina> EntregaMedicinas; 
 
     public Medicamento() {
-        this.EntregaMedicinas = new ArrayList();
+        
+        //this.EntregaMedicinas = new ArrayList();
     }
 
+    
+    public Medicamento(int idMedicamento, String nombre, int cantidadDisponible, Date fechaCaducidad, String descripcion, Double precio) {
+        this.idMedicamento = idMedicamento;
+        this.nombre = nombre;
+        this.cantidadDisponible = cantidadDisponible;
+        this.fechaCaducidad = fechaCaducidad;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
+
+    
+    
     public Medicamento(int idMedicamento, String nombre, int cantidadDisponible) {
         this.idMedicamento = idMedicamento;
         this.nombre = nombre;
