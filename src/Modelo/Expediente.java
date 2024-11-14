@@ -8,7 +8,7 @@ import java.util.Date;
  *
  * @author Michael Ramos;
 **/
-public class Expediente {
+public class Expediente implements Comparable<Expediente>{
 
     private int idExpediente;
     private String nombre;
@@ -25,6 +25,19 @@ public class Expediente {
 
     public Expediente() {
         this.consultas = new ArrayList(); 
+    }
+
+    public Expediente(String nombre, String apellido, Date fechaNacimiento, String sexo, String telefono, String informacionMedica, String tratamiento, String notaMedica, String alergias, String medicamentos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.informacionMedica = informacionMedica;
+        this.tratamiento = tratamiento;
+        this.notaMedica = notaMedica;
+        this.alergias = alergias;
+        this.medicamentos = medicamentos;
     }
 
     public Expediente(int idExpediente, String nombre, String apellido, Date fechaNacimiento, String sexo, String telefono, String informacionMedica, String tratamiento, String notaMedica, String alergias, String medicamentos) {
@@ -137,6 +150,11 @@ public class Expediente {
     public void setConsultas(ArrayList<Consulta> consultas) {
         this.consultas = consultas;
     }
-    
-    
+
+    @Override
+    public int compareTo(Expediente o) {
+        Expediente actual = this;
+        
+        return actual.nombre.compareToIgnoreCase(o.nombre);
+    }
 }
