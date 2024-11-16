@@ -28,25 +28,22 @@ public class ControladorViewInicio extends MouseAdapter implements ActionListene
         this.vistaInicio.setVisible(true);
         this.vistaInicio.setLocationRelativeTo(null);
         
+        this.vistaInicio.btnMenu.addActionListener(this);
         this.vistaInicio.btnLogin.addActionListener(this);
         
         this.vistaLogin= new VistaLogin();
     }
-    
-    @Override
-    public void mouseClicked(MouseEvent e){
-        
-        if(e.getSource()==this.vistaInicio.btnLogin){
-            System.out.println("BTNLOGIN");
-            ControladorLogin controladorLogin= new ControladorLogin(this.vistaLogin);
-        }
-    }
+  
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
          
-        
+           if(e.getSource()==this.vistaInicio.btnLogin){
+            System.out.println("BTNLOGIN");
+            ControladorLogin controladorLogin= new ControladorLogin(this.vistaLogin);
+            
+           }
     }
     
 }

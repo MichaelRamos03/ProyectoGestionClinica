@@ -26,13 +26,10 @@ public class ViewInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar2 = new javax.swing.JMenuBar();
-        btnLogin = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
+        btnMenu = new javax.swing.JMenu();
+        btnLogin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,12 +44,17 @@ public class ViewInicio extends javax.swing.JFrame {
             .addGap(0, 539, Short.MAX_VALUE)
         );
 
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
         btnLogin.setText("Login");
+        btnMenu.add(btnLogin);
 
-        jMenuItem2.setText("jMenuItem2");
-        btnLogin.add(jMenuItem2);
-
-        jMenuBar2.add(btnLogin);
+        jMenuBar2.add(btnMenu);
 
         setJMenuBar(jMenuBar2);
 
@@ -71,6 +73,10 @@ public class ViewInicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,10 +114,9 @@ public class ViewInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JMenu btnLogin;
+    public javax.swing.JMenuItem btnLogin;
+    public javax.swing.JMenu btnMenu;
     public javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
