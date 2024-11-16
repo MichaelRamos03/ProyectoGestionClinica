@@ -55,6 +55,9 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaRegistrarMedicamento_jPanel1"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

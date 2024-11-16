@@ -29,6 +29,7 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
 
     public ControladorAgregarMedicamento(VistaRegistrarMedicamento vistaRegistrar, ControladorMedicamentos controladorMedicamento, ListaCircular<Medicamento> medicamentoList) {
         this.vistaRegistrar = vistaRegistrar;
+        this.vistaRegistrar.setDefaultCloseOperation(vistaRegistrar.DISPOSE_ON_CLOSE);
         this.medicamentoList = medicamentoList;
         this.controladorMedicamento = controladorMedicamento;
         this.vistaRegistrar.setLocationRelativeTo(null);
@@ -61,6 +62,7 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
 
                 JOptionPane.showMessageDialog(null, "El medicamento: " + nuevoMedicamento.getNombre() + " Ha sido registrado exitosamente");
                 this.controladorMedicamento.mostrarDatos();
+                limpiarDatos();
                 this.vistaRegistrar.dispose();
             }
         }
@@ -133,4 +135,12 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
         return true;
     }
 
+    
+     public void limpiarDatos(){
+        this.vistaRegistrar.txtNombreMedicamento.setText("");
+        this.vistaRegistrar.txtCantidad.setText("");
+        this.vistaRegistrar.txtPrecio.setText("");
+        this.vistaRegistrar.textAreaDescripcion.setText("");
+        this.vistaRegistrar.fechaCaducidad.setDate(null);
+    }
 }

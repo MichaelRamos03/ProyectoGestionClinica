@@ -32,11 +32,12 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
 
     public ControladorModificarMedicamento(VistaModificarMedicamento vistaModificar, ControladorMedicamentos controladorMedicamento, Medicamento medicamento,ListaCircular<Medicamento> listaCircular) {
         this.vistaModificar = vistaModificar;
+        this.vistaModificar.setDefaultCloseOperation(vistaModificar.DISPOSE_ON_CLOSE);
         this.medicamentoSeleccionado=medicamento;
         this.listaC = listaCircular;
         this.controladorMedicamento = controladorMedicamento;
         this.vistaModificar.setLocationRelativeTo(null);
-        this.vistaModificar.setDefaultCloseOperation(vistaModificar.EXIT_ON_CLOSE);
+    
         this.vistaModificar.btnModificar.addActionListener(this);
         this.medicamentoDao = new MedicamentoDao();
         llenarVistaMedicamento();
@@ -69,29 +70,31 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
                 System.out.println("" + medicamentoModificado.getNombre());
                 
                 //utilizando el mismo objeto para hacer una busqueda si ese medicamento existe en la lista
-                this.medicamentoSeleccionado = new Medicamento();
-                this.medicamentoSeleccionado.setNombre(nombre);
-                this.medicamentoSeleccionado=this.listaC.buscarDato(this.medicamentoSeleccionado);
+               // this.medicamentoSeleccionado = new Medicamento();
+                //this.medicamentoSeleccionado.setNombre(nombre);
+                //this.medicamentoSeleccionado=this.listaC.buscarDato(this.medicamentoSeleccionado);
                 
                // si se encontró
-                if (this.medicamentoSeleccionado !=null) {
+                //if (this.medicamentoSeleccionado !=null) {
 
-                    JOptionPane.showMessageDialog(null, "El nombre del medicamento ya existe, ingrese otro nombre del medicamento");
+               //     JOptionPane.showMessageDialog(null, "El nombre del medicamento ya existe, ingrese otro nombre del medicamento");
                // si esta nulo es porque no hay un medicamento con ese mismo nombre
-                } else {
+               // } else {
 
                     // metodo para actualizar no insert
                     this.medicamentoDao.update(medicamentoModificado);
+                    
                     JOptionPane.showMessageDialog(null,"Medicamento Actualizado");
                  DesktopNotify.setDefaultTheme(NotifyTheme.Green); // mandamos un mensaje
             DesktopNotify.showDesktopMessage("exito", "Actualizado",
             DesktopNotify.ERROR, 3000); this.vistaModificar.dispose();
                 }
+               limpiarDatos();
                 this.controladorMedicamento.mostrarDatos();
             }
             
         }
-    }
+    
 
     private void llenarVistaMedicamento(){
         
@@ -169,4 +172,11 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
         return true;
     }
 
+    public void limpiarDatos(){
+        this.vistaModificar.txtNombreMedicamento.setText("");
+        this.vistaModificar.txtCantidad.setText("");
+        this.vistaModificar.txtPrecio.setText("");
+        this.vistaModificar.textAreaDescripcion.setText("");
+        this.vistaModificar.fechaCaducidad.setDate(null);
+    }
 }
