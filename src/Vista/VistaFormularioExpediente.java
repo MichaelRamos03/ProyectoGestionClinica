@@ -165,7 +165,7 @@ public class VistaFormularioExpediente extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Fondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 650, 100, 40));
+        Fondo.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 640, 100, 40));
 
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 730));
 

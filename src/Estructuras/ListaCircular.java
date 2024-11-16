@@ -32,21 +32,21 @@ public class ListaCircular<T> {
         if (isEmpty()) {
             lista = nodito;
             lista.setSiguiente(nodito);
-            medicamentoDao.insert(medicamento);
+            
         } else if (contenido.compareTo(lista.getDato()) < 0) { // almacena datos de mayor a menor
             // insertando valores que sean menores a los de la lista
             Nodo aux = fin();
             nodito.setSiguiente(lista);
             lista = nodito;
             aux.setSiguiente(nodito);
-            medicamentoDao.insert(medicamento);
+           
         } else {
             Nodo aux = ubicar(contenido);
             nodito.setSiguiente(aux.getSiguiente());
             aux.setSiguiente(nodito);
-            medicamentoDao.insert(medicamento);
+            
         }
-
+         medicamentoDao.insert(medicamento);
     }
 
     public <T extends Comparable> void insertar(T contenido) {

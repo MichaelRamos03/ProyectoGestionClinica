@@ -70,6 +70,13 @@ public class MedicamentoDao implements IMedicamento {
                 + "	VALUES (?, ?, ?, ?, ?)";
         return alterarRegistro(sql, medicamento);
     }
+    
+      @Override
+    public boolean update(Medicamento obj) {
+        String sql = "update medicamento set nombre=?,cantidad_disponible=?,fecha_caducidad=?,descripcion=?,precio=?\n"
+                + "where id_medicamento='" +obj.getIdMedicamento()+ "'";
+        return alterarRegistro(sql, obj);
+    }
 
     private boolean alterarRegistro(String sql, Medicamento medicamento) {
         try {
@@ -152,27 +159,29 @@ public class MedicamentoDao implements IMedicamento {
     public boolean delete(Medicamento obj) {
         String sql = "delete \n"
                 + "from medicamento\n"
-                + "where id_medicamento='"+obj.getIdMedicamento()+"'";
-    try{
-        con= conectar.getConexion();
-        ps=con.prepareStatement(sql);
-        ps.executeUpdate();
-        return true;
-    }catch (Exception e){
-         DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+                + "where id_medicamento='" + obj.getIdMedicamento() + "'";
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
             DesktopNotify.showDesktopMessage("Error", "Error en el sql",
-            DesktopNotify.ERROR, 3000);   
+                    DesktopNotify.ERROR, 3000);
             e.printStackTrace();
-    }finally{
-        
-        try{
-            ps.close();
-            conectar.closeConexion(con);
-        }catch(SQLException e){
-            
+        } finally {
+
+            try {
+                ps.close();
+                conectar.closeConexion(con);
+            } catch (SQLException e) {
+
+            }
         }
+
+        return false;
     }
-    
-    return false;
-    }
+
+  
 }

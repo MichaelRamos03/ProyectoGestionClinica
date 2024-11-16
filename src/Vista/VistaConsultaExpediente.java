@@ -64,6 +64,11 @@ public class VistaConsultaExpediente extends javax.swing.JFrame {
         btnAgregar.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
         btnAgregar.setText("+ Agregar");
         btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -132,6 +137,10 @@ public class VistaConsultaExpediente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
    
 //    public static void main(String args[]) {

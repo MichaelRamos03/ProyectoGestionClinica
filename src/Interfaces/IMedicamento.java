@@ -13,6 +13,7 @@ import Modelo.Medicamento;
  */
 public interface IMedicamento {
     public boolean insert(Medicamento obj);
+    public boolean update(Medicamento obj);
     public ListaCircular<Medicamento> mostrar();
     public boolean delete(Medicamento obj);
     

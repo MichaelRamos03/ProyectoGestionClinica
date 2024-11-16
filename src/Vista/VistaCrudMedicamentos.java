@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import utilidades.Fondo;
+
 /**
  *
  * @author karla
@@ -15,6 +17,9 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
      */
     public VistaCrudMedicamentos() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        this.jPanel1.setBorder(new Fondo("/imagenes/ImagenMedicamentos.jpg"));
+ 
     }
 
     /**
@@ -27,89 +32,20 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaMedicamentos = new javax.swing.JTable();
         btnRegistrarMedicamento = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         labelMedicine = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaMedicamentos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel1.setFont(new java.awt.Font("Sitka Heading", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Administrar Medicamentos");
-
-        btnRegistrarMedicamento.setBackground(new java.awt.Color(255, 255, 255));
-        btnRegistrarMedicamento.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
-        btnRegistrarMedicamento.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegistrarMedicamento.setText("Registrar Medicamento");
-        btnRegistrarMedicamento.setToolTipText("Registro de nuevo medicamento");
-        btnRegistrarMedicamento.setFocusable(false);
-
-        btnModificar.setBackground(new java.awt.Color(255, 255, 255));
-        btnModificar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(0, 0, 0));
-        btnModificar.setText("Modificar medicamento ");
-        btnModificar.setToolTipText("Seleccione un medicamento");
-        btnModificar.setFocusable(false);
-
-        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminar.setText("Eliminar medicamento");
-        btnEliminar.setToolTipText("Seleccione un medicamento");
-        btnEliminar.setFocusable(false);
-
-        labelMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ant-design--medicine-box-filled (2).png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegistrarMedicamento)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                        .addComponent(labelMedicine)
-                        .addGap(31, 31, 31))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(btnModificar)
-                        .addGap(41, 41, 41)
-                        .addComponent(btnEliminar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(labelMedicine))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarMedicamento)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar))
-                .addGap(0, 6, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 120));
 
         tablaMedicamentos.setBackground(new java.awt.Color(255, 255, 255));
         tablaMedicamentos.setForeground(new java.awt.Color(0, 0, 0));
@@ -128,20 +64,56 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
         tablaMedicamentos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tablaMedicamentos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 660, 350));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 660, 450));
+
+        btnRegistrarMedicamento.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrarMedicamento.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
+        btnRegistrarMedicamento.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistrarMedicamento.setText("Registrar Medicamento");
+        btnRegistrarMedicamento.setToolTipText("Registro de nuevo medicamento");
+        btnRegistrarMedicamento.setFocusable(false);
+        jPanel1.add(btnRegistrarMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
+
+        btnModificar.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificar.setText("Modificar medicamento ");
+        btnModificar.setToolTipText("Seleccione un medicamento");
+        btnModificar.setFocusable(false);
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 25));
+
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setText("Eliminar medicamento");
+        btnEliminar.setToolTipText("Seleccione un medicamento");
+        btnEliminar.setFocusable(false);
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+
+        labelMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ant-design--medicine-box-filled (2).png"))); // NOI18N
+        jPanel1.add(labelMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 0, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Sitka Heading", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Administrar Medicamentos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, 160, 30));
+
+        btnBuscar.setText("Buscar Medicamento");
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1095, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -187,14 +159,15 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnRegistrarMedicamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel labelMedicine;
     public javax.swing.JTable tablaMedicamentos;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

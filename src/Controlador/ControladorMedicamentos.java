@@ -31,7 +31,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
     private VistaCrudMedicamentos vistaMedicamentos;
     private VistaRegistrarMedicamento vistaRegistrar;
     private VistaModificarMedicamento vistaModificar;
-    
+
     private ControladorAgregarMedicamento controladorAgregar;
     private ControladorModificarMedicamento controladorModificar;
     private MedicamentoDao daoMedicamento;
@@ -52,7 +52,9 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaMedicamentos.btnModificar.setEnabled(false);
         this.vistaMedicamentos.btnEliminar.addActionListener(this);
         this.vistaMedicamentos.btnEliminar.setEnabled(false);
-        this.md= new DefaultTableModel();
+        this.vistaMedicamentos.btnBuscar.addActionListener(this);
+
+        this.md = new DefaultTableModel();
         this.md.addColumn("id");
         this.md.addColumn("Nombre");
         this.md.addColumn("Cantidad Disponible");
@@ -62,30 +64,36 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
         //escuchando la tabla
         this.vistaMedicamentos.tablaMedicamentos.addMouseListener(this);
-        
-        this.daoMedicamento= new MedicamentoDao();
-        this.medicamentoSeleccionado= new Medicamento();
-        this.medicamentoList= new ListaCircular<Medicamento>();
-        
-        this.vistaRegistrar= new VistaRegistrarMedicamento();
-        this.vistaModificar= new VistaModificarMedicamento();
-        
-        
-        this.controladorAgregar= new ControladorAgregarMedicamento(this.vistaRegistrar,this,medicamentoList);
-       this.controladorModificar= new ControladorModificarMedicamento(this.vistaModificar,this);
-        
+
+        this.daoMedicamento = new MedicamentoDao();
+
+        this.medicamentoList = new ListaCircular<Medicamento>();
+
+        this.vistaRegistrar = new VistaRegistrarMedicamento();
+
+        this.controladorAgregar = new ControladorAgregarMedicamento(this.vistaRegistrar, this, medicamentoList);
+
         mostrarDatos();
     }
-    
+
     @Override
-    public void mouseClicked(MouseEvent e){
-        if(e.getSource()==this.vistaMedicamentos.tablaMedicamentos){
-            this.filaMedicamentoSeleccionado= this.vistaMedicamentos.tablaMedicamentos.getSelectedRow();
-            if(filaMedicamentoSeleccionado >=0){
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == this.vistaMedicamentos.tablaMedicamentos) {
+            this.filaMedicamentoSeleccionado = this.vistaMedicamentos.tablaMedicamentos.getSelectedRow();
+
+            if (filaMedicamentoSeleccionado >= 0) {
+                this.medicamentoSeleccionado = new Medicamento();
+                //buscando por nombre del medicamento(metodo del compare to)
+                String nombre = this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 1).toString();
+                this.medicamentoSeleccionado.setNombre(nombre);
+                //int id=Integer.parseInt(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado,0).toString());
+                //obteniendo el medicamento desde el metodo buscarDato
+                this.medicamentoSeleccionado = this.medicamentoList.buscarDato(this.medicamentoSeleccionado);
+
                 this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(false);
                 this.vistaMedicamentos.btnEliminar.setEnabled(true);
                 this.vistaMedicamentos.btnModificar.setEnabled(true);
-            }else if(filaMedicamentoSeleccionado <0){
+            } else if (filaMedicamentoSeleccionado < 0) {
                 this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(true);
                 this.vistaMedicamentos.btnEliminar.setEnabled(false);
                 this.vistaMedicamentos.btnModificar.setEnabled(false);
@@ -95,72 +103,83 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==this.vistaMedicamentos.btnRegistrarMedicamento){
+        if (e.getSource() == this.vistaMedicamentos.btnRegistrarMedicamento) {
             System.out.println("entra");
+
             this.vistaRegistrar.setVisible(true);
- 
+
         }
-        if(e.getSource()==this.vistaMedicamentos.btnModificar){
-            this.vistaModificar.setVisible(true);
+        if (e.getSource() == this.vistaMedicamentos.btnModificar) {
+            if (this.medicamentoSeleccionado != null) {
+                this.vistaModificar = new VistaModificarMedicamento();
+                this.controladorModificar = new ControladorModificarMedicamento(this.vistaModificar, this, this.medicamentoSeleccionado, this.medicamentoList);
+
+                this.vistaModificar.setVisible(true);
+            }
         }
-        
-        if(e.getSource()== this.vistaMedicamentos.btnEliminar){
-            this.medicamentoSeleccionado= new Medicamento();
-            String nombre=this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 1).toString();
-            this.medicamentoSeleccionado.setNombre(nombre);
-           //int id=Integer.parseInt(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado,0).toString());
-            this.medicamentoSeleccionado= this.medicamentoList.buscarDato(this.medicamentoSeleccionado);
-            
-            /*
-            String nombre=this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 1).toString();
-            int cantidadDisponible=Integer.parseInt(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 2).toString());
-            Date fechaCaducidad= (Date) this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 3);
-            String des= this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 4).toString();
-            Double precio=Double.parseDouble(this.vistaMedicamentos.tablaMedicamentos.getValueAt(filaMedicamentoSeleccionado, 5).toString());
-         
-             this.medicamentoSeleccionado.setIdMedicamento(id);
-             this.medicamentoSeleccionado.setNombre(nombre);
-             this.medicamentoSeleccionado.setCantidadDisponible(cantidadDisponible);
-             this.medicamentoSeleccionado.setFechaCaducidad(fechaCaducidad);
-             this.medicamentoSeleccionado.setDescripcion(des);
-             this.medicamentoSeleccionado.setPrecio(precio);
-            
-            
-        */
-            System.out.println("Medicamento seleccionado cant:"+this.medicamentoSeleccionado.getCantidadDisponible());
-             eliminarMedicamento(this.medicamentoSeleccionado);
+
+        if (e.getSource() == this.vistaMedicamentos.btnEliminar) {
+            eliminarMedicamento(this.medicamentoSeleccionado);
         }
-                   
-        
-                    
-  }
-    
-    public void mostrarDatos(){
+        if (e.getSource() == this.vistaMedicamentos.btnBuscar) {
+            String medicamentoBuscarTxt = this.vistaMedicamentos.txtBuscar.getText();
+            
+            if (validarBuscarMedicamento(medicamentoBuscarTxt)) {
+                Medicamento medicamentoBuscar = new Medicamento();
+                medicamentoBuscar.setNombre(medicamentoBuscarTxt);
+                medicamentoBuscar = this.medicamentoList.buscarDato(medicamentoBuscar);
+                // si es diferente de nulo es porque si lo encontro con el mismo nombre
+                if (medicamentoBuscar != null) {
+                    JOptionPane.showMessageDialog(null, "Se encontro el medicamento\n"+"Nombre: "+medicamentoBuscar.getNombre()+"\nCantidad: "+medicamentoBuscar.getCantidadDisponible()+"\n"+"Precio: "+medicamentoBuscar.getPrecio()+"\nFecha Vencimiento: "+medicamentoBuscar.getFechaCaducidad()+"\nDescripcion: "+medicamentoBuscar.getDescripcion());
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO Se encontro el medicamento");
+
+                }
+                
+            }
+            this.vistaMedicamentos.txtBuscar.setText("");
+        }
+    }
+
+    public boolean validarBuscarMedicamento(String medicamentoBuscarTxt) {
+        medicamentoBuscarTxt.replace(" ", "");
+        if (medicamentoBuscarTxt.equals("") || medicamentoBuscarTxt.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo de busqueda no debe estar vacio,Coloque un nombre válido");
+            return false;
+        }
+        for (int i = 0; i < medicamentoBuscarTxt.length(); i++) {
+            if (!Character.isLetter(medicamentoBuscarTxt.charAt(i))) {
+                JOptionPane.showMessageDialog(null, "El nombre de medicamento a buscar solo debe contener letras");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void mostrarDatos() {
         DefaultTableModel md = new DefaultTableModel();
-        String columnas[]={"Id","Nombre","Cantidad Disponible","Fecha-caducidad","Descripcion","Precio"};
+        String columnas[] = {"Id", "Nombre", "Cantidad Disponible", "Fecha-caducidad", "Descripcion", "Precio"};
         md.setColumnIdentifiers(columnas);
-        this.medicamentoList=this.daoMedicamento.mostrar();
-        for(Medicamento m: this.medicamentoList.toArray()){
-            Object datos[]={m.getIdMedicamento(),m.getNombre(),m.getCantidadDisponible(),m.getFechaCaducidad(),m.getDescripcion(),m.getPrecio()};
+        this.medicamentoList = this.daoMedicamento.mostrar();
+        for (Medicamento m : this.medicamentoList.toArray()) {
+            Object datos[] = {m.getIdMedicamento(), m.getNombre(), m.getCantidadDisponible(), m.getFechaCaducidad(), m.getDescripcion(), m.getPrecio()};
             md.addRow(datos);
-            
+
         }
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
-        
-        
-        
-        
+
     }
-    
-    public void eliminarMedicamento(Medicamento medicamento){
-        
+
+    public void eliminarMedicamento(Medicamento medicamento) {
+
         // NO hace falta la  eliminacion desde la listaCicurlar 
-       // this.medicamentoList.eliminar(medicamento);
+        this.medicamentoList.eliminar(medicamento);
         // eliminando desde la bd;
         this.daoMedicamento.delete(medicamento);
-        JOptionPane.showMessageDialog(null,"Medicamento: "+medicamento.getNombre()+ " Eliminado con exito");
+        JOptionPane.showMessageDialog(null, "Medicamento: " + medicamento.getNombre() + " Eliminado con exito");
         mostrarDatos();
+        this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(true);
     }
-    
 
 }
