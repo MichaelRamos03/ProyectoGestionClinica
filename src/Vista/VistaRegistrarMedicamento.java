@@ -20,6 +20,7 @@ public class VistaRegistrarMedicamento extends javax.swing.JFrame {
       
         this.setLocationRelativeTo(this);
         this.jPanel1.setBorder(new Fondo("/imagenes/ImagenAgregarMedicamento.jpg"));
+    
     }
 
     /**

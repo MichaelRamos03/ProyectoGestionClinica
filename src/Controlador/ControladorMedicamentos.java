@@ -148,10 +148,12 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         String columnas[] = {"Id", "Nombre", "Cantidad Disponible", "Fecha-caducidad", "Descripcion", "Precio"};
         md.setColumnIdentifiers(columnas);
         this.medicamentoList = this.daoMedicamento.mostrar();
+        if(this.medicamentoList.toArray() !=null){
         for (Medicamento m : this.medicamentoList.toArray()) {
             Object datos[] = {m.getIdMedicamento(), m.getNombre(), m.getCantidadDisponible(), m.getFechaCaducidad(), m.getDescripcion(), m.getPrecio()};
             md.addRow(datos);
 
+        }
         }
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
 

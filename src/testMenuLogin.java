@@ -1,5 +1,7 @@
 
 import Controlador.ControladorLogin;
+import Controlador.ControladorViewInicio;
+import Vista.ViewInicio;
 import Vista.VistaLogin;
 
 /*
@@ -11,14 +13,14 @@ import Vista.VistaLogin;
  *
  * @author karla
  */
-public class test {
+public class testMenuLogin {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        VistaLogin vistaLogin = new VistaLogin();
-        ControladorLogin controladorLogin = new ControladorLogin(vistaLogin);
+        ViewInicio vistaInicio = new ViewInicio();
+        ControladorViewInicio controladorLogin = new ControladorViewInicio(vistaInicio);
     }
     
 }
