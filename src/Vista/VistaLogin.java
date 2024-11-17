@@ -33,7 +33,6 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         txtUsuario1 = new javax.swing.JTextField();
-        txtConsetraña1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -42,13 +41,13 @@ public class VistaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Jpassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel2.add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 132, -1));
-        jPanel2.add(txtConsetraña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 132, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,14 +83,13 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/password.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, -1));
+        jPanel2.add(Jpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +138,7 @@ public class VistaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPasswordField Jpassword;
     public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
@@ -149,7 +148,6 @@ public class VistaLogin extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     public javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField txtConsetraña1;
     public javax.swing.JTextField txtUsuario1;
     // End of variables declaration//GEN-END:variables
 }

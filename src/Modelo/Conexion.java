@@ -29,7 +29,7 @@ public class Conexion {
             this.cn = DriverManager.getConnection(url, user, clave);
             DesktopNotify.setDefaultTheme(NotifyTheme.Green);
             DesktopNotify.showDesktopMessage("Exito", "la conexion tubo exito",
-            DesktopNotify.ERROR, 3000);
+            DesktopNotify.SUCCESS, 3000);
             
         }catch(Exception ex){
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);

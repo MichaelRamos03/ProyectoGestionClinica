@@ -12,4 +12,5 @@ import Modelo.Usuario;
  */
 public interface ILogin {
     public Usuario validarLogin(String usuario,String contrasenia);
+   
 }

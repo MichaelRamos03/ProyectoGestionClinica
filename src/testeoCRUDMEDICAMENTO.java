@@ -19,8 +19,9 @@ public class testeoCRUDMEDICAMENTO {
     public static void main(String[] args) {
         // TODO code application logic here
         VistaCrudMedicamentos vista = new VistaCrudMedicamentos();
-        //
+        
         ControladorMedicamentos controlador = new ControladorMedicamentos(vista);
+   
     }
     
 }

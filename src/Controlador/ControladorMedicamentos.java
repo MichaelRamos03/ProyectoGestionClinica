@@ -45,7 +45,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
     public ControladorMedicamentos(VistaCrudMedicamentos vistaMedicamentos) {
         this.vistaMedicamentos = vistaMedicamentos;
         this.vistaMedicamentos.setVisible(true);
-        this.vistaMedicamentos.setDefaultCloseOperation(vistaMedicamentos.EXIT_ON_CLOSE);
+        this.vistaMedicamentos.setDefaultCloseOperation(vistaMedicamentos.DISPOSE_ON_CLOSE);
         this.vistaMedicamentos.setLocationRelativeTo(null);
         this.vistaMedicamentos.btnRegistrarMedicamento.addActionListener(this);
         this.vistaMedicamentos.btnModificar.addActionListener(this);
