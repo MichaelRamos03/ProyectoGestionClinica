@@ -31,6 +31,8 @@ public class ControladorConsultaExpediente extends MouseAdapter implements Actio
     public ControladorConsultaExpediente(VistaConsultaExpediente consultaExpediente) {
         this.consultaExpediente = consultaExpediente;
         this.daoExpediente = new ExpedienteDao();
+        //para que no se cierre todo el sistema y solo se cierre la ventana
+        this.consultaExpediente.setDefaultCloseOperation(consultaExpediente.DISPOSE_ON_CLOSE);
         this.consultaExpediente.btnAgregar.addActionListener(this);
         this.consultaExpediente.btnModificar.addActionListener(this);
         this.consultaExpediente.btnEliminar.addActionListener(this);

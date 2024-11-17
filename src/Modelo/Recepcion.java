@@ -18,13 +18,14 @@ public class Recepcion {
     private String motivoVisita;
     private String observaciones;
     private ArrayList<Consulta> consultas;
-    private EntregaMedicina entregaMedicina;
+    private Empleado empleado;
 
     public Recepcion() {
         this.consultas = new ArrayList();
     }
 
-    public Recepcion(int idRecepcion, String presion, String altura, String peso, String temperatura, int frecuenciaCardiaca, String motivoVisita, String observaciones, EntregaMedicina entregaMedicina) {
+    public Recepcion(int idRecepcion, String presion, String altura, String peso, String temperatura, int frecuenciaCardiaca, String motivoVisita, String observaciones, Empleado empleado) {
+        //constructor sin  ArrayList consultas por el momento
         this.idRecepcion = idRecepcion;
         this.presion = presion;
         this.altura = altura;
@@ -33,9 +34,12 @@ public class Recepcion {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.motivoVisita = motivoVisita;
         this.observaciones = observaciones;
-        this.entregaMedicina = entregaMedicina;
-        this.consultas = new ArrayList();
+        this.empleado = empleado;
     }
+
+
+
+   
 
     public int getIdRecepcion() {
         return idRecepcion;
@@ -109,11 +113,13 @@ public class Recepcion {
         this.consultas = consultas;
     }
 
-    public EntregaMedicina getEntregaMedicina() {
-        return entregaMedicina;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setEntregaMedicina(EntregaMedicina entregaMedicina) {
-        this.entregaMedicina = entregaMedicina;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
+
+   
 }

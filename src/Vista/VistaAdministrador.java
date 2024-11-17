@@ -34,6 +34,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnAdministrarMedicamento = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnAdministrarExpedientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,19 +45,22 @@ public class VistaAdministrador extends javax.swing.JFrame {
 
         jLabel2.setText("(aca o en otro lugar iria el menu)");
 
+        btnAdministrarExpedientes.setText("Administrar Expediente Clinicos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(321, Short.MAX_VALUE)
+                .addContainerGap(357, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(282, 282, 282))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdministrarMedicamento)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdministrarMedicamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnAdministrarExpedientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -68,7 +72,9 @@ public class VistaAdministrador extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(33, 33, 33)
                 .addComponent(btnAdministrarMedicamento)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAdministrarExpedientes)
+                .addContainerGap(353, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,6 +131,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnAdministrarExpedientes;
     public javax.swing.JButton btnAdministrarMedicamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

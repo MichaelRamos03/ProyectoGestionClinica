@@ -8,6 +8,8 @@ import Estructuras.ListaCircular;
 import Modelo.Medicamento;
 import ModeloDao.MedicamentoDao;
 import Vista.VistaRegistrarMedicamento;
+import ds.desktop.notify.DesktopNotify;
+import ds.desktop.notify.NotifyTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -58,9 +60,12 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
                 nuevoMedicamento.setPrecio(precio1);
                 nuevoMedicamento.setFechaCaducidad(fechaCaducidad);
                 nuevoMedicamento.setDescripcion(descripcion);
-                this.medicamentoList.insertarMedicamento(nuevoMedicamento);
-
-                JOptionPane.showMessageDialog(null, "El medicamento: " + nuevoMedicamento.getNombre() + " Ha sido registrado exitosamente");
+                //this.medicamentoList.insertarMedicamento(nuevoMedicamento);
+                 this.medicamentoDao.insert(nuevoMedicamento);
+                   // JOptionPane.showMessageDialog(null, "El medicamento: " + nuevoMedicamento.getNombre() + " Ha sido registrado exitosamente");
+                  DesktopNotify.setDefaultTheme(NotifyTheme.Green);
+                  DesktopNotify.showDesktopMessage("Medicamento", nuevoMedicamento.getNombre()+" Registrado con exito",
+                    DesktopNotify.SUCCESS, 5000);
                 this.controladorMedicamento.mostrarDatos();
                 limpiarDatos();
                 this.vistaRegistrar.dispose();
@@ -90,6 +95,7 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
             JOptionPane.showMessageDialog(null, "Cantidad Vacia ingrese una cantidad valida");
             return false;
         }
+       
         for (int i = 0; i < cantidad.length(); i++) {
             if (!Character.isDigit(cantidad.charAt(i))) {
                 JOptionPane.showMessageDialog(null, "La cantidad solo debe tener numeros enteros");
@@ -102,6 +108,10 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
         if (precio.equals("") || precio.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Precio vacio,Ingrese un Precio valido");
             return false;
+        }
+        if(precio.equals("0")){
+            JOptionPane.showMessageDialog(null, "El precio debe ser mayor a cero");
+        return false;
         }
 
         int contadorPuntos = 0; // Contador para los puntos decimales

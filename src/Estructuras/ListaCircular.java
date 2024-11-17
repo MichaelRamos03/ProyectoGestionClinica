@@ -21,10 +21,10 @@ public class ListaCircular<T> {
     private MedicamentoDao medicamentoDao;
     public ListaCircular() {
         lista = null;
-        medicamentoDao= new MedicamentoDao();
+        //medicamentoDao= new MedicamentoDao();
     }  
     
-    
+    /*
      public <T extends Comparable> void insertarMedicamento(T contenido) {
         Nodo nodito = new Nodo(contenido);
         Medicamento medicamento=  (Medicamento) contenido;
@@ -48,6 +48,7 @@ public class ListaCircular<T> {
         }
          medicamentoDao.insert(medicamento);
     }
+     */
 
     public <T extends Comparable> void insertar(T contenido) {
         Nodo nodito = new Nodo(contenido);

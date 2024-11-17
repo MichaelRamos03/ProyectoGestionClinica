@@ -5,6 +5,7 @@
 package Controlador;
 
 import Vista.VistaAdministrador;
+import Vista.VistaConsultaExpediente;
 import Vista.VistaCrudMedicamentos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,16 +23,21 @@ public class ControladorAdministrador extends MouseAdapter implements ActionList
         this.vistaAdministrador = vistaAdministrador;
         this.vistaAdministrador.setLocationRelativeTo(null);
         this.vistaAdministrador.setDefaultCloseOperation(vistaAdministrador.DISPOSE_ON_CLOSE);
-         this.vistaAdministrador.btnAdministrarMedicamento.addActionListener(this);
+        this.vistaAdministrador.btnAdministrarMedicamento.addActionListener(this);
+        this.vistaAdministrador.btnAdministrarExpedientes.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getSource()== this.vistaAdministrador.btnAdministrarMedicamento){
             VistaCrudMedicamentos vista = new VistaCrudMedicamentos();
-        
-        ControladorMedicamentos controladorMedicamentos = new ControladorMedicamentos(vista);
+            ControladorMedicamentos controladorMedicamentos = new ControladorMedicamentos(vista);
    
+       }
+       if(e.getSource()== this.vistaAdministrador.btnAdministrarExpedientes){
+            VistaConsultaExpediente v = new VistaConsultaExpediente();
+        ControladorConsultaExpediente c = new ControladorConsultaExpediente(v);
+        v.iniciar();
        }
     }
           

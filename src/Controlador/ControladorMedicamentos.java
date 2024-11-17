@@ -11,6 +11,8 @@ import Vista.VistaCrudMedicamentos;
 import Vista.VistaModificarMedicamento;
 
 import Vista.VistaRegistrarMedicamento;
+import ds.desktop.notify.DesktopNotify;
+import ds.desktop.notify.NotifyTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -60,7 +62,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.md.addColumn("Cantidad Disponible");
         this.md.addColumn("Fecha Caducidad");
         this.md.addColumn("Descripcion");
-        this.md.addColumn("Precio");
+        this.md.addColumn("Precio $");
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
         //escuchando la tabla
         this.vistaMedicamentos.tablaMedicamentos.addMouseListener(this);
@@ -145,7 +147,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
 
     public void mostrarDatos() {
         DefaultTableModel md = new DefaultTableModel();
-        String columnas[] = {"Id", "Nombre", "Cantidad Disponible", "Fecha-caducidad", "Descripcion", "Precio"};
+        String columnas[] = {"Id", "Nombre", "Cantidad Disponible", "Fecha-caducidad", "Descripcion", "Precio $"};
         md.setColumnIdentifiers(columnas);
         this.medicamentoList = this.daoMedicamento.mostrar();
         if(this.medicamentoList.toArray() !=null){
@@ -171,7 +173,10 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
 
         // eliminando desde la bd;
         this.daoMedicamento.delete(medicamento);
-        JOptionPane.showMessageDialog(null, "Medicamento: " + medicamento.getNombre() + " Eliminado con exito");
+       // JOptionPane.showMessageDialog(null, "Medicamento: " + medicamento.getNombre() + " Eliminado con exito");
+          DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Medicamento", medicamento.getNombre()+" Eliminado con exito",
+                    DesktopNotify.SUCCESS, 5000);
         mostrarDatos();
         this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(true);
         this.vistaMedicamentos.btnEliminar.setEnabled(false);
@@ -193,6 +198,11 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
             if (medicamentoBuscar != null) {
                 JOptionPane.showMessageDialog(null, "Se encontro el medicamento\n" + "Nombre: " + medicamentoBuscar.getNombre() + "\nCantidad: " + medicamentoBuscar.getCantidadDisponible() + "\n" + "Precio: " + medicamentoBuscar.getPrecio() + "\nFecha Vencimiento: " + medicamentoBuscar.getFechaCaducidad() + "\nDescripcion: " + medicamentoBuscar.getDescripcion());
 
+                   DesktopNotify.setDefaultTheme(NotifyTheme.Green);
+            DesktopNotify.showDesktopMessage("Medicamento", medicamentoBuscar.getNombre()+" Encontrado",
+                    DesktopNotify.SUCCESS, 5000);
+         
+                
             } else {
                 JOptionPane.showMessageDialog(null, "NO Se encontro el medicamento");
 

@@ -12,6 +12,7 @@
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="btnMenuAncestorAdded"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuActionPerformed"/>
           </Events>
           <AuxValues>
@@ -20,6 +21,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btnLogin">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagenes/UserView.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
               <AuxValues>

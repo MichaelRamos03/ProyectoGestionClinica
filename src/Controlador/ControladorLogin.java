@@ -50,7 +50,7 @@ public class ControladorLogin extends MouseAdapter implements ActionListener, Mo
             if(user!=null){
                 DesktopNotify.setDefaultTheme(NotifyTheme.LightBlue);
             DesktopNotify.showDesktopMessage("Login Exitoso", "Empleado :"+user.getEmpleado().getNombre()+" "+user.getEmpleado().getApellido()+" Ingresado al sistema",
-                    DesktopNotify.SUCCESS, 3000);
+                    DesktopNotify.SUCCESS, 5000);
             this.vistaLogin.dispose();
             Iniciar(user);
              
@@ -60,7 +60,7 @@ public class ControladorLogin extends MouseAdapter implements ActionListener, Mo
             }else{
                   DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Login Fallido", "Usuario no encontrado en el sistema",
-                    DesktopNotify.ERROR, 3000);
+                    DesktopNotify.ERROR, 5000);
             }
             
             }

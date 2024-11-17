@@ -29,12 +29,12 @@ public class Conexion {
             this.cn = DriverManager.getConnection(url, user, clave);
             DesktopNotify.setDefaultTheme(NotifyTheme.Green);
             DesktopNotify.showDesktopMessage("Exito", "la conexion tubo exito",
-            DesktopNotify.SUCCESS, 3000);
+            DesktopNotify.SUCCESS, 2000);
             
         }catch(Exception ex){
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Error", "Error en la conexion a la base",
-            DesktopNotify.ERROR, 3000);
+            DesktopNotify.ERROR, 2000);
         }
         return cn;
     }

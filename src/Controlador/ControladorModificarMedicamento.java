@@ -84,12 +84,13 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
                     // metodo para actualizar no insert
                     this.medicamentoDao.update(medicamentoModificado);
                     
-                    JOptionPane.showMessageDialog(null,"Medicamento Actualizado");
+                    //JOptionPane.showMessageDialog(null,"Medicamento Actualizado");
                  DesktopNotify.setDefaultTheme(NotifyTheme.Green); // mandamos un mensaje
-            DesktopNotify.showDesktopMessage("exito", "Actualizado",
-            DesktopNotify.ERROR, 3000); this.vistaModificar.dispose();
-                }
+            DesktopNotify.showDesktopMessage("Medicamento", "Actualizado",
+            DesktopNotify.SUCCESS, 5000); this.vistaModificar.dispose();
                limpiarDatos();
+            }
+               
                 this.controladorMedicamento.mostrarDatos();
             }
             
@@ -127,6 +128,7 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
             JOptionPane.showMessageDialog(null, "Cantidad Vacia ingrese una cantidad valida");
             return false;
         }
+       
         for (int i = 0; i < cantidad.length(); i++) {
             if (!Character.isDigit(cantidad.charAt(i))) {
                 JOptionPane.showMessageDialog(null, "La cantidad solo debe tener numeros enteros");
@@ -139,6 +141,10 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
         if (precio.equals("") || precio.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Precio vacio,Ingrese un Precio valido");
             return false;
+        }
+        if(precio.equals("0")){
+            JOptionPane.showMessageDialog(null, "El precio debe ser mayor a cero");
+        return false;
         }
 
         int contadorPuntos = 0; // Contador para los puntos decimales
@@ -167,7 +173,7 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
             JOptionPane.showMessageDialog(null, "La descripcion No puede estar vacia");
             return false;
         }
-        
+       
 
         return true;
     }
