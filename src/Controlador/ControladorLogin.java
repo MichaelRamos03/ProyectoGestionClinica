@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Usuario;
 import ModeloDao.UsuarioDao;
+import Vista.Menu;
 import Vista.VistaAdministrador;
 import Vista.VistaLogin;
 import ds.desktop.notify.DesktopNotify;
@@ -97,9 +98,14 @@ public class ControladorLogin extends MouseAdapter implements ActionListener, Mo
     public void Iniciar(Usuario user){
         
         if(user.getEmpleado().getRol().getRol().equals("Administrador")){
-               VistaAdministrador vistaAdministrador = new VistaAdministrador();
-            ControladorAdministrador controladorAdministrador = new ControladorAdministrador(vistaAdministrador);
-             vistaAdministrador.setVisible(true);
+//               VistaAdministrador vistaAdministrador = new VistaAdministrador();
+//            ControladorAdministrador controladorAdministrador = new ControladorAdministrador(vistaAdministrador);
+//             vistaAdministrador.setVisible(true);
+
+            Menu m = new Menu();
+            m.setVisible(true);
+             
+             
         }
     }
 }
