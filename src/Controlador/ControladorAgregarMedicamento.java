@@ -60,7 +60,7 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
                 nuevoMedicamento.setPrecio(precio1);
                 nuevoMedicamento.setFechaCaducidad(fechaCaducidad);
                 nuevoMedicamento.setDescripcion(descripcion);
-                //this.medicamentoList.insertarMedicamento(nuevoMedicamento);
+                this.medicamentoList.insertar(nuevoMedicamento);
                  this.medicamentoDao.insert(nuevoMedicamento);
                    // JOptionPane.showMessageDialog(null, "El medicamento: " + nuevoMedicamento.getNombre() + " Ha sido registrado exitosamente");
                   DesktopNotify.setDefaultTheme(NotifyTheme.Green);

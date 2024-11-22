@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author karla
  */
-public class Empleado {
+public class Empleado implements Comparable<Empleado>{
     
     private int idEmpleado;
     private String dui;
@@ -132,4 +132,19 @@ public class Empleado {
     public void setEspecialistas(ArrayList<MedicoEspecialista> especialistas) {
         this.especialistas = especialistas;
     }
+
+    @Override
+    public int compareTo(Empleado o) {
+       Empleado actual=this;
+    return actual.nombre.compareToIgnoreCase(o.nombre);
+    
+   }
+    
+ @Override
+public String toString() {
+    return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
+}
+
+
+
 }

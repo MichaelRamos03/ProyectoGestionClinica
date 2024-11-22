@@ -19,13 +19,13 @@ public class Recepcion {
     private String observaciones;
     private ArrayList<Consulta> consultas;
     private Empleado empleado;
+    private String prioridad;
 
     public Recepcion() {
-        this.consultas = new ArrayList();
+       
     }
 
-    public Recepcion(int idRecepcion, String presion, String altura, String peso, String temperatura, int frecuenciaCardiaca, String motivoVisita, String observaciones, Empleado empleado) {
-        //constructor sin  ArrayList consultas por el momento
+    public Recepcion(int idRecepcion, String presion, String altura, String peso, String temperatura, int frecuenciaCardiaca, String motivoVisita, String observaciones, ArrayList<Consulta> consultas, Empleado empleado, String prioridad) {
         this.idRecepcion = idRecepcion;
         this.presion = presion;
         this.altura = altura;
@@ -34,12 +34,10 @@ public class Recepcion {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.motivoVisita = motivoVisita;
         this.observaciones = observaciones;
+        this.consultas = consultas;
         this.empleado = empleado;
+        this.prioridad = prioridad;
     }
-
-
-
-   
 
     public int getIdRecepcion() {
         return idRecepcion;
@@ -121,5 +119,14 @@ public class Recepcion {
         this.empleado = empleado;
     }
 
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    
    
 }
