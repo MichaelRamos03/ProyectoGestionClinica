@@ -35,6 +35,10 @@ public class VistaRecepcion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRecepciones = new javax.swing.JTable();
         btnAgregarRecepcion = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,7 +48,7 @@ public class VistaRecepcion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sitka Heading", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Recepcíon");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, -1));
 
         tablaRecepciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +67,16 @@ public class VistaRecepcion extends javax.swing.JFrame {
 
         btnAgregarRecepcion.setText("Agregar Recepcion");
         jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 150, 30));
+
+        jButton1.setText("Modificar Recepcíon");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
+
+        jButton2.setText("Eliminar Recepcíon");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, -1, -1));
+
+        jButton3.setText("Buscar Recepcíon");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, -1, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,9 +133,13 @@ public class VistaRecepcion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgregarRecepcion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     public javax.swing.JTable tablaRecepciones;
     // End of variables declaration//GEN-END:variables
 }

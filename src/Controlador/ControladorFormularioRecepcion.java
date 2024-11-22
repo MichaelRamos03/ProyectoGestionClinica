@@ -35,7 +35,7 @@ public class ControladorFormularioRecepcion extends MouseAdapter implements Acti
         this.vistaFormulario.ComboEnfermera.addActionListener(this);
         this.vistaFormulario.setLocationRelativeTo(null);
         this.controladorRecepcion = controladorRecepcion;
-        this.recepcionColaPrioridad = new ColaPrioridad(3);
+        this.recepcionColaPrioridad = colaPrioridad;
         this.recepcionDao = new RecepcionDao();
 
        
@@ -94,6 +94,8 @@ public class ControladorFormularioRecepcion extends MouseAdapter implements Acti
         String peso = this.vistaFormulario.txtPeso.getText();
         String temperatura = this.vistaFormulario.txtTemperatura.getText();
         String frecuenciaCardiaca = this.vistaFormulario.txtFrecuenciaCardiaca.getText();
+        String motivoVisita= this.vistaFormulario.textAreaMotivoVisita.getText();
+        String Observaciones= this.vistaFormulario.textAreaObservaciones.getText();
         int seleccion = this.vistaFormulario.ComboPrioridades.getSelectedIndex();
         //this.frmMascota.cmbDueño.getSelectedItem().toString())
 
@@ -112,11 +114,15 @@ public class ControladorFormularioRecepcion extends MouseAdapter implements Acti
         nuevaRecepcion.setPeso(peso);
         nuevaRecepcion.setTemperatura(temperatura);
         nuevaRecepcion.setFrecuenciaCardiaca(Integer.parseInt(frecuenciaCardiaca));
+        nuevaRecepcion.setMotivoVisita(motivoVisita);
+        nuevaRecepcion.setObservaciones(Observaciones);
         nuevaRecepcion.setPrioridad(prioridad(seleccion));
         nuevaRecepcion.setEmpleado(empleadoSelec);
         
         
         this.recepcionDao.insert(nuevaRecepcion);
+        this.controladorRecepcion.mostrarDatos();
+        this.vistaFormulario.dispose();
 
 // insertarValidaciones posteriormente
     }

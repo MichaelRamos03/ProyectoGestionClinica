@@ -48,7 +48,11 @@ public class RecepcionDao implements IRecepcion {
 
     @Override
     public ColaPrioridad<Recepcion> mostrar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "select * from recepcion\n"
+                + "inner join empleado e\n"
+                + "on e.id_empleado = recepcion.id_empleado";
+        return selectRecepcionEmpleado(sql);
+
     }
 
     @Override
@@ -95,7 +99,7 @@ public class RecepcionDao implements IRecepcion {
 
     public ListaCircular<Empleado> getEmpleadosCombo() {
         ListaCircular<Empleado> listaEmpleados = new ListaCircular<Empleado>();
-        
+
         try {
             String sql = "select e.id_empleado,e.nombre,e.apellido,r.id_rol,r.rol\n"
                     + "from empleado e\n"
@@ -135,7 +139,7 @@ public class RecepcionDao implements IRecepcion {
 
         return listaEmpleados;
     }
-    
+
     /*
     public Empleado getBuscarEmpleado(){
         
@@ -143,6 +147,62 @@ public class RecepcionDao implements IRecepcion {
         
     }
 
-*/
-}
+     */
+    private ColaPrioridad<Recepcion> selectRecepcionEmpleado(String sql) {
+        ColaPrioridad<Recepcion> colaRecepcionPrioridad = new ColaPrioridad<Recepcion>(4);
 
+        try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+//--id_recepcion,presion,altura,peso,temperatura,frecuencia_cardiaca,motivo_visita,observaciones,id_empleado,proridad
+                Recepcion recepcion = new Recepcion();
+                recepcion.setIdRecepcion(rs.getInt("id_recepcion"));
+                recepcion.setPresion(rs.getString("presion"));
+                recepcion.setAltura(rs.getString("altura"));
+                recepcion.setPeso(rs.getString("peso"));
+                recepcion.setTemperatura(rs.getString("temperatura"));
+                recepcion.setFrecuenciaCardiaca(rs.getInt("frecuencia_cardiaca"));
+                recepcion.setMotivoVisita(rs.getString("motivo_visita"));
+                recepcion.setObservaciones(rs.getString("observaciones"));
+                Empleado empleado = new Empleado();
+                empleado.setIdEmpleado(rs.getInt("id_empleado"));
+                empleado.setNombre(rs.getString("nombre"));
+                empleado.setApellido(rs.getString("apellido"));
+                recepcion.setEmpleado(empleado);
+                recepcion.setPrioridad(rs.getString("prioridad"));
+
+                if (recepcion.getPrioridad().equals("Maxima Urgencia")) {
+                    colaRecepcionPrioridad.offer(recepcion, 0);
+
+                } else if (recepcion.getPrioridad().equals("Alta")) {
+
+                    colaRecepcionPrioridad.offer(recepcion, 1);
+                } else if (recepcion.getPrioridad().equals("Media")) {
+                    colaRecepcionPrioridad.offer(recepcion, 2);
+                } else {
+                    // baja
+                    colaRecepcionPrioridad.offer(recepcion, 3);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.showDesktopMessage("Error", "Error en la base",
+                    DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+
+            }
+            conectar.closeConexion(con);
+
+        }
+        return colaRecepcionPrioridad;
+
+    }
+}
