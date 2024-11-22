@@ -140,12 +140,6 @@ public class Empleado implements Comparable<Empleado>{
         this.especialistas = especialistas;
     }
 
-   
-
-   
-
-    
-
     @Override
     public int compareTo(Empleado o) {
        Empleado actual=this;

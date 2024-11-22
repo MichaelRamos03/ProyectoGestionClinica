@@ -3,6 +3,7 @@ package Vista;
 
 import Controlador.ControladorConsultaExpediente;
 import Controlador.ControladorMedicamentos;
+import Controlador.ControladorRecepcion;
 import Controlador.ControladorRol;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -36,10 +37,10 @@ public class Menu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         menuExpediente = new javax.swing.JMenu();
         menuMedicamento = new javax.swing.JMenu();
+        menuRecepcion = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(1190, 841));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
@@ -88,7 +89,6 @@ public class Menu extends javax.swing.JFrame {
         menuExpediente.setText("Expediente");
         menuExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuExpediente.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
-        menuExpediente.setPreferredSize(new java.awt.Dimension(130, 40));
         menuExpediente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 menuExpedienteMousePressed(evt);
@@ -108,6 +108,18 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(menuMedicamento);
+
+        menuRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/escritorio.png"))); // NOI18N
+        menuRecepcion.setText("Recepción");
+        menuRecepcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuRecepcion.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
+        menuRecepcion.setPreferredSize(new java.awt.Dimension(130, 40));
+        menuRecepcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuRecepcionMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(menuRecepcion);
 
         setJMenuBar(jMenuBar1);
 
@@ -130,6 +142,12 @@ public class Menu extends javax.swing.JFrame {
         VistaCrudMedicamentos vista = new VistaCrudMedicamentos();
         ControladorMedicamentos controlador = new ControladorMedicamentos(vista);
     }//GEN-LAST:event_menuMedicamentoMousePressed
+
+    private void menuRecepcionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuRecepcionMousePressed
+        
+        VistaRecepcion vistaRecepcion= new VistaRecepcion();
+        ControladorRecepcion controladorRecepcion= new ControladorRecepcion(vistaRecepcion);
+    }//GEN-LAST:event_menuRecepcionMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -169,6 +187,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuExpediente;
     private javax.swing.JMenu menuMedicamento;
+    private javax.swing.JMenu menuRecepcion;
     private javax.swing.JMenu menuRol;
     // End of variables declaration//GEN-END:variables
 }
