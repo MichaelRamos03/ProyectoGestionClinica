@@ -14,6 +14,7 @@ public class VistaConsultaExpediente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         this.Fondo.setBorder(new Fondo("/imagenes/1.jpg"));
+        
     }
     
     public void iniciar() {

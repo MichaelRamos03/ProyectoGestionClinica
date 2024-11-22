@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Modelo;
 
 import java.util.ArrayList;
@@ -20,8 +17,9 @@ public class Empleado implements Comparable<Empleado>{
     private String genero;
     private Date fechaNacimiento;
     private String correo;
-    private int estado;
+    private boolean estado;
     private Rol rol;
+    private String Prioridad;
     private ArrayList<Usuario> usuarios;
     private ArrayList<MedicoEspecialista> especialistas;
     
@@ -31,7 +29,7 @@ public class Empleado implements Comparable<Empleado>{
         this.especialistas = new ArrayList();
     }
 
-    public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, int estado, Rol rol) {
+    public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol, String Prioridad) {
         this.idEmpleado = idEmpleado;
         this.dui = dui;
         this.nombre = nombre;
@@ -41,6 +39,7 @@ public class Empleado implements Comparable<Empleado>{
         this.correo = correo;
         this.estado = estado;
         this.rol = rol;
+        this.Prioridad = Prioridad;
         this.usuarios = new ArrayList();
         this.especialistas = new ArrayList();
     }
@@ -101,11 +100,11 @@ public class Empleado implements Comparable<Empleado>{
         this.correo = correo;
     }
 
-    public int getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
@@ -115,6 +114,14 @@ public class Empleado implements Comparable<Empleado>{
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public String getPrioridad() {
+        return Prioridad;
+    }
+
+    public void setPrioridad(String Prioridad) {
+        this.Prioridad = Prioridad;
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -132,6 +139,12 @@ public class Empleado implements Comparable<Empleado>{
     public void setEspecialistas(ArrayList<MedicoEspecialista> especialistas) {
         this.especialistas = especialistas;
     }
+
+   
+
+   
+
+    
 
     @Override
     public int compareTo(Empleado o) {

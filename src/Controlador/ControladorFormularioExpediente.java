@@ -8,17 +8,15 @@ import ds.desktop.notify.DesktopNotify;
 import ds.desktop.notify.NotifyTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 
 /**
  *
  * @author Michael Ramos;
-*
+ *
  */
-public class ControladorFormularioExpediente extends MouseAdapter implements ActionListener, MouseListener, KeyListener {
+public class ControladorFormularioExpediente extends MouseAdapter implements ActionListener, MouseListener {
 
     VistaFormularioExpediente frmExpediente;
     ExpedienteDao daoExpediente;
@@ -83,10 +81,8 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
                 this.frmExpediente.tfMedicamentos.getText()
         );
         
-       // this.list.insertar(expediente);
-        
         if (this.daoExpediente.insert(expediente)) {
-            DesktopNotify.setDefaultTheme(NotifyTheme.Green); // mandamos un mensaje
+            DesktopNotify.setDefaultTheme(NotifyTheme.Green);
             DesktopNotify.showDesktopMessage("exito", "Expediente guardado",
             DesktopNotify.ERROR, 3000);
             
@@ -99,7 +95,7 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
             this.expedienteSeleccionado = null;
             
         }  else {
-            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Error", "No guardo",
             DesktopNotify.ERROR, 3000);
             
@@ -118,14 +114,14 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
         this.expedienteSeleccionado.setMedicamentos(this.frmExpediente.tfMedicamentos.getText());
         
         if (daoExpediente.update(expedienteSeleccionado)) {
-            DesktopNotify.setDefaultTheme(NotifyTheme.Green); // mandamos un mensaje
+            DesktopNotify.setDefaultTheme(NotifyTheme.Green);
             DesktopNotify.showDesktopMessage("exito", "Actualizado",
             DesktopNotify.ERROR, 3000);
             
             this.frmExpediente.dispose();
             this.ctlConsultarExpediente.mostrar(this.daoExpediente.selectAll());
         } else {
-             DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Error", "No guardo",
             DesktopNotify.ERROR, 3000);
         }
@@ -149,21 +145,4 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
             guardar();
         }
     }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   
 }
