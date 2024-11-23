@@ -144,7 +144,7 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel Fondo;
     private javax.swing.JScrollPane jScrollPane2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
-    private newscomponents.RSButtonIcon_new rSButtonIcon_new2;
+    public newscomponents.RSButtonIcon_new rSButtonIcon_new2;
     private newscomponents.RSButtonIcon_new rSButtonIcon_new3;
     private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
     private rojerusan.RSTableMetro rSTableMetro1;

@@ -14,6 +14,4 @@ public interface IExpediente {
     public boolean insert(Expediente obj);
     public boolean update(Expediente obj);
     public boolean delete(Expediente obj);
-    public ListaDoble<Expediente> buscar(String dato);
-    
 }

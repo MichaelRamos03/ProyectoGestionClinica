@@ -95,6 +95,9 @@
               <Value id="ADD"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="newscomponents.RSButtonIcon_new" name="rSButtonIcon_new3">
           <Properties>
