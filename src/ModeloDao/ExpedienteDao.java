@@ -1,5 +1,6 @@
 package ModeloDao;
 
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaDoble;
 import Interfaces.IExpediente;
 import Modelo.Conexion;
@@ -23,6 +24,7 @@ public class ExpedienteDao implements IExpediente {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
+    
 
     public ExpedienteDao() {
         this.conectar = new Conexion();
@@ -77,17 +79,45 @@ public class ExpedienteDao implements IExpediente {
         }
         return false;
     }
-
-    @Override
-    public ListaDoble<Expediente> buscar(String dato) {
-       String sql = "SELECT * FROM expediente WHERE nombre LIKE '" + dato + "%' " +
-             "OR apellido LIKE '" + dato + "%' " +
-             "OR CAST(fecha_nacimiento AS TEXT) LIKE '" + dato + "%' " +
-             "OR sexo LIKE '" + dato + "%' " +
-             "OR telefono LIKE '" + dato + "%' " +
-             "OR alergias LIKE '" + dato + "%' ";
-
-        return select(sql);
+    
+     public ABinarioBusqueda<Expediente> buscar(){
+         ABinarioBusqueda<Expediente> listaBusqueda = new ABinarioBusqueda();
+       String sql = "SELECT * FROM expediente";
+        try {
+            this.con = conectar.getConexion();
+            this.ps=con.prepareStatement(sql);
+            this.rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Expediente e = new Expediente();
+                e.setIdExpediente(rs.getInt("id_expediente"));
+                e.setNombre(rs.getString("nombre"));
+                e.setApellido(rs.getString("apellido"));
+                e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                e.setSexo(rs.getString("sexo"));
+                e.setTelefono(rs.getString("telefono"));
+                e.setInformacionMedica(rs.getString("informacionmedica"));
+                e.setTratamiento(rs.getString("tratamientos"));
+                e.setNotaMedica(rs.getString("notamedico"));
+                e.setAlergias(rs.getString("alergias"));
+                e.setMedicamentos(rs.getString("medicamentos"));
+                listaBusqueda.insertar(e);
+            }
+            
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }finally{
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            conectar.closeConexion(con);
+        }
+        return listaBusqueda;
     }
 
     private ListaDoble<Expediente> select(String sql) {
