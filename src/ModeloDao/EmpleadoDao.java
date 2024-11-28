@@ -28,9 +28,6 @@ public class EmpleadoDao implements IEmpleado {
     public EmpleadoDao() {
         this.conectar = new Conexion();
     }
-    
-    
-    
 
     @Override
     public ColaPrioridad<Empleado> selectAll() {
