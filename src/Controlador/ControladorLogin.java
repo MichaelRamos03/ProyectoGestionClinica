@@ -5,7 +5,7 @@
 package Controlador;
 
 import Modelo.Usuario;
-import ModeloDao.UsuarioDao;
+import ModeloDao.LoginDao;
 import Vista.Menu;
 import Vista.VistaAdministrador;
 import Vista.VistaLogin;
@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class ControladorLogin extends MouseAdapter implements ActionListener, MouseListener {
 
     private VistaLogin vistaLogin;
-    private UsuarioDao usuarioDao;
+    private LoginDao usuarioDao;
 
     public ControladorLogin(VistaLogin vistaLogin) {
         this.vistaLogin = vistaLogin;
@@ -34,7 +34,7 @@ public class ControladorLogin extends MouseAdapter implements ActionListener, Mo
         this.vistaLogin.btnIngresar.addActionListener(this);
         this.vistaLogin.btnSalir.addActionListener(this);
         
-        this.usuarioDao= new UsuarioDao();
+        this.usuarioDao= new LoginDao();
     }
 
     @Override
