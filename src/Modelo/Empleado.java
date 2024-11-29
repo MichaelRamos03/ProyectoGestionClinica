@@ -29,6 +29,20 @@ public class Empleado implements Comparable<Empleado>{
         this.especialistas = new ArrayList();
     }
 
+    public Empleado(String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol, String Prioridad) {
+        this.dui = dui;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
+        this.correo = correo;
+        this.estado = estado;
+        this.rol = rol;
+        this.Prioridad = Prioridad;
+    }
+
+ 
+
     public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol, String Prioridad) {
         this.idEmpleado = idEmpleado;
         this.dui = dui;
@@ -40,8 +54,6 @@ public class Empleado implements Comparable<Empleado>{
         this.estado = estado;
         this.rol = rol;
         this.Prioridad = Prioridad;
-        this.usuarios = new ArrayList();
-        this.especialistas = new ArrayList();
     }
 
     public int getIdEmpleado() {
@@ -139,7 +151,9 @@ public class Empleado implements Comparable<Empleado>{
     public void setEspecialistas(ArrayList<MedicoEspecialista> especialistas) {
         this.especialistas = especialistas;
     }
-
+    
+    
+   
     @Override
     public int compareTo(Empleado o) {
        Empleado actual=this;
@@ -147,10 +161,10 @@ public class Empleado implements Comparable<Empleado>{
     
    }
     
- @Override
-public String toString() {
-    return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
-}
+// @Override
+//public String toString() {
+//    return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
+//}
 
 
 

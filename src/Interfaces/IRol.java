@@ -16,4 +16,5 @@ public interface IRol {
     public boolean insert(Rol r);
     public boolean update(Rol r);
     public boolean delete(Rol r);
+    public Cola<Rol> selectAllTo(String atributo, String condicion);
 }

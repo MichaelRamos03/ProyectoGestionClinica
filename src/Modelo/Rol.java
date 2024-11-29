@@ -13,12 +13,13 @@ public class Rol {
     private ArrayList<Empleado> listEmpleado;
 
     public Rol() {
+        this.listEmpleado = new ArrayList();
     }
-
-    public Rol(int idRol, String rol, ArrayList<Empleado> listEmpleado) {
+    
+    public Rol(int idRol, String rol) {
         this.idRol = idRol;
         this.rol = rol;
-        this.listEmpleado = listEmpleado;
+        this.listEmpleado = new ArrayList();
     }
 
 

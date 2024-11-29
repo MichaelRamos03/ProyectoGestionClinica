@@ -36,6 +36,12 @@ public class RolDao implements IRol{
         
         return select(sql);
     }
+    
+      @Override
+    public Cola<Rol> selectAllTo(String atributo, String condicion) {
+         String sql = "SELECT * FROM rol WHERE " + atributo + " ='" + condicion + "'";
+        return select(sql);
+    }
 
     @Override
     public boolean insert(Rol r) {

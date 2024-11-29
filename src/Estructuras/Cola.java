@@ -66,5 +66,29 @@ public class Cola<T> {
         fr = fn = null;
         System.out.println("COLA VACIADA");
     }
+    
+    public int size() {
+    int count = 0;
+    Nodo<T> actual = this.fr;
+    while (actual != null) {
+        count++;
+        actual = actual.getSiguiente();
+    }
+    return count; // Retorna el número de elementos en la cola
+}
+
+    
+   public T get(int index) {
+    if (index < 0 || index >= this.size()) {
+        throw new IndexOutOfBoundsException("Índice fuera de rango.");
+    }
+
+    Nodo<T> actual = this.fr; // Empezamos desde el frente de la cola
+    for (int i = 0; i < index; i++) {
+        actual = actual.getSiguiente();
+    }
+    return actual.getDato(); // Retorna el dato en el índice especificado
+}
+
 
 }
