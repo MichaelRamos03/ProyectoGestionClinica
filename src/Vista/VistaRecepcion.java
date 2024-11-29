@@ -37,8 +37,9 @@ public class VistaRecepcion extends javax.swing.JFrame {
         btnAgregarRecepcion = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminarRecepcion = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnBuscarRecepcion = new javax.swing.JButton();
+        ComboBuscarPrioridad = new javax.swing.JComboBox<>();
+        btnMostrarTodos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,17 +67,23 @@ public class VistaRecepcion extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 1050, 490));
 
         btnAgregarRecepcion.setText("Agregar Recepcion");
-        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 150, 30));
+        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 150, 30));
 
         btnModificar.setText("Modificar Recepcíon");
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
 
         btnEliminarRecepcion.setText("Eliminar Recepcíon");
-        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, -1, -1));
+        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
 
-        jButton3.setText("Buscar Recepcíon");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, 160, -1));
+        btnBuscarRecepcion.setText("Buscar Recepcíon por prioridad");
+        jPanel1.add(btnBuscarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+
+        ComboBuscarPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBuscarPrioridad.setToolTipText("Seleccione y presione el botón para buscar");
+        jPanel1.add(ComboBuscarPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, -1, -1));
+
+        btnMostrarTodos.setText("Mostrar todos los registros");
+        jPanel1.add(btnMostrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,14 +139,15 @@ public class VistaRecepcion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox<String> ComboBuscarPrioridad;
     public javax.swing.JButton btnAgregarRecepcion;
+    public javax.swing.JButton btnBuscarRecepcion;
     public javax.swing.JButton btnEliminarRecepcion;
     public javax.swing.JButton btnModificar;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton btnMostrarTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTable tablaRecepciones;
     // End of variables declaration//GEN-END:variables
 }

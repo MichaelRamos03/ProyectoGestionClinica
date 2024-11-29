@@ -4,6 +4,7 @@
  */
 package ModeloDao;
 
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ColaPrioridad;
 import Estructuras.ListaCircular;
 import Interfaces.IRecepcion;
@@ -29,6 +30,7 @@ public class RecepcionDao implements IRecepcion {
     private PreparedStatement ps; //para compilar la consulta sql (no tenga ningun error de sintaxis)
     private ResultSet rs;
     private Recepcion recepcion;
+    private  ABinarioBusqueda<Recepcion> listaBusqueda;
 
     public RecepcionDao() {
         this.conectar = new Conexion();
@@ -284,7 +286,7 @@ public class RecepcionDao implements IRecepcion {
         boolean encontrada = false;
         try {
             String sql = "SELECT * from recepcion\n"
-                    + "where recepcion.id_recepcion='"+id+"'";
+                    + "where recepcion.id_recepcion='" + id + "'";
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -306,7 +308,58 @@ public class RecepcionDao implements IRecepcion {
             conectar.closeConexion(con);
 
         }
- return encontrada;
+        return encontrada;
+    }
+
+    public ABinarioBusqueda<Recepcion> buscarTodasRecepcionesPrioridad(String prioridad) {
+               this.listaBusqueda = new ABinarioBusqueda();
+        String sql = "select r.id_recepcion,r.presion,r.altura,r.peso,r.temperatura,r.frecuencia_cardiaca,r.motivo_visita,r.observaciones,e.id_empleado,e.nombre,e.apellido,r.prioridad\n"
+                + "from recepcion r\n"
+                + "inner join empleado e\n"
+                + "on e.id_empleado = r.id_empleado\n"
+                + "where r.prioridad='"+prioridad+"'";
+        try {
+            this.con = conectar.getConexion();
+            this.ps = con.prepareStatement(sql);
+            this.rs = ps.executeQuery();
+         
+            while (rs.next()) {
+                Recepcion r = new Recepcion();
+                //id_recepcion,presion,altura,peso,temperatura,frecuencia_cardiaca,motivo_visita,observaciones,id_empleado,prioridad
+                r.setIdRecepcion(rs.getInt("id_recepcion"));
+                r.setPresion(rs.getString("presion"));
+                r.setAltura(rs.getString("altura"));
+                r.setPeso(rs.getString("peso"));
+                r.setTemperatura(rs.getString("temperatura"));
+                r.setFrecuenciaCardiaca(rs.getInt("frecuencia_cardiaca"));
+                r.setMotivoVisita(rs.getString("motivo_visita"));
+                r.setObservaciones(rs.getString("observaciones"));
+                Empleado empleado = new Empleado();
+                empleado.setIdEmpleado(rs.getInt("id_empleado"));
+                empleado.setNombre(rs.getString("nombre"));
+                empleado.setApellido(rs.getString("apellido"));
+                r.setPrioridad(rs.getString("prioridad"));
+                r.setEmpleado(empleado);
+
+                listaBusqueda.insertar(r);
+            
+         }
+           
+
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            conectar.closeConexion(con);
+        }
+        return listaBusqueda;
     }
 
 }

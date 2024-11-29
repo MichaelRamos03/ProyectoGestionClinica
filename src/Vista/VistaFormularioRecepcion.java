@@ -72,12 +72,12 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setText("Prioridad");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 204));
         jLabel2.setText("Enfermera Encargada");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, -1, 30));
 
         jPanel1.add(ComboEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, -1, -1));
 
@@ -89,6 +89,9 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
         txtPresion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPresionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPresionKeyTyped(evt);
             }
         });
         jPanel1.add(txtPresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 75, -1));
@@ -114,33 +117,33 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel3.setText("Id Recepcion");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
+        jLabel3.setText("Id Recepción");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel4.setText("Presion (mmHg)");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
+        jLabel4.setText("Presión (mmHg)");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 204));
         jLabel5.setText("Altura (m)");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, 30));
 
         jLabel6.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setText("Peso (lbs)");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, 20));
 
         jLabel7.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 204));
         jLabel7.setText("Temperatura °C ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, 20));
 
         jLabel8.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel8.setText("Frecuencia Cardiaca (lat/min)");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+        jLabel8.setText("Frecuencia Cardíaca (lat/min)");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, 20));
 
         txtFrecuenciaCardiaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +191,7 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Registro de Recepcion");
+        jLabel11.setText("Registro de Recepción");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         ComboPrioridades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -304,7 +307,7 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTemperaturaKeyPressed
 
     private void txtPesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyPressed
-         // validacion punto decimal
+        // validacion punto decimal
         char c = evt.getKeyChar();
         String texto = this.txtPeso.getText();
 
@@ -338,35 +341,42 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
             }
         }
 
-        
+
     }//GEN-LAST:event_txtPesoKeyPressed
 
     private void txtPresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresionKeyPressed
+
+    }//GEN-LAST:event_txtPresionKeyPressed
+
+    private void txtPresionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresionKeyTyped
         // TODO add your handling code here:
+        // Obtener el carácter ingresado
         char c = evt.getKeyChar();
+        // Obtener el texto actual en el campo
         String texto = this.txtPresion.getText();
 
-        // Verificar si la tecla presionada es un dígito
-        if (!Character.isDigit(c)) {
-            // Si es un punto decimal, validar que solo haya un punto decimal y que no esté al principio
-            if (c == '.') {
-                // Permitir el punto solo si ya hay números antes y no hay otro punto
-                if (texto.contains("/") || texto.length() == 0) {
-                    evt.consume(); // Ignorar la entrada no válida
-                    JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y un solo punto decimal.");
-                    this.txtPresion.setText("");
-                }
-            } else {
-                // Si no es un dígito ni un punto, ignorar la entrada
-                evt.consume(); // Ignorar la entrada no válida
-                JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y un solo punto decimal.");
-                this.txtPresion.setText("");
-
-            }
+        
+        if (!Character.isDigit(c) && c != '/') {
+            // Si no es un dígito, punto o barra, ignorar la entrada
+            evt.consume(); // Ignorar la entrada no válida
+            JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y (/).");
+            this.txtPresion.setText(""); // Limpiar el campo si es un carácter no válido
         } else {
-            // Si es un dígito, permitir la entrada
+           
+            if (c == '.') {
+                
+                if (texto.contains("/") || texto.length() == 0 ) {
+                    evt.consume(); // Ignorar la entrada no válida
+                    JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y (/).");
+                    this.txtPresion.setText(""); // Limpiar el campo si el punto es inválido
+                }
+            }
+            // Si es una barra (/), permitir su ingreso
+            if (c == '/') {
+                // No hacer nada, la barra se permite
+            }
         }
-    }//GEN-LAST:event_txtPresionKeyPressed
+    }//GEN-LAST:event_txtPresionKeyTyped
 
     /**
      * @param args the command line arguments

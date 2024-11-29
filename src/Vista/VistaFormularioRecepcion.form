@@ -64,7 +64,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="120" y="410" width="-1" height="-1"/>
+              <AbsoluteConstraints x="130" y="410" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -80,7 +80,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="350" y="410" width="-1" height="-1"/>
+              <AbsoluteConstraints x="370" y="410" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -104,6 +104,7 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPresionActionPerformed"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPresionKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPresionKeyTyped"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -149,11 +150,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Id Recepcion"/>
+            <Property name="text" type="java.lang.String" value="Id Recepci&#xf3;n"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="80" width="-1" height="-1"/>
+              <AbsoluteConstraints x="110" y="80" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -165,11 +166,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Presion (mmHg)"/>
+            <Property name="text" type="java.lang.String" value="Presi&#xf3;n (mmHg)"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="440" y="80" width="-1" height="-1"/>
+              <AbsoluteConstraints x="450" y="80" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -185,7 +186,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="120" y="150" width="-1" height="-1"/>
+              <AbsoluteConstraints x="120" y="150" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -201,7 +202,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="480" y="150" width="-1" height="-1"/>
+              <AbsoluteConstraints x="480" y="150" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -217,7 +218,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="230" width="-1" height="-1"/>
+              <AbsoluteConstraints x="100" y="230" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -229,11 +230,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Frecuencia Cardiaca (lat/min)"/>
+            <Property name="text" type="java.lang.String" value="Frecuencia Card&#xed;aca (lat/min)"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="370" y="230" width="-1" height="-1"/>
+              <AbsoluteConstraints x="370" y="230" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -363,7 +364,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registro de Recepcion"/>
+            <Property name="text" type="java.lang.String" value="Registro de Recepci&#xf3;n"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

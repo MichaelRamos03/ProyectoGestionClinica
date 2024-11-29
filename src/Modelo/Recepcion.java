@@ -1,5 +1,3 @@
-
-
 package Modelo;
 
 import java.util.ArrayList;
@@ -7,8 +5,10 @@ import java.util.ArrayList;
 /**
  *
  * @author Michael Ramos;
-**/
-public class Recepcion {
+*
+ */
+public class Recepcion implements Comparable<Recepcion> {
+
     private int idRecepcion;
     private String presion;
     private String altura;
@@ -22,7 +22,7 @@ public class Recepcion {
     private String prioridad;
 
     public Recepcion() {
-       
+
     }
 
     public Recepcion(int idRecepcion, String presion, String altura, String peso, String temperatura, int frecuenciaCardiaca, String motivoVisita, String observaciones, ArrayList<Consulta> consultas, Empleado empleado, String prioridad) {
@@ -127,6 +127,40 @@ public class Recepcion {
         this.prioridad = prioridad;
     }
 
+   @Override
+public int compareTo(Recepcion o) {
+    // Asignamos un valor numérico a la prioridad de este objeto
+    int prioridad1 = getPrioridadValor(this.prioridad); 
+    // Asignamos un valor numérico a la prioridad del otro objeto
+    int prioridad2 = getPrioridadValor(o.prioridad); 
     
-   
+    // Primero comparamos las prioridades
+    int resultadoPrioridad = Integer.compare(prioridad1, prioridad2);
+
+    // Si las prioridades son iguales, comparamos por otro atributo (por ejemplo, el id)
+    if (resultadoPrioridad == 0) {
+        return Integer.compare(this.idRecepcion, o.idRecepcion);  // O puedes usar cualquier otro atributo para desempatar
+    }
+
+    // Si las prioridades son diferentes, devolvemos el resultado de la comparación
+    return resultadoPrioridad;
+}
+
+// Método para convertir la prioridad a un valor numérico
+private int getPrioridadValor(String prioridad) {
+    switch (prioridad) {
+        case "Maxima Urgencia":
+            return 0;
+        case "Alta":
+            return 1;
+        case "Media":
+            return 2;
+        case "Baja":
+            return 3;
+        default:
+            return Integer.MAX_VALUE; // En caso de que la prioridad no sea válida
+    }
+}
+
+
 }
