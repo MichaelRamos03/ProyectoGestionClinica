@@ -143,7 +143,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  empleado.getPrioridad()
                                 };
                 modelo.addRow(datos);
-
+///
                 // Mostrar los datos en la tabla
                 this.vistaConsulta.tbDatos.setModel(modelo);
                 this.vistaConsulta.txtBuscar.setText("");
