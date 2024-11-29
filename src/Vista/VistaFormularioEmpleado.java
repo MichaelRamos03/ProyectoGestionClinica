@@ -1,6 +1,8 @@
 
 package Vista;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import utilidades.Fondo;
 
@@ -46,6 +48,7 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
         btnGuardar = new newscomponents.RSButtonIcon_new();
         jLabel8 = new javax.swing.JLabel();
         cbPrioridad = new RSMaterialComponent.RSComboBox();
+        lbError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,6 +87,11 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
         tfDui.setForeground(new java.awt.Color(0, 0, 0));
         tfDui.setColorMaterial(new java.awt.Color(0, 0, 0));
         tfDui.setPlaceholder("");
+        tfDui.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDuiKeyTyped(evt);
+            }
+        });
 
         tfNombre.setBackground(new java.awt.Color(63, 118, 157));
         tfNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -146,6 +154,19 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
                 .addGap(86, 86, 86)
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FondoLayout.createSequentialGroup()
+                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(FondoLayout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(FondoLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(FondoLayout.createSequentialGroup()
                         .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(FondoLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
@@ -174,23 +195,12 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
                             .addGroup(FondoLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(FondoLayout.createSequentialGroup()
-                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(FondoLayout.createSequentialGroup()
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(49, 49, 49)
-                                    .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(FondoLayout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(chEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))))
+                                .addComponent(cbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(FondoLayout.createSequentialGroup()
+                                .addComponent(chEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbError, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,13 +238,15 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(FondoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(chEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(54, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lbError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))))
         );
@@ -249,6 +261,25 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
     private void chEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chEstadoActionPerformed
+
+    private void tfDuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDuiKeyTyped
+        this.tfDui.setText(this.tfDui.getText().toUpperCase());
+        char c = evt.getKeyChar();
+        
+        
+        if (!Character.isDigit(c) && c != '-') {
+            evt.consume();
+            this.tfDui.setBackground(Color.pink);
+            this.tfDui.setBorder(BorderFactory.createLineBorder(Color.red));
+            this.lbError.setText("---> ERROR SOLO LETRAS <---");
+            
+        } else {
+            this.tfDui.setBackground(Color.white);
+            this.tfDui.setText(this.tfDui.getText().toUpperCase());
+            this.tfDui.setBorder(BorderFactory.createLineBorder(new Color(0,120,215),1));
+            this.lbError.setText(" ");
+        }
+    }//GEN-LAST:event_tfDuiKeyTyped
 
     /**
      * @param args the command line arguments
@@ -303,6 +334,7 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lbError;
     public RSMaterialComponent.RSRadioButtonMaterial rbHombre;
     public RSMaterialComponent.RSRadioButtonMaterial rbMujer;
     public rojeru_san.componentes.RSDateChooser rsFecha;
