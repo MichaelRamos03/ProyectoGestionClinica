@@ -1,6 +1,6 @@
 package Controlador;
 
-import Estructuras.ListaDoble;
+
 import Modelo.Expediente;
 import ModeloDao.ExpedienteDao;
 import Vista.VistaFormularioExpediente;
@@ -22,13 +22,11 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
     ExpedienteDao daoExpediente;
     ControladorConsultaExpediente ctlConsultarExpediente;
     Expediente expediente, expedienteSeleccionado;
-    ListaDoble<Expediente> list;
 
     public ControladorFormularioExpediente(ControladorConsultaExpediente ctlConsultarExpediente, VistaFormularioExpediente frmExpediente) {
         this.ctlConsultarExpediente = ctlConsultarExpediente;
         this.frmExpediente = frmExpediente;
         this.daoExpediente = new ExpedienteDao();
-        this.list = new ListaDoble<>();
         this.frmExpediente.btnGuardar.addActionListener(this);
         this.expedienteSeleccionado = null;
     }

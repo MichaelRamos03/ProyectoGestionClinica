@@ -14,45 +14,28 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.Fondo.setBorder(new Fondo("/imagenes/4_1.jpg"));
     }
+    
+    public void iniciar() {
+        this.setVisible(true);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Fondo = new javax.swing.JPanel();
-        rSButtonIcon_new1 = new newscomponents.RSButtonIcon_new();
-        rSButtonIcon_new2 = new newscomponents.RSButtonIcon_new();
-        rSButtonIcon_new3 = new newscomponents.RSButtonIcon_new();
-        rSLabelTextIcon1 = new RSMaterialComponent.RSLabelTextIcon();
-        rSTextFieldMaterial1 = new RSMaterialComponent.RSTextFieldMaterial();
         jScrollPane2 = new javax.swing.JScrollPane();
-        rSTableMetro1 = new rojerusan.RSTableMetro();
+        tbDatos = new rojerusan.RSTableMetro();
+        btnAgregar = new newscomponents.RSButtonIcon_new();
+        btnEliminar = new newscomponents.RSButtonIcon_new();
+        btnEditar = new newscomponents.RSButtonIcon_new();
+        btnEditar1 = new newscomponents.RSButtonIcon_new();
+        txtBuscar = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSButtonIcon_new1.setBackground(new java.awt.Color(0, 51, 51));
-        rSButtonIcon_new1.setText("Elimiinar");
-        rSButtonIcon_new1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE_SWEEP);
-
-        rSButtonIcon_new2.setBackground(new java.awt.Color(0, 51, 51));
-        rSButtonIcon_new2.setText("Agregar");
-        rSButtonIcon_new2.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ADD);
-
-        rSButtonIcon_new3.setBackground(new java.awt.Color(0, 51, 51));
-        rSButtonIcon_new3.setText("Editar");
-        rSButtonIcon_new3.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
-
-        rSLabelTextIcon1.setBackground(new java.awt.Color(255, 255, 255));
-        rSLabelTextIcon1.setForeground(new java.awt.Color(255, 255, 255));
-        rSLabelTextIcon1.setText("Buscar");
-        rSLabelTextIcon1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.VISIBILITY);
-
-        rSTextFieldMaterial1.setBackground(new java.awt.Color(0, 0, 0));
-        rSTextFieldMaterial1.setForeground(new java.awt.Color(255, 255, 255));
-        rSTextFieldMaterial1.setPlaceholder("");
-
-        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,46 +46,69 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        rSTableMetro1.setColorBackgoundHead(new java.awt.Color(0, 102, 102));
-        rSTableMetro1.setColorBordeFilas(new java.awt.Color(0, 51, 51));
-        jScrollPane2.setViewportView(rSTableMetro1);
+        tbDatos.setColorBackgoundHead(new java.awt.Color(0, 102, 102));
+        tbDatos.setColorBordeFilas(new java.awt.Color(0, 51, 51));
+        jScrollPane2.setViewportView(tbDatos);
+
+        btnAgregar.setBackground(new java.awt.Color(0, 51, 51));
+        btnAgregar.setText("Agregar");
+        btnAgregar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ADD);
+
+        btnEliminar.setBackground(new java.awt.Color(0, 51, 51));
+        btnEliminar.setText("Elimiinar");
+        btnEliminar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE_SWEEP);
+
+        btnEditar.setBackground(new java.awt.Color(0, 51, 51));
+        btnEditar.setText("Editar");
+        btnEditar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+
+        btnEditar1.setBackground(new java.awt.Color(0, 51, 51));
+        btnEditar1.setText("Buscar");
+        btnEditar1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.VISIBILITY);
+
+        txtBuscar.setBackground(new java.awt.Color(0, 0, 0));
+        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscar.setPlaceholder("");
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addGroup(FondoLayout.createSequentialGroup()
-                        .addComponent(rSButtonIcon_new2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114)
-                        .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rSTextFieldMaterial1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142)
+                .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
+            .addGroup(FondoLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSLabelTextIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSTextFieldMaterial1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonIcon_new2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonIcon_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonIcon_new3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15))
         );
 
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 450));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,12 +148,12 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    public newscomponents.RSButtonIcon_new btnAgregar;
+    public newscomponents.RSButtonIcon_new btnEditar;
+    public newscomponents.RSButtonIcon_new btnEditar1;
+    public newscomponents.RSButtonIcon_new btnEliminar;
     private javax.swing.JScrollPane jScrollPane2;
-    private newscomponents.RSButtonIcon_new rSButtonIcon_new1;
-    public newscomponents.RSButtonIcon_new rSButtonIcon_new2;
-    private newscomponents.RSButtonIcon_new rSButtonIcon_new3;
-    private RSMaterialComponent.RSLabelTextIcon rSLabelTextIcon1;
-    private rojerusan.RSTableMetro rSTableMetro1;
-    private RSMaterialComponent.RSTextFieldMaterial rSTextFieldMaterial1;
+    public rojerusan.RSTableMetro tbDatos;
+    public RSMaterialComponent.RSTextFieldMaterial txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
