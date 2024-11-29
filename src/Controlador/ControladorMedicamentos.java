@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaCircular;
 import Modelo.Medicamento;
 import ModeloDao.MedicamentoDao;
@@ -92,7 +93,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
                 //obteniendo el medicamento desde el metodo buscarDato
                 this.medicamentoSeleccionado = this.medicamentoList.buscarDato(this.medicamentoSeleccionado);
 
-               // this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(false);
+                // this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(false);
                 this.vistaMedicamentos.btnEliminar.setEnabled(true);
                 this.vistaMedicamentos.btnModificar.setEnabled(true);
             } else if (filaMedicamentoSeleccionado < 0) {
@@ -131,17 +132,12 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
     }
 
     public boolean validarBuscarMedicamento(String medicamentoBuscarTxt) {
-        medicamentoBuscarTxt.replace(" ", "");
+        //medicamentoBuscarTxt.replace(" ", "");
         if (medicamentoBuscarTxt.equals("") || medicamentoBuscarTxt.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo de busqueda no debe estar vacio,Coloque un nombre válido");
             return false;
         }
-        for (int i = 0; i < medicamentoBuscarTxt.length(); i++) {
-            if (!Character.isLetter(medicamentoBuscarTxt.charAt(i))) {
-                JOptionPane.showMessageDialog(null, "El nombre de medicamento a buscar solo debe contener letras");
-                return false;
-            }
-        }
+
         return true;
     }
 
@@ -150,12 +146,12 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         String columnas[] = {"Id", "Nombre", "Cantidad Disponible", "Fecha-caducidad", "Descripcion", "Precio $"};
         md.setColumnIdentifiers(columnas);
         this.medicamentoList = this.daoMedicamento.mostrar();
-        if(this.medicamentoList.toArray() !=null){
-        for (Medicamento m : this.medicamentoList.toArray()) {
-            Object datos[] = {m.getIdMedicamento(), m.getNombre(), m.getCantidadDisponible(), m.getFechaCaducidad(), m.getDescripcion(), m.getPrecio()};
-            md.addRow(datos);
+        if (this.medicamentoList.toArray() != null) {
+            for (Medicamento m : this.medicamentoList.toArray()) {
+                Object datos[] = {m.getIdMedicamento(), m.getNombre(), m.getCantidadDisponible(), m.getFechaCaducidad(), m.getDescripcion(), m.getPrecio()};
+                md.addRow(datos);
 
-        }
+            }
         }
         this.vistaMedicamentos.tablaMedicamentos.setModel(md);
 
@@ -168,20 +164,20 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
                 "Confirmación",
                 JOptionPane.YES_NO_OPTION);
         if (opcion == JOptionPane.YES_OPTION) {
-        // NO hace falta la  eliminacion desde la listaCicurlar 
-        this.medicamentoList.eliminar(medicamento);
+            // NO hace falta la  eliminacion desde la listaCicurlar 
+            this.medicamentoList.eliminar(medicamento);
 
-        // eliminando desde la bd;
-        this.daoMedicamento.delete(medicamento);
-       // JOptionPane.showMessageDialog(null, "Medicamento: " + medicamento.getNombre() + " Eliminado con exito");
-          DesktopNotify.setDefaultTheme(NotifyTheme.Red);
-            DesktopNotify.showDesktopMessage("Medicamento", medicamento.getNombre()+" Eliminado con exito",
+            // eliminando desde la bd;
+            this.daoMedicamento.delete(medicamento);
+            // JOptionPane.showMessageDialog(null, "Medicamento: " + medicamento.getNombre() + " Eliminado con exito");
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Medicamento", medicamento.getNombre() + " Eliminado con exito",
                     DesktopNotify.SUCCESS, 5000);
-        mostrarDatos();
-        this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(true);
-        this.vistaMedicamentos.btnEliminar.setEnabled(false);
-        this.vistaMedicamentos.btnModificar.setEnabled(false);
-    }
+            mostrarDatos();
+            this.vistaMedicamentos.btnRegistrarMedicamento.setEnabled(true);
+            this.vistaMedicamentos.btnEliminar.setEnabled(false);
+            this.vistaMedicamentos.btnModificar.setEnabled(false);
+        }
     }
 
     public void buscar() {
@@ -189,29 +185,28 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         this.vistaMedicamentos.btnEliminar.setEnabled(false);
         this.vistaMedicamentos.btnModificar.setEnabled(false);
         String medicamentoBuscarTxt = this.vistaMedicamentos.txtBuscar.getText();
-
         if (validarBuscarMedicamento(medicamentoBuscarTxt)) {
+            ABinarioBusqueda listaMedicamentos = this.daoMedicamento.buscarTodosMedicamentos();
             Medicamento medicamentoBuscar = new Medicamento();
             medicamentoBuscar.setNombre(medicamentoBuscarTxt);
-            medicamentoBuscar = this.medicamentoList.buscarDato(medicamentoBuscar);
-            // si es diferente de nulo es porque si lo encontro con el mismo nombre
-            if (medicamentoBuscar != null) {
+            if (listaMedicamentos.buscar(medicamentoBuscar) != null) {
+                // expediente = (Expediente) listaBusqueda.buscar(expediente).getClave();
+                medicamentoBuscar = (Medicamento) listaMedicamentos.buscar(medicamentoBuscar).getClave();
                 JOptionPane.showMessageDialog(null, "Se encontro el medicamento\n" + "Nombre: " + medicamentoBuscar.getNombre() + "\nCantidad: " + medicamentoBuscar.getCantidadDisponible() + "\n" + "Precio: " + medicamentoBuscar.getPrecio() + "\nFecha Vencimiento: " + medicamentoBuscar.getFechaCaducidad() + "\nDescripcion: " + medicamentoBuscar.getDescripcion());
 
-                   DesktopNotify.setDefaultTheme(NotifyTheme.Green);
-            DesktopNotify.showDesktopMessage("Medicamento", medicamentoBuscar.getNombre()+" Encontrado",
-                    DesktopNotify.SUCCESS, 5000);
-         
-                
+                DesktopNotify.setDefaultTheme(NotifyTheme.Green);
+                DesktopNotify.showDesktopMessage("Medicamento", medicamentoBuscar.getNombre() + " Encontrado",
+                        DesktopNotify.SUCCESS, 5000);
             } else {
-                JOptionPane.showMessageDialog(null, "NO Se encontro el medicamento");
 
+                DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+                DesktopNotify.showDesktopMessage("Medicamento No encontrado", "El medicamento no se encuentra registrado",
+                        DesktopNotify.INFORMATION, 5000);
+                JOptionPane.showMessageDialog(null, "No Se encontro el medicamento");
             }
 
         }
         this.vistaMedicamentos.txtBuscar.setText("");
     }
 
-    
-   
 }

@@ -30,7 +30,7 @@ public class ABinarioBusqueda<T> extends ArbolBinario {
             drcha = insertar(clave, r.getDerecha());
             r.setDerecha(drcha);
         } else {
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Error claves duplicadas");
         }
         return r;
     }

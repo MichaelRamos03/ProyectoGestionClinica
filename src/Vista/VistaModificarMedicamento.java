@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import ds.desktop.notify.DesktopNotify;
+import ds.desktop.notify.NotifyTheme;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import utilidades.Fondo;
 
 /**
@@ -53,6 +57,24 @@ public class VistaModificarMedicamento extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtNombreMedicamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreMedicamentoKeyPressed(evt);
+            }
+        });
+
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyPressed(evt);
+            }
+        });
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,6 +195,68 @@ public class VistaModificarMedicamento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
+        // TODO add your handling code here:
+           char c = evt.getKeyChar();
+
+        // Validar si el carácter no es un dígito
+        if (!Character.isDigit(c)) {
+            
+            evt.consume(); // Ignorar la entrada no válida
+
+            JOptionPane.showMessageDialog(null, "Solo se permiten números enteros");
+            this.txtCantidad.setText("");
+        }
+    }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        String texto = this.txtPrecio.getText();
+
+        // Verificar si la tecla presionada es un dígito
+        if (!Character.isDigit(c)) {
+
+            if (c == '.') {
+
+                if (texto.contains(".") || texto.length() == 0) {
+
+                    evt.consume(); // Ignorar la entrada no válida
+                    JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y un solo punto decimal.");
+                    this.txtPrecio.setText("");
+                }
+            } else {
+
+                evt.consume();
+
+                JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y un solo punto decimal.");
+                this.txtPrecio.setText("");
+
+            }
+        } else {
+
+        }
+    }//GEN-LAST:event_txtPrecioKeyPressed
+
+    private void txtNombreMedicamentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreMedicamentoKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); // Obtiene el carácter ingresado
+
+        if (evt.getKeyCode() == KeyEvent.VK_SHIFT || evt.isActionKey() || evt.isControlDown() || evt.isAltDown()) {
+            return;
+        }
+
+        if (!Character.isLetterOrDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE && c != ' ') {
+
+            evt.consume(); // Ignora el carácter ingresado si no es válido
+
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras, números y espacios");
+
+            this.txtNombreMedicamento.setText("");
+        }
+
+    }//GEN-LAST:event_txtNombreMedicamentoKeyPressed
 
     /**
      * @param args the command line arguments

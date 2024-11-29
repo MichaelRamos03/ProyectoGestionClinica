@@ -60,12 +60,20 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
                 nuevoMedicamento.setPrecio(precio1);
                 nuevoMedicamento.setFechaCaducidad(fechaCaducidad);
                 nuevoMedicamento.setDescripcion(descripcion);
-                this.medicamentoList.insertar(nuevoMedicamento);
+                if(!this.medicamentoDao.verificarExiste(nuevoMedicamento.getNombre())){
+                    this.medicamentoList.insertar(nuevoMedicamento);
                  this.medicamentoDao.insert(nuevoMedicamento);
                    // JOptionPane.showMessageDialog(null, "El medicamento: " + nuevoMedicamento.getNombre() + " Ha sido registrado exitosamente");
                   DesktopNotify.setDefaultTheme(NotifyTheme.Green);
-                  DesktopNotify.showDesktopMessage("Medicamento", nuevoMedicamento.getNombre()+" Registrado con exito",
+                  DesktopNotify.showDesktopMessage("Medicamento ", nuevoMedicamento.getNombre()+" Registrado con exito",
                     DesktopNotify.SUCCESS, 5000);
+                }else{
+                    DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+                  DesktopNotify.showDesktopMessage("Medicamento "+ nuevoMedicamento.getNombre(), " El nombre del medicamento ya existe",
+                    DesktopNotify.FAIL, 7000);
+                }
+                
+                
                 this.controladorMedicamento.mostrarDatos();
                 limpiarDatos();
                 this.vistaRegistrar.dispose();
@@ -81,14 +89,7 @@ public class ControladorAgregarMedicamento extends MouseAdapter implements Actio
             JOptionPane.showMessageDialog(null, "[Nombre vacio] Complete el campo de nombre ");
             return false;
         }
-        for (int i = 0; i < nombre.length(); i++) {
-            if (!Character.isLetter(nombre.charAt(i))) {
-
-                JOptionPane.showMessageDialog(null, "El nombre solo debe de contener letras, no se permiten caracteres especiales");
-                return false;
-            }
-
-        }
+       
         // validaciones cantidad
         cantidad = cantidad.replace(" ", "");
         if (cantidad.equals("") || cantidad.isEmpty()) {

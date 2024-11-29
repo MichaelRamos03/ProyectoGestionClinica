@@ -4,9 +4,11 @@
  */
 package ModeloDao;
 
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaCircular;
 import Interfaces.IMedicamento;
 import Modelo.Conexion;
+import Modelo.Expediente;
 import Modelo.Medicamento;
 import ds.desktop.notify.DesktopNotify;
 import ds.desktop.notify.NotifyTheme;
@@ -70,11 +72,11 @@ public class MedicamentoDao implements IMedicamento {
                 + "	VALUES (?, ?, ?, ?, ?)";
         return alterarRegistro(sql, medicamento);
     }
-    
-      @Override
+
+    @Override
     public boolean update(Medicamento obj) {
         String sql = "update medicamento set nombre=?,cantidad_disponible=?,fecha_caducidad=?,descripcion=?,precio=?\n"
-                + "where id_medicamento='" +obj.getIdMedicamento()+ "'";
+                + "where id_medicamento='" + obj.getIdMedicamento() + "'";
         return alterarRegistro(sql, obj);
     }
 
@@ -183,5 +185,68 @@ public class MedicamentoDao implements IMedicamento {
         return false;
     }
 
-  
+    public boolean verificarExiste(String nombre) {
+        boolean encontrada = false;
+        try {
+            String sql = "select * from medicamento where medicamento.nombre ='"+nombre+"'";
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                encontrada = true;
+            }
+
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.showDesktopMessage("Error", "Error en la base",
+                    DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+
+            }
+            conectar.closeConexion(con);
+
+        }
+        return encontrada;
+    }
+    
+    public ABinarioBusqueda<Medicamento> buscarTodosMedicamentos(){
+         ABinarioBusqueda<Medicamento> listaBusqueda = new ABinarioBusqueda();
+       String sql = "select * from medicamento";
+        try {
+            this.con = conectar.getConexion();
+            this.ps=con.prepareStatement(sql);
+            this.rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Medicamento medicamento = new Medicamento();
+                medicamento.setIdMedicamento(rs.getInt("id_medicamento"));
+                medicamento.setNombre(rs.getString("nombre"));
+                medicamento.setCantidadDisponible(rs.getInt("cantidad_disponible"));
+                medicamento.setFechaCaducidad(rs.getDate("fecha_caducidad"));
+                medicamento.setDescripcion(rs.getString("descripcion"));
+                medicamento.setPrecio(rs.getDouble("precio"));
+               listaBusqueda.insertar(medicamento);
+            }
+            
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }finally{
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            conectar.closeConexion(con);
+        }
+        return listaBusqueda;
+    }
+    
+
 }

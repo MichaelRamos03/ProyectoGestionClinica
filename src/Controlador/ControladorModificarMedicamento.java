@@ -30,14 +30,14 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
     private MedicamentoDao medicamentoDao;
     private ListaCircular<Medicamento> listaC;
 
-    public ControladorModificarMedicamento(VistaModificarMedicamento vistaModificar, ControladorMedicamentos controladorMedicamento, Medicamento medicamento,ListaCircular<Medicamento> listaCircular) {
+    public ControladorModificarMedicamento(VistaModificarMedicamento vistaModificar, ControladorMedicamentos controladorMedicamento, Medicamento medicamento, ListaCircular<Medicamento> listaCircular) {
         this.vistaModificar = vistaModificar;
         this.vistaModificar.setDefaultCloseOperation(vistaModificar.DISPOSE_ON_CLOSE);
-        this.medicamentoSeleccionado=medicamento;
+        this.medicamentoSeleccionado = medicamento;
         this.listaC = listaCircular;
         this.controladorMedicamento = controladorMedicamento;
         this.vistaModificar.setLocationRelativeTo(null);
-    
+
         this.vistaModificar.btnModificar.addActionListener(this);
         this.medicamentoDao = new MedicamentoDao();
         llenarVistaMedicamento();
@@ -67,38 +67,35 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
                 medicamentoModificado.setPrecio(precio1);
                 medicamentoModificado.setFechaCaducidad(fechaCaducidad);
                 medicamentoModificado.setDescripcion(descripcion);
-                System.out.println("" + medicamentoModificado.getNombre());
-                
-                //utilizando el mismo objeto para hacer una busqueda si ese medicamento existe en la lista
-               // this.medicamentoSeleccionado = new Medicamento();
-                //this.medicamentoSeleccionado.setNombre(nombre);
-                //this.medicamentoSeleccionado=this.listaC.buscarDato(this.medicamentoSeleccionado);
-                
-               // si se encontró
-                //if (this.medicamentoSeleccionado !=null) {
 
-               //     JOptionPane.showMessageDialog(null, "El nombre del medicamento ya existe, ingrese otro nombre del medicamento");
-               // si esta nulo es porque no hay un medicamento con ese mismo nombre
-               // } else {
-
-                    // metodo para actualizar no insert
+                if (this.medicamentoSeleccionado.getNombre().equals(medicamentoModificado.getNombre())
+                        || !this.medicamentoDao.verificarExiste(medicamentoModificado.getNombre())) {
+                    // Actualiza el medicamento si el nombre no cambia o el nuevo nombre no existe
                     this.medicamentoDao.update(medicamentoModificado);
-                    
-                    //JOptionPane.showMessageDialog(null,"Medicamento Actualizado");
-                 DesktopNotify.setDefaultTheme(NotifyTheme.Green); // mandamos un mensaje
-            DesktopNotify.showDesktopMessage("Medicamento", "Actualizado",
-            DesktopNotify.SUCCESS, 5000); this.vistaModificar.dispose();
-               limpiarDatos();
-            }
-               
-                this.controladorMedicamento.mostrarDatos();
-            }
-            
-        }
-    
 
-    private void llenarVistaMedicamento(){
-        
+                    // Notificación de éxito
+                    DesktopNotify.setDefaultTheme(NotifyTheme.Green);
+                    DesktopNotify.showDesktopMessage("Medicamento", "Actualizado",
+                            DesktopNotify.SUCCESS, 5000);
+                    this.vistaModificar.dispose();
+                    limpiarDatos();
+                } else {
+                    // Notificación de error si el nuevo nombre ya existe
+                    DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+                    DesktopNotify.showDesktopMessage("Medicamento " + medicamentoModificado.getNombre(),
+                            "El nombre del medicamento ya existe.",
+                            DesktopNotify.FAIL, 7000);
+                }
+
+            }
+
+            this.controladorMedicamento.mostrarDatos();
+        }
+
+    }
+
+    private void llenarVistaMedicamento() {
+
         System.out.println("Id Medicamento:" + this.medicamentoSeleccionado.getIdMedicamento());
         this.vistaModificar.txtNombreMedicamento.setText(this.medicamentoSeleccionado.getNombre());
         this.vistaModificar.txtCantidad.setText(String.valueOf(this.medicamentoSeleccionado.getCantidadDisponible()));
@@ -128,7 +125,7 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
             JOptionPane.showMessageDialog(null, "Cantidad Vacia ingrese una cantidad valida");
             return false;
         }
-       
+
         for (int i = 0; i < cantidad.length(); i++) {
             if (!Character.isDigit(cantidad.charAt(i))) {
                 JOptionPane.showMessageDialog(null, "La cantidad solo debe tener numeros enteros");
@@ -142,9 +139,9 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
             JOptionPane.showMessageDialog(null, "Precio vacio,Ingrese un Precio valido");
             return false;
         }
-        if(precio.equals("0")){
+        if (precio.equals("0")) {
             JOptionPane.showMessageDialog(null, "El precio debe ser mayor a cero");
-        return false;
+            return false;
         }
 
         int contadorPuntos = 0; // Contador para los puntos decimales
@@ -162,23 +159,21 @@ public class ControladorModificarMedicamento extends MouseAdapter implements Act
             }
         }
 
-        
         if (fechaCaducidad == null) {
             JOptionPane.showMessageDialog(null, "Ingrese un fecha");
             return false;
         }
-        
+
         descripcion = descripcion.replace(" ", "");
         if (descripcion.equals("") || descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(null, "La descripcion No puede estar vacia");
             return false;
         }
-       
 
         return true;
     }
 
-    public void limpiarDatos(){
+    public void limpiarDatos() {
         this.vistaModificar.txtNombreMedicamento.setText("");
         this.vistaModificar.txtCantidad.setText("");
         this.vistaModificar.txtPrecio.setText("");
