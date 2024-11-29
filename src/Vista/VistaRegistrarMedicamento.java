@@ -58,7 +58,6 @@ public class VistaRegistrarMedicamento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 51, 0));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         txtNombreMedicamento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -103,7 +102,6 @@ public class VistaRegistrarMedicamento extends javax.swing.JFrame {
         jScrollPane1.setViewportView(textAreaDescripcion);
 
         btnRegistrar.setBackground(new java.awt.Color(102, 255, 255));
-        btnRegistrar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegistrar.setText("Registrar");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N

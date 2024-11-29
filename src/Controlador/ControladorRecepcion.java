@@ -130,11 +130,12 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
         String columnas[] = {"Id", "Presión (mmHg)", "Altura (m)", "Peso (lbs)", "Temperatura °C", "Frecuencia Cardíaca (lat/min)", "Motivo visita", "Observaciones", "Empleado encargado", "Prioridad"};
         tabla.setColumnIdentifiers(columnas);
         this.colaPrioridad = this.recepcionDao.mostrar();
+        if(this.colaPrioridad !=null){
         for (Recepcion r : this.colaPrioridad.toArray()) {
             Object datos[] = {r.getIdRecepcion(), r.getPresion(), r.getAltura(), r.getPeso(), r.getTemperatura(), r.getFrecuenciaCardiaca(), r.getMotivoVisita(), r.getObservaciones(), r.getEmpleado().getNombre() + " " + r.getEmpleado().getApellido(), r.getPrioridad()};
             tabla.addRow(datos);
         }
-
+        }
         this.vistaRecepcion.tablaRecepciones.setModel(tabla);
     }
 

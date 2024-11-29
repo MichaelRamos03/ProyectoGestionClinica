@@ -34,12 +34,12 @@ public class VistaRecepcion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRecepciones = new javax.swing.JTable();
-        btnAgregarRecepcion = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnEliminarRecepcion = new javax.swing.JButton();
         btnBuscarRecepcion = new javax.swing.JButton();
         ComboBuscarPrioridad = new javax.swing.JComboBox<>();
         btnMostrarTodos = new javax.swing.JButton();
+        btnAgregarRecepcion = new javax.swing.JButton();
+        btnEliminarRecepcion = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +48,7 @@ public class VistaRecepcion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Sitka Heading", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Recepcíon");
+        jLabel1.setText("Recepción");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, -1, -1));
 
         tablaRecepciones.setModel(new javax.swing.table.DefaultTableModel(
@@ -66,15 +66,6 @@ public class VistaRecepcion extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 1050, 490));
 
-        btnAgregarRecepcion.setText("Agregar Recepcion");
-        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 150, 30));
-
-        btnModificar.setText("Modificar Recepcíon");
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
-
-        btnEliminarRecepcion.setText("Eliminar Recepcíon");
-        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
-
         btnBuscarRecepcion.setText("Buscar Recepcíon por prioridad");
         jPanel1.add(btnBuscarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
 
@@ -84,6 +75,15 @@ public class VistaRecepcion extends javax.swing.JFrame {
 
         btnMostrarTodos.setText("Mostrar todos los registros");
         jPanel1.add(btnMostrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, -1, -1));
+
+        btnAgregarRecepcion.setText("Agregar");
+        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+
+        btnEliminarRecepcion.setText("Eliminar");
+        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+
+        btnModificar.setText("Modificar");
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +96,7 @@ public class VistaRecepcion extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

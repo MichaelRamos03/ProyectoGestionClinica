@@ -157,14 +157,14 @@ public class Empleado implements Comparable<Empleado>{
     @Override
     public int compareTo(Empleado o) {
        Empleado actual=this;
-    return actual.Prioridad.compareToIgnoreCase(o.Prioridad);
+    return actual.nombre.compareToIgnoreCase(o.nombre);
     
    }
     
-// @Override
-//public String toString() {
-//    return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
-//}
+ @Override
+public String toString() {
+    return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
+}
 
 
 

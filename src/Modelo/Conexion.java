@@ -21,7 +21,7 @@ public class Conexion {
     public Connection getConexion(){
         String user ="postgres";
         String clave = "root";
-        String url = "jdbc:postgresql://localhost:5432/gestionclinica";
+        String url = "jdbc:postgresql://localhost:5432/gestionClinica";
         
         try{
             this.cn = DriverManager.getConnection(url, user, clave);
