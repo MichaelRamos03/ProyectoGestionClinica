@@ -84,8 +84,7 @@ public class MedicamentoDao implements IMedicamento {
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-            //id_medicamento, nombre, cantidad_disponible, fecha_caducidad, descripcion, precio)\n"
-
+        
             //ps.setInt(1, medicamento.getIdMedicamento());
             ps.setString(1, medicamento.getNombre());
             ps.setInt(2, medicamento.getCantidadDisponible());
