@@ -77,13 +77,13 @@ public class VistaRecepcion extends javax.swing.JFrame {
         jPanel1.add(btnMostrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, -1, -1));
 
         btnAgregarRecepcion.setText("Agregar");
-        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         btnEliminarRecepcion.setText("Eliminar");
-        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, -1));
 
         btnModificar.setText("Modificar");
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
