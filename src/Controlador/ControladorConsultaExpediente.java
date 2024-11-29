@@ -5,6 +5,7 @@ import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaDoble;
 import Modelo.Expediente;
 import ModeloDao.ExpedienteDao;
+import Vista.Menu;
 import Vista.VistaConsultaExpediente;
 import Vista.VistaFormularioExpediente;
 import ds.desktop.notify.DesktopNotify;
@@ -30,6 +31,7 @@ public class ControladorConsultaExpediente extends MouseAdapter implements Actio
     Expediente expedienteSeleccionado;
     ExpedienteDao daoExpediente;
 
+
     public ControladorConsultaExpediente(VistaConsultaExpediente consultaExpediente) {
         this.consultaExpediente = consultaExpediente;
         this.daoExpediente = new ExpedienteDao();
@@ -50,7 +52,7 @@ public class ControladorConsultaExpediente extends MouseAdapter implements Actio
         String titulos[] = {"N","NOMBRE", "APELLIDO", "FECHA DE NACIMIENTO", "SEXO", "TELEFONO", "INFORMACION MEDICA", "TRATAMIENTOS", "NOTA DEL MEDICO", "ALERGIAS", "MEDICAMENTOS"};
         modelo.setColumnIdentifiers(titulos);
         int i = 0;
-
+        
         for (Expediente x : lista.toArray()) {
             i++;
             Object datos[] = {i, x.getNombre(), x.getApellido(), x.getFechaNacimiento(), x.getSexo(), x.getTelefono(), x.getInformacionMedica(), x.getTratamiento(), x.getNotaMedica(), x.getAlergias(), x.getMedicamentos()};

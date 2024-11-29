@@ -58,7 +58,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
 
         menuRol.setBorder(null);
         menuRol.setForeground(new java.awt.Color(51, 51, 51));
@@ -188,6 +187,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu menuExpediente;
     private javax.swing.JMenu menuMedicamento;
     private javax.swing.JMenu menuRecepcion;
-    private javax.swing.JMenu menuRol;
+    public javax.swing.JMenu menuRol;
     // End of variables declaration//GEN-END:variables
 }

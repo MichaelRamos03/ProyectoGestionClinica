@@ -97,16 +97,31 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
         tfNombre.setForeground(new java.awt.Color(0, 0, 0));
         tfNombre.setColorMaterial(new java.awt.Color(0, 0, 0));
         tfNombre.setPlaceholder("");
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
 
         tfApellido.setBackground(new java.awt.Color(63, 118, 157));
         tfApellido.setForeground(new java.awt.Color(0, 0, 0));
         tfApellido.setColorMaterial(new java.awt.Color(0, 0, 0));
         tfApellido.setPlaceholder("");
+        tfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfApellidoKeyTyped(evt);
+            }
+        });
 
         tfCorreo.setBackground(new java.awt.Color(59, 106, 150));
         tfCorreo.setForeground(new java.awt.Color(0, 0, 0));
         tfCorreo.setColorMaterial(new java.awt.Color(0, 0, 0));
         tfCorreo.setPlaceholder("");
+        tfCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCorreoKeyTyped(evt);
+            }
+        });
 
         rsFecha.setColorBackground(new java.awt.Color(0, 0, 0));
         rsFecha.setColorButtonHover(new java.awt.Color(0, 0, 0));
@@ -145,6 +160,8 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
         cbPrioridad.setColorBorde(new java.awt.Color(255, 255, 255));
         cbPrioridad.setColorFondo(new java.awt.Color(0, 0, 0));
         cbPrioridad.setColorSeleccion(new java.awt.Color(102, 0, 153));
+
+        lbError.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
@@ -271,7 +288,7 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
             evt.consume();
             this.tfDui.setBackground(Color.pink);
             this.tfDui.setBorder(BorderFactory.createLineBorder(Color.red));
-            this.lbError.setText("---> ERROR SOLO LETRAS <---");
+            this.lbError.setText("---> ERROR SOLO NUMEROS Y GUION <---");
             
         } else {
             this.tfDui.setBackground(Color.white);
@@ -280,6 +297,67 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
             this.lbError.setText(" ");
         }
     }//GEN-LAST:event_tfDuiKeyTyped
+
+    private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+   
+       this.tfNombre.setText(this.tfNombre.getText().toUpperCase());
+        char c = evt.getKeyChar();
+        
+        
+        if (!Character.isLetter(c) && c != ' ') {
+            evt.consume();
+            this.tfNombre.setBackground(Color.pink);
+            this.tfNombre.setBorder(BorderFactory.createLineBorder(Color.red));
+            this.lbError.setText("---> ERROR SOLO LETRAS <---");
+            
+        } else {
+            this.tfNombre.setBackground(Color.white);
+            this.tfNombre.setText(this.tfNombre.getText().toUpperCase());
+            this.tfNombre.setBorder(BorderFactory.createLineBorder(new Color(0,120,215),1));
+            this.lbError.setText(" ");
+        }
+    }//GEN-LAST:event_tfNombreKeyTyped
+
+    private void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
+       
+    this.tfApellido.setText(this.tfApellido.getText().toUpperCase());
+        char c = evt.getKeyChar();
+        
+        
+        if (!Character.isLetter(c) && c != ' ') {
+            evt.consume();
+            this.tfApellido.setBackground(Color.pink);
+            this.tfApellido.setBorder(BorderFactory.createLineBorder(Color.red));
+            this.lbError.setText("---> ERROR SOLO LETRAS <---");
+            
+        } else {
+            this.tfApellido.setBackground(Color.white);
+            this.tfApellido.setText(this.tfApellido.getText().toUpperCase());
+            this.tfApellido.setBorder(BorderFactory.createLineBorder(new Color(0,120,215),1));
+            this.lbError.setText(" ");
+        }
+    }//GEN-LAST:event_tfApellidoKeyTyped
+
+    private void tfCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCorreoKeyTyped
+        
+        this.tfCorreo.setText(this.tfCorreo.getText().toUpperCase());
+        char c = evt.getKeyChar();
+        
+        
+        if (!Character.isLetter(c) && c != '@') {
+            evt.consume();
+            this.tfCorreo.setBackground(Color.pink);
+            this.tfDui.setBorder(BorderFactory.createLineBorder(Color.red));
+            this.lbError.setText("---> ERROR SOLO LETRAS <---");
+            
+        } else {
+            this.tfCorreo.setBackground(Color.white);
+            this.tfCorreo.setText(this.tfCorreo.getText().toUpperCase());
+            this.tfCorreo.setBorder(BorderFactory.createLineBorder(new Color(0,120,215),1));
+            this.lbError.setText(" ");
+        }
+        
+    }//GEN-LAST:event_tfCorreoKeyTyped
 
     /**
      * @param args the command line arguments
