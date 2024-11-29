@@ -1,4 +1,3 @@
-
 package ModeloDao;
 
 import Estructuras.ABinarioBusqueda;
@@ -17,7 +16,7 @@ import java.sql.SQLException;
 /**
  *
  * @author Michael Ramos;
-*
+ *
  */
 public class EmpleadoDao implements IEmpleado {
 
@@ -51,7 +50,8 @@ public class EmpleadoDao implements IEmpleado {
 
     @Override
     public boolean update(Empleado obj) {
-        String sql = "UPDATE empleado SET dui=?, nombre=?, apellido=?, genero=?, fecha_nacimiento=?, correo=?, estado=?, id_rol=?, prioridad=? WHERE id_empleado=?";
+        String sql = "UPDATE empleado SET dui=?, nombre=?, apellido=?, genero=?, fecha_nacimiento=?, correo=?, estado=?, id_rol=?, prioridad=? WHERE id_empleado="
+                + obj.getIdEmpleado();
         return alterarRegistro(sql, obj);
     }
 
@@ -85,7 +85,45 @@ public class EmpleadoDao implements IEmpleado {
 
     @Override
     public ABinarioBusqueda<Empleado> buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ABinarioBusqueda<Empleado> listaBusqueda = new ABinarioBusqueda();
+        String sql = "SELECT e.id_empleado,e.dui,e.nombre,e.apellido,e.genero,e.fecha_nacimiento,e.correo,e.estado,r.id_rol, r.rol, e.prioridad FROM empleado e INNER JOIN rol r ON r.id_rol = e.id_rol";
+        try {
+            this.con = conectar.getConexion();
+            this.ps = con.prepareStatement(sql);
+            this.rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Empleado e = new Empleado();
+                e.setIdEmpleado(rs.getInt("id_empleado"));
+                e.setDui(rs.getString("dui"));
+                e.setNombre(rs.getString("nombre"));
+                e.setApellido(rs.getString("apellido"));
+                e.setGenero(rs.getString("genero"));
+                e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                e.setCorreo(rs.getString("correo"));
+                e.setEstado(rs.getBoolean("estado"));
+                Rol r = new Rol();
+                r.setIdRol(rs.getInt("id_rol"));
+                r.setRol(rs.getString("rol"));
+                e.setRol(r);
+                e.setPrioridad(rs.getString("prioridad"));
+                listaBusqueda.insertar(e);
+
+            }
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            conectar.closeConexion(con);
+        }
+        return listaBusqueda;
     }
 
     private ColaPrioridad<Empleado> select(String sql) {
@@ -182,4 +220,3 @@ public class EmpleadoDao implements IEmpleado {
         return false;
     }
 }
-

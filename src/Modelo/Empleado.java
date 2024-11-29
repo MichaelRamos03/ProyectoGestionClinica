@@ -157,7 +157,7 @@ public class Empleado implements Comparable<Empleado>{
     @Override
     public int compareTo(Empleado o) {
        Empleado actual=this;
-    return actual.nombre.compareToIgnoreCase(o.nombre);
+    return actual.Prioridad.compareToIgnoreCase(o.Prioridad);
     
    }
     

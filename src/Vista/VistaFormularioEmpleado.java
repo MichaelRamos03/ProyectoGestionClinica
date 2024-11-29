@@ -294,7 +294,7 @@ public class VistaFormularioEmpleado extends javax.swing.JFrame {
     public RSMaterialComponent.RSComboBox cbPrioridad;
     public RSMaterialComponent.RSComboBox cbRol;
     public RSMaterialComponent.RSCheckBoxMaterial chEstado;
-    private javax.swing.ButtonGroup grupoGenero;
+    public javax.swing.ButtonGroup grupoGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

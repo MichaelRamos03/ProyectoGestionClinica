@@ -29,7 +29,7 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
         btnAgregar = new newscomponents.RSButtonIcon_new();
         btnEliminar = new newscomponents.RSButtonIcon_new();
         btnEditar = new newscomponents.RSButtonIcon_new();
-        btnEditar1 = new newscomponents.RSButtonIcon_new();
+        btnBuscar = new newscomponents.RSButtonIcon_new();
         txtBuscar = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,9 +62,9 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
         btnEditar.setText("Editar");
         btnEditar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
 
-        btnEditar1.setBackground(new java.awt.Color(0, 51, 51));
-        btnEditar1.setText("Buscar");
-        btnEditar1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.VISIBILITY);
+        btnBuscar.setBackground(new java.awt.Color(0, 51, 51));
+        btnBuscar.setText("Buscar");
+        btnBuscar.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.VISIBILITY);
 
         txtBuscar.setBackground(new java.awt.Color(0, 0, 0));
         txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,6 +75,10 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
         FondoLayout.setHorizontalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -82,33 +86,29 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(142, 142, 142)
-                .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(137, 137, 137))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(FondoLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
 
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 550));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -149,8 +149,8 @@ public class VistaConsultaEmpleado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
     public newscomponents.RSButtonIcon_new btnAgregar;
+    public newscomponents.RSButtonIcon_new btnBuscar;
     public newscomponents.RSButtonIcon_new btnEditar;
-    public newscomponents.RSButtonIcon_new btnEditar1;
     public newscomponents.RSButtonIcon_new btnEliminar;
     private javax.swing.JScrollPane jScrollPane2;
     public rojerusan.RSTableMetro tbDatos;

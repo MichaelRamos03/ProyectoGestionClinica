@@ -37,10 +37,13 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
         this.vistaConsulta.btnAgregar.addActionListener(this);
         this.vistaConsulta.btnEditar.addActionListener(this);
         this.vistaConsulta.btnEliminar.addActionListener(this);
+        this.vistaConsulta.btnBuscar.addActionListener(this);
         this.vistaConsulta.tbDatos.addMouseListener(this);
         
         mostrar(daoEmpleado.selectAll());
     }
+    
+    
     
      public void mostrar(ColaPrioridad<Empleado> lista) {
 
@@ -61,18 +64,26 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             Object datos[] = {i, x.getDui(),
                                  x.getNombre(), 
                                  x.getApellido(), 
-                                 x.getFechaNacimiento(), 
                                  x.getGenero(), 
+                                 x.getFechaNacimiento(),
                                  x.getCorreo(), 
-                                 x.getRol().
-                                 getRol(), 
                                  activo,
+                                 x.getRol().
+                                 getRol(),
                                  x.getPrioridad()
                                 };
             modelo.addRow(datos);
         }
         this.vistaConsulta.tbDatos.setModel(modelo);
     }
+     
+     private void modificar(){
+         if (empleadoSeleccionado != null) {
+         VistaFormularioEmpleado frm = new VistaFormularioEmpleado();
+         ControladorFormularioEmpleado ctr = new ControladorFormularioEmpleado(this,frm, empleadoSeleccionado);
+         frm.iniciar();
+         }
+     }
      
      private void eliminar() {
 
@@ -104,13 +115,13 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             Empleado empleado = new Empleado();
             
             // Establecer el ID del empleado a buscar
-            empleado.setNombre(nombre);
+            empleado.setPrioridad(nombre);
             
              // Buscar el empleado en el árbol binario
             if (listaBusqueda.buscar(empleado) != null) {
                 empleado = (Empleado) listaBusqueda.buscar(empleado).getClave();
                 // Definir los títulos de las columnas de la tabla
-                String titulos[] = {"N","DUI","NOMBRE", "APELLIDO", "GENERO", 
+                String titulos[] = {"DUI","NOMBRE", "APELLIDO", "GENERO", 
                     "FECHA NACIMIENTO", "CORREO", "ESTADO", "ROL", "PRIORIDAD"};
                 modelo.setColumnIdentifiers(titulos);
 
@@ -123,12 +134,12 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             Object datos[] = { empleado.getDui(),
                                  empleado.getNombre(), 
                                  empleado.getApellido(), 
-                                 empleado.getFechaNacimiento(), 
-                                 empleado.getGenero(), 
-                                 empleado.getCorreo(), 
-                                 empleado.getRol().
-                                 getRol(), 
+                                 empleado.getGenero(),
+                                 empleado.getFechaNacimiento(),
+                                 empleado.getCorreo(),
                                  activo,
+                                 empleado.getRol().
+                                 getRol(),
                                  empleado.getPrioridad()
                                 };
                 modelo.addRow(datos);
@@ -168,7 +179,6 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
     }
     
     
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.vistaConsulta.btnAgregar) {
@@ -177,6 +187,12 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             v.iniciar();     
         }else if (e.getSource() == this.vistaConsulta.btnEliminar) {
             eliminar();
+        } if (e.getSource() == this.vistaConsulta.btnBuscar) {
+            buscar();
+        } else if (e.getSource() == this.vistaConsulta.btnEditar) {
+            modificar();
+        } else if (e.getSource() == this.vistaConsulta.btnBuscar) {
+            buscar();
         }
     }
 

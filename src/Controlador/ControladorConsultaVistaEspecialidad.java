@@ -105,7 +105,7 @@ public class ControladorConsultaVistaEspecialidad extends MouseAdapter implement
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.vista.btnAgregarEspecialidad){
             VistaFormularioEspecialiad vistaEspecialidad = new VistaFormularioEspecialiad();
-            ControladorFormularioEspecialidad crtVista = new ControladorFormularioEspecialidad(vistaEspecialidad,this,especialidadSeleccionada);
+            ControladorFormularioEspecialidad crtVista = new ControladorFormularioEspecialidad(vistaEspecialidad,this);
             vistaEspecialidad.iniciar();
         }else if(e.getSource() == this.vista.btnEditarEspecialidad){
             modificar();

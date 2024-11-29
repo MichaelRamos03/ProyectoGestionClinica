@@ -11,8 +11,6 @@ import ds.desktop.notify.DesktopNotify;
 import ds.desktop.notify.NotifyTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -49,7 +47,7 @@ public class ControladorConsultaExpediente extends MouseAdapter implements Actio
         DefaultTableModel modelo;
         this.consultaExpediente.tbDatos.setDefaultRenderer(Object.class, new Render());
         modelo = new DefaultTableModel();
-        String titulos[] = {"NOMBRE", "APELLIDO", "FECHA DE NACIMIENTO", "SEXO", "TELEFONO", "INFORMACION MEDICA", "TRATAMIENTOS", "NOTA DEL MEDICO", "ALERGIAS", "MEDICAMENTOS"};
+        String titulos[] = {"N","NOMBRE", "APELLIDO", "FECHA DE NACIMIENTO", "SEXO", "TELEFONO", "INFORMACION MEDICA", "TRATAMIENTOS", "NOTA DEL MEDICO", "ALERGIAS", "MEDICAMENTOS"};
         modelo.setColumnIdentifiers(titulos);
         int i = 0;
 
