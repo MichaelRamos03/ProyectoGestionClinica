@@ -115,7 +115,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             Empleado empleado = new Empleado();
             
             // Establecer el ID del empleado a buscar
-            empleado.setPrioridad(nombre);
+            empleado.setNombre(nombre);
             
              // Buscar el empleado en el árbol binario
             if (listaBusqueda.buscar(empleado) != null) {
@@ -146,6 +146,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
 
                 // Mostrar los datos en la tabla
                 this.vistaConsulta.tbDatos.setModel(modelo);
+                this.vistaConsulta.txtBuscar.setText("");
             } else {
                 mostrar(this.daoEmpleado.selectAll());
                 JOptionPane.showMessageDialog(null, "DATO NO ENCONTRADO");
