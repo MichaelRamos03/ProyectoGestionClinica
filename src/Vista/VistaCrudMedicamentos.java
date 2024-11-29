@@ -64,7 +64,7 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
         tablaMedicamentos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tablaMedicamentos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 660, 450));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 660, 450));
 
         btnRegistrarMedicamento.setBackground(new java.awt.Color(255, 255, 255));
         btnRegistrarMedicamento.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N

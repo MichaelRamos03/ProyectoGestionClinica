@@ -5,6 +5,7 @@
 package Vista;
 
 import Modelo.Empleado;
+import javax.swing.JOptionPane;
 import utilidades.Fondo;
 
 /**
@@ -60,6 +61,12 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtIdRecepcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdRecepcionKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtIdRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 80, -1));
 
         jLabel1.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
@@ -79,12 +86,28 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
                 txtPresionActionPerformed(evt);
             }
         });
+        txtPresion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPresionKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtPresion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 75, -1));
+
+        txtAltura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAlturaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtAltura, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 80, -1));
 
         txtPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesoActionPerformed(evt);
+            }
+        });
+        txtPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesoKeyPressed(evt);
             }
         });
         jPanel1.add(txtPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 75, -1));
@@ -124,7 +147,18 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
                 txtFrecuenciaCardiacaActionPerformed(evt);
             }
         });
+        txtFrecuenciaCardiaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFrecuenciaCardiacaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtFrecuenciaCardiaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, 70, -1));
+
+        txtTemperatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTemperaturaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtTemperatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 80, -1));
 
         jLabel9.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
@@ -185,6 +219,154 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
     private void txtFrecuenciaCardiacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFrecuenciaCardiacaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFrecuenciaCardiacaActionPerformed
+
+    private void txtFrecuenciaCardiacaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFrecuenciaCardiacaKeyPressed
+        // TODO add your handling code here:
+
+        char c = evt.getKeyChar();
+
+        // Validar si el carácter no es un dígito
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Ignorar la entrada no válida
+            JOptionPane.showMessageDialog(null, "Solo se permiten numeros enteros");
+            this.txtFrecuenciaCardiaca.setText("");
+        }
+    }//GEN-LAST:event_txtFrecuenciaCardiacaKeyPressed
+
+    private void txtAlturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaKeyPressed
+        // validacion punto decimal
+        char c = evt.getKeyChar();
+        String texto = this.txtAltura.getText();
+
+// Verificar si la tecla presionada es un dígito
+        if (!Character.isDigit(c)) {
+            if (c == '.') {
+                // Permitir el punto solo si no hay otro punto y no está al principio
+                if (texto.contains(".") || texto.length() == 0) {
+                    evt.consume(); // Ignorar la entrada no válida
+                    JOptionPane.showMessageDialog(null, "Solo se permite un punto decimal.");
+                    this.txtAltura.setText("");
+                }
+            } else {
+                // Ignorar cualquier carácter que no sea un dígito o un punto
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "Solo se permiten números y un punto decimal.");
+                this.txtAltura.setText("");
+            }
+        } else {
+            // Verificar si ya hay un punto decimal y limitar a dos dígitos después del mismo
+            if (texto.contains(".")) {
+                int indexOfDot = texto.indexOf(".");
+                String decimals = texto.substring(indexOfDot + 1);
+
+                // Si ya hay dos dígitos después del punto, ignorar la entrada
+                if (decimals.length() >= 2) {
+                    evt.consume();
+                    JOptionPane.showMessageDialog(null, "Solo se permiten dos dígitos después del punto decimal.");
+                    this.txtAltura.setText("");
+                }
+            }
+        }
+
+    }//GEN-LAST:event_txtAlturaKeyPressed
+
+    private void txtIdRecepcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdRecepcionKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        // Validar si el carácter no es un dígito
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Ignorar la entrada no válida
+            JOptionPane.showMessageDialog(null, "Solo se permiten numeros enteros ");
+
+            // Verificar si el campo no está editable antes de borrar el texto
+            if (!this.txtIdRecepcion.isEditable()) {
+                // Si el campo no es editable, no borrar el texto
+                return;
+            }
+
+            // Si el campo es editable, borrar el texto
+            this.txtIdRecepcion.setText("");
+        }
+
+    }//GEN-LAST:event_txtIdRecepcionKeyPressed
+
+    private void txtTemperaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTemperaturaKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        // Validar si el carácter no es un dígito
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Ignorar la entrada no válida
+            JOptionPane.showMessageDialog(null, "Solo se permiten numeros enteros en la temperatura");
+            this.txtTemperatura.setText("");
+        }
+    }//GEN-LAST:event_txtTemperaturaKeyPressed
+
+    private void txtPesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyPressed
+         // validacion punto decimal
+        char c = evt.getKeyChar();
+        String texto = this.txtPeso.getText();
+
+// Verificar si la tecla presionada es un dígito
+        if (!Character.isDigit(c)) {
+            if (c == '.') {
+                // Permitir el punto solo si no hay otro punto y no está al principio
+                if (texto.contains(".") || texto.length() == 0) {
+                    evt.consume(); // Ignorar la entrada no válida
+                    JOptionPane.showMessageDialog(null, "Solo se permite un punto decimal.");
+                    this.txtPeso.setText("");
+                }
+            } else {
+                // Ignorar cualquier carácter que no sea un dígito o un punto
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "Solo se permiten números y un punto decimal.");
+                this.txtPeso.setText("");
+            }
+        } else {
+            // Verificar si ya hay un punto decimal y limitar a dos dígitos después del mismo
+            if (texto.contains(".")) {
+                int indexOfDot = texto.indexOf(".");
+                String decimals = texto.substring(indexOfDot + 1);
+
+                // Si ya hay un dígitos después del punto, ignorar la entrada
+                if (decimals.length() >= 1) {
+                    evt.consume();
+                    JOptionPane.showMessageDialog(null, "Solo se permiten un dígito después del punto decimal.");
+                    this.txtPeso.setText("");
+                }
+            }
+        }
+
+        
+    }//GEN-LAST:event_txtPesoKeyPressed
+
+    private void txtPresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPresionKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        String texto = this.txtPresion.getText();
+
+        // Verificar si la tecla presionada es un dígito
+        if (!Character.isDigit(c)) {
+            // Si es un punto decimal, validar que solo haya un punto decimal y que no esté al principio
+            if (c == '.') {
+                // Permitir el punto solo si ya hay números antes y no hay otro punto
+                if (texto.contains("/") || texto.length() == 0) {
+                    evt.consume(); // Ignorar la entrada no válida
+                    JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y un solo punto decimal.");
+                    this.txtPresion.setText("");
+                }
+            } else {
+                // Si no es un dígito ni un punto, ignorar la entrada
+                evt.consume(); // Ignorar la entrada no válida
+                JOptionPane.showMessageDialog(null, "Solo se permiten números enteros y un solo punto decimal.");
+                this.txtPresion.setText("");
+
+            }
+        } else {
+            // Si es un dígito, permitir la entrada
+        }
+    }//GEN-LAST:event_txtPresionKeyPressed
 
     /**
      * @param args the command line arguments
