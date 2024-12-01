@@ -81,7 +81,48 @@ public class EntregaMedicinaDao implements IEntregaMedicina{
     
     @Override
     public ABinarioBusqueda<EntregaMedicina> buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ABinarioBusqueda<EntregaMedicina> listaBusqueda = new ABinarioBusqueda();
+        String sql = "SELECT e.id_entrega_medicina, m.id_medicamento, m.nombre AS nombreMedicina,r.id_receta,r.dosis,r.cantidad, em.id_empleado,em.dui,em.nombre AS nombreEmpleado FROM entrega_medicina e INNER JOIN medicamento m ON m.id_medicamento = e.id_medicamento INNER JOIN receta r ON r.id_receta = e.id_receta INNER JOIN empleado em ON em.id_empleado = e.id_empleado";
+        try {
+            this.con = conectar.getConexion();
+            this.ps = con.prepareStatement(sql);
+            this.rs = ps.executeQuery();
+
+            while (rs.next()) {
+                EntregaMedicina obj = new EntregaMedicina();
+                obj.setIdEntregaMedicina(rs.getInt("id_entrega_medicina"));
+                Medicamento m = new Medicamento();
+                m.setIdMedicamento(rs.getInt("id_medicamento"));
+                m.setNombre(rs.getString("nombreMedicina"));
+                obj.setMedicamento(m);
+                Receta r = new Receta();
+                r.setIdReceta(rs.getInt("id_receta"));
+                r.setDosis(rs.getInt("dosis"));
+                r.setDosis(rs.getInt("cantidad"));
+                obj.setReceta(r);
+                Empleado e = new Empleado();
+                e.setIdEmpleado(rs.getInt("id_empleado"));
+                e.setDui(rs.getString("dui"));
+                e.setNombre(rs.getString("nombreEmpleado"));
+                obj.setEmpleado(e);
+                
+                listaBusqueda.insertar(obj);
+
+            }
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(EmpleadoDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(EmpleadoDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            conectar.closeConexion(con);
+        }
+        return listaBusqueda;
     }
     
      private ListaDoble<EntregaMedicina> select(String sql) {

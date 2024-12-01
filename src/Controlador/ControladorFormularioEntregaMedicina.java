@@ -48,15 +48,19 @@ public class ControladorFormularioEntregaMedicina extends MouseAdapter implement
         llenarComboEmpleado();
     }
     
-     public ControladorFormularioEntregaMedicina( ControladorConsultaEntregaMedicina ctr,VistaFormularioEntregaMedicina frmEntregaMedicina, EntregaMedicina entregaSeleccionada) {
+    public ControladorFormularioEntregaMedicina( ControladorConsultaEntregaMedicina ctr,VistaFormularioEntregaMedicina frmEntregaMedicina, EntregaMedicina entregaSeleccionada) {
         this.frmEntregaMedicina = frmEntregaMedicina;
         this.ctr = ctr;
         daoEntregarMedicina = new EntregaMedicinaDao();
         this.daoEmpleado = new EmpleadoDao();
         this.daoMedicamento = new MedicamentoDao();
         this.daoReceta = new RecetaDao();
-        entregaSeleccionada = entregaSeleccionada;
+        this.entregaSeleccionada = entregaSeleccionada;
         this.frmEntregaMedicina.btnGuardar.addActionListener(this);
+        llenarComboMedicamento();
+        llenarComboReceta();
+        llenarComboEmpleado();
+        llenarVista();
     }
     
      public void guardar() {        
@@ -67,7 +71,7 @@ public class ControladorFormularioEntregaMedicina extends MouseAdapter implement
             if (this.entregaSeleccionada == null) {
                nuevaEntrega();
             } else {
-                //editar();
+                editar();
             }
 
         } else {
@@ -78,7 +82,7 @@ public class ControladorFormularioEntregaMedicina extends MouseAdapter implement
     }
      
       public void nuevaEntrega() {
-          ListaDoble<Empleado> lista = this.daoEmpleado.selectAllTo("nombre", this.frmEntregaMedicina.cbEmpleado.getSelectedItem().toString());
+          ListaDoble<Empleado> lista = this.daoEmpleado.selectAllTo("dui", this.frmEntregaMedicina.cbEmpleado.getSelectedItem().toString());
           ListaDoble<Receta> listaRec = this.daoReceta.selectAllTo("id_receta", this.frmEntregaMedicina.cbReceta.getSelectedItem().toString());
           ListaCircular<Medicamento> listaMed = this.daoMedicamento.selectAllTo("nombre", this.frmEntregaMedicina.cbMedicamento.getSelectedItem().toString());
 
@@ -112,7 +116,7 @@ public class ControladorFormularioEntregaMedicina extends MouseAdapter implement
       
     private void editar(){
         
-        ListaDoble<Empleado> lista = this.daoEmpleado.selectAllTo("nombre", this.frmEntregaMedicina.cbEmpleado.getSelectedItem().toString());
+        ListaDoble<Empleado> lista = this.daoEmpleado.selectAllTo("dui", this.frmEntregaMedicina.cbEmpleado.getSelectedItem().toString());
         ListaDoble<Receta> listaRec = this.daoReceta.selectAllTo("id_receta", this.frmEntregaMedicina.cbReceta.getSelectedItem().toString());
         ListaCircular<Medicamento> listaMed = this.daoMedicamento.selectAllTo("nombre", this.frmEntregaMedicina.cbMedicamento.getSelectedItem().toString());
         
@@ -136,20 +140,20 @@ public class ControladorFormularioEntregaMedicina extends MouseAdapter implement
     }
     
     private void llenarVista(){
-        
+        this.frmEntregaMedicina.cbMedicamento.setSelectedItem(this.entregaSeleccionada.getMedicamento().getNombre());
+        this.frmEntregaMedicina.cbReceta.setSelectedItem(this.entregaSeleccionada.getReceta().getIdReceta());
+        this.frmEntregaMedicina.cbEmpleado.setSelectedItem(this.entregaSeleccionada.getEmpleado().getDui());
     }
       
     public void llenarComboEmpleado(){
           ListaDoble<Empleado> lista = daoEmpleado.selectAll();
-         
          for (Empleado x : lista.toArray()) {
-            this.frmEntregaMedicina.cbEmpleado.addItem(x.getNombre());
+            this.frmEntregaMedicina.cbEmpleado.addItem(x.getDui());
         }
     }
     
     public void llenarComboReceta(){
           ListaDoble<Receta> lista = daoReceta.selectAll();
-         
          for (Receta x : lista.toArray()) {
             this.frmEntregaMedicina.cbReceta.addItem(x.getIdReceta());
         } 
@@ -157,14 +161,10 @@ public class ControladorFormularioEntregaMedicina extends MouseAdapter implement
       
     public void llenarComboMedicamento(){
          ListaCircular<Medicamento> lista = daoMedicamento.mostrar();
-         
          for (Medicamento x : lista.toArray()) {
             this.frmEntregaMedicina.cbMedicamento.addItem(x.getNombre());
         }
     }
-    
-    
-    
     
     
     @Override

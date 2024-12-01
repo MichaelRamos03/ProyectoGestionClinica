@@ -113,12 +113,12 @@ public class EmpleadoDao implements IEmpleado {
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
             ex.printStackTrace();
-            java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadoDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } finally {
             try {
                 ps.close();
             } catch (SQLException ex) {
-                java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(EmpleadoDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             conectar.closeConexion(con);
         }

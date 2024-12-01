@@ -121,7 +121,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                 empleado = (Empleado) listaBusqueda.buscar(empleado).getClave();
                 // Definir los títulos de las columnas de la tabla
                 String titulos[] = {"DUI","NOMBRE", "APELLIDO", "GENERO", 
-                    "FECHA NACIMIENTO", "CORREO", "ESTADO", "ROL", "PRIORIDAD"};
+                    "FECHA NACIMIENTO", "CORREO", "ESTADO", "ROL"};
                 modelo.setColumnIdentifiers(titulos);
 
                 // Agregar los datos del empleado al modelo de la tabla
@@ -139,7 +139,6 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  activo,
                                  empleado.getRol().
                                  getRol(),
-                                 empleado.getPrioridad()
                                 };
                 modelo.addRow(datos);
 ///
@@ -191,9 +190,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             buscar();
         } else if (e.getSource() == this.vistaConsulta.btnEditar) {
             modificar();
-        } else if (e.getSource() == this.vistaConsulta.btnBuscar) {
-            buscar();
-        }
+        } 
     }
 
 }
