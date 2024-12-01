@@ -24,7 +24,7 @@ public class ControladorViewInicio extends MouseAdapter implements ActionListene
    
 
     public ControladorViewInicio(ViewInicio vistaInicio) {
-        
+        ///
         this.vistaInicio = vistaInicio;
         this.vistaInicio.setVisible(true);
         this.vistaInicio.setLocationRelativeTo(null);
