@@ -5,6 +5,7 @@
 package Vista;
 
 import Modelo.Empleado;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import utilidades.Fondo;
 
@@ -20,6 +21,7 @@ public class VistaFormularioRecepcion extends javax.swing.JFrame {
     public VistaFormularioRecepcion() {
         initComponents();
         this.setLocationRelativeTo(this);
+       
         this.jPanel1.setBorder(new Fondo("/imagenes/FondoFormularioRecepcion.jpg"));
     }
 

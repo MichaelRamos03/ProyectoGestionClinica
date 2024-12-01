@@ -19,6 +19,7 @@ public class Consulta implements Comparable<Consulta>{
     private Expediente expediente;
     private ArrayList<Examen> examenes;
     private ArrayList<Receta> recetas;
+    private Double precio;
 
     public Consulta() {
         this.examenes = new ArrayList();
@@ -35,6 +36,18 @@ public class Consulta implements Comparable<Consulta>{
         this.examenes = new ArrayList();
         this.recetas = new ArrayList();
     }
+
+    public Consulta(int idConsulta, int consultorio, String diagnostico, Recepcion recepcion, MedicoEspecialista medicoEspecialista, Expediente expediente, Double precio) {
+        this.idConsulta = idConsulta;
+        this.consultorio = consultorio;
+        this.diagnostico = diagnostico;
+        this.recepcion = recepcion;
+        this.medicoEspecialista = medicoEspecialista;
+        this.expediente = expediente;
+        this.precio = precio;
+    }
+    
+    
 
     public int getIdConsulta() {
         return idConsulta;
@@ -100,6 +113,32 @@ public class Consulta implements Comparable<Consulta>{
         this.recetas = recetas;
     }  
 
+/*
+    @Override
+    public int compareTo(Consulta otraConsulta) {
+        // Comparar por idConsulta (suponiendo que es un número o Comparable)
+        return Integer.compare(this.idConsulta, otraConsulta.idConsulta);
+    }
+*/
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    /*
+    @Override
+    public int compareTo(Consulta o) {
+        Consulta actual= this;
+        return actual.getMedicoEspecialista().getIdEspecialidad().getEspecialidad().compareToIgnoreCase(o.getMedicoEspecialista().getIdEspecialidad().getEspecialidad());
+        
+ 
+    }
+*/
+    
     @Override
     public int compareTo(Consulta otraConsulta) {
         // Comparar por idConsulta (suponiendo que es un número o Comparable)

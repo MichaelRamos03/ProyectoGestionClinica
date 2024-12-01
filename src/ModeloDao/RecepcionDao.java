@@ -9,7 +9,10 @@ import Estructuras.ColaPrioridad;
 import Estructuras.ListaCircular;
 import Interfaces.IRecepcion;
 import Modelo.Conexion;
+import Modelo.Consulta;
 import Modelo.Empleado;
+import Modelo.Especialidad;
+import Modelo.MedicoEspecialista;
 import java.sql.Connection;
 import Modelo.Recepcion;
 import Modelo.Rol;
@@ -31,7 +34,7 @@ public class RecepcionDao implements IRecepcion {
     private PreparedStatement ps; //para compilar la consulta sql (no tenga ningun error de sintaxis)
     private ResultSet rs;
     private Recepcion recepcion;
-    private  ABinarioBusqueda<Recepcion> listaBusqueda;
+    private ABinarioBusqueda<Recepcion> listaBusqueda;
 
     public RecepcionDao() {
         this.conectar = new Conexion();
@@ -313,17 +316,17 @@ public class RecepcionDao implements IRecepcion {
     }
 
     public ABinarioBusqueda<Recepcion> buscarTodasRecepcionesPrioridad(String prioridad) {
-               this.listaBusqueda = new ABinarioBusqueda();
+        this.listaBusqueda = new ABinarioBusqueda();
         String sql = "select r.id_recepcion,r.presion,r.altura,r.peso,r.temperatura,r.frecuencia_cardiaca,r.motivo_visita,r.observaciones,e.id_empleado,e.nombre,e.apellido,r.prioridad\n"
                 + "from recepcion r\n"
                 + "inner join empleado e\n"
                 + "on e.id_empleado = r.id_empleado\n"
-                + "where r.prioridad='"+prioridad+"'";
+                + "where r.prioridad='" + prioridad + "'";
         try {
             this.con = conectar.getConexion();
             this.ps = con.prepareStatement(sql);
             this.rs = ps.executeQuery();
-         
+
             while (rs.next()) {
                 Recepcion r = new Recepcion();
                 //id_recepcion,presion,altura,peso,temperatura,frecuencia_cardiaca,motivo_visita,observaciones,id_empleado,prioridad
@@ -343,9 +346,8 @@ public class RecepcionDao implements IRecepcion {
                 r.setEmpleado(empleado);
 
                 listaBusqueda.insertar(r);
-            
-         }
-           
+
+            }
 
         } catch (SQLException ex) {
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
@@ -361,6 +363,53 @@ public class RecepcionDao implements IRecepcion {
             conectar.closeConexion(con);
         }
         return listaBusqueda;
+    }
+
+    public ListaCircular<Consulta> getConsultasPDF() {
+
+        ListaCircular<Consulta> listaConsultas = new ListaCircular<Consulta>();
+
+        try {
+            String sql = "select e.especialidad,sum(cn.precio) AS total_ingresos\n"
+                    + "from consulta cn\n"
+                    + "inner join medico_especialista me\n"
+                    + "on cn.id_medico_especialista = me.id_medico_especialista\n"
+                    + "inner join especialidad e\n"
+                    + "on e.id_especialidad = me.id_especialidad\n"
+                    + "group by e.especialidad";
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+               Especialidad esp = new Especialidad();
+               Consulta consulta = new Consulta();
+               MedicoEspecialista med = new MedicoEspecialista();
+               esp.setEspecialidad(rs.getString("especialidad"));
+               consulta.setPrecio(rs.getDouble("total_ingresos"));
+               med.setIdEspecialidad(esp);
+               consulta.setMedicoEspecialista(med);
+               listaConsultas.insertar(consulta);
+               
+               
+            }
+
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.showDesktopMessage("Error", "Error en la base",
+                    DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+
+            }
+            conectar.closeConexion(con);
+
+        }
+
+        return listaConsultas;
+
     }
 
 }

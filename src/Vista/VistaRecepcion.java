@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import javax.swing.JFrame;
 import utilidades.Fondo;
 
 /**
@@ -18,6 +19,7 @@ public class VistaRecepcion extends javax.swing.JFrame {
     public VistaRecepcion() {
         initComponents();
           this.setLocationRelativeTo(this);
+         
         this.jPanel1.setBorder(new Fondo("/imagenes/FondoRecepcion.jpg"));
     }
 
@@ -37,9 +39,10 @@ public class VistaRecepcion extends javax.swing.JFrame {
         btnBuscarRecepcion = new javax.swing.JButton();
         ComboBuscarPrioridad = new javax.swing.JComboBox<>();
         btnMostrarTodos = new javax.swing.JButton();
-        btnAgregarRecepcion = new javax.swing.JButton();
         btnEliminarRecepcion = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnReporteConsultas = new javax.swing.JButton();
+        btnAgregarRecepcion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,24 +69,43 @@ public class VistaRecepcion extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 1050, 490));
 
+        btnBuscarRecepcion.setBackground(new java.awt.Color(0, 255, 255));
+        btnBuscarRecepcion.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscarRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-park--search.png"))); // NOI18N
         btnBuscarRecepcion.setText("Buscar Recepcíon por prioridad");
-        jPanel1.add(btnBuscarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+        jPanel1.add(btnBuscarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, 40));
 
+        ComboBuscarPrioridad.setBackground(new java.awt.Color(0, 0, 255));
+        ComboBuscarPrioridad.setForeground(new java.awt.Color(255, 255, 255));
         ComboBuscarPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ComboBuscarPrioridad.setToolTipText("Seleccione y presione el botón para buscar");
-        jPanel1.add(ComboBuscarPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, -1, -1));
+        jPanel1.add(ComboBuscarPrioridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, -1, -1));
 
+        btnMostrarTodos.setBackground(new java.awt.Color(0, 255, 255));
+        btnMostrarTodos.setForeground(new java.awt.Color(0, 0, 0));
         btnMostrarTodos.setText("Mostrar todos los registros");
-        jPanel1.add(btnMostrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, -1, -1));
+        jPanel1.add(btnMostrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 50, 190, 30));
 
-        btnAgregarRecepcion.setText("Agregar");
-        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
-
+        btnEliminarRecepcion.setBackground(new java.awt.Color(204, 0, 0));
+        btnEliminarRecepcion.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-park--delete-one (1).png"))); // NOI18N
         btnEliminarRecepcion.setText("Eliminar");
-        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, -1));
+        jPanel1.add(btnEliminarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, 40));
 
-        btnModificar.setText("Modificar");
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+        btnModificar.setBackground(new java.awt.Color(0, 255, 255));
+        btnModificar.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modify icon.png"))); // NOI18N
+        btnModificar.setText("Modificar ");
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 130, 40));
+
+        btnReporteConsultas.setText("Reporte consulas");
+        jPanel1.add(btnReporteConsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
+
+        btnAgregarRecepcion.setBackground(new java.awt.Color(0, 255, 255));
+        btnAgregarRecepcion.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-park--add.png"))); // NOI18N
+        btnAgregarRecepcion.setText("Agregar");
+        jPanel1.add(btnAgregarRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,9 +117,7 @@ public class VistaRecepcion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
         );
 
         pack();
@@ -145,6 +165,7 @@ public class VistaRecepcion extends javax.swing.JFrame {
     public javax.swing.JButton btnEliminarRecepcion;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnMostrarTodos;
+    public javax.swing.JButton btnReporteConsultas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,6 +1,7 @@
 
 package Vista;
 
+import javax.swing.JFrame;
 import utilidades.Fondo;
 
 /**
@@ -13,6 +14,7 @@ public class VistaConsultaExpediente extends javax.swing.JFrame {
     public VistaConsultaExpediente() {
         initComponents();
         this.setLocationRelativeTo(this);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.Fondo.setBorder(new Fondo("/imagenes/1.jpg"));
         
     }

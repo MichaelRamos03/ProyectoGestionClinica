@@ -6,17 +6,34 @@ package Controlador;
 
 import Estructuras.ABinarioBusqueda;
 import Estructuras.ColaPrioridad;
+import Modelo.Consulta;
 import Modelo.Recepcion;
 import ModeloDao.RecepcionDao;
+import Utilidades.PaginaItext;
+import Utilidades.PdfItext;
 import Vista.VistaFormularioRecepcion;
 import Vista.VistaRecepcion;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import ds.desktop.notify.DesktopNotify;
 import ds.desktop.notify.NotifyTheme;
+import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,6 +64,8 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
         this.vistaRecepcion.btnBuscarRecepcion.addActionListener(this);
         this.vistaRecepcion.ComboBuscarPrioridad.addActionListener(this);
         this.vistaRecepcion.btnMostrarTodos.addActionListener(this);
+
+        this.vistaRecepcion.btnReporteConsultas.addActionListener(this);
         this.recepcionDao = new RecepcionDao();
         this.colaPrioridad = new ColaPrioridad(4);
 
@@ -94,8 +113,12 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
         if (e.getSource() == this.vistaRecepcion.btnBuscarRecepcion) {
             buscar();
         }
-        if(e.getSource()== this.vistaRecepcion.btnMostrarTodos){
+        if (e.getSource() == this.vistaRecepcion.btnMostrarTodos) {
             mostrarDatos();
+        }
+
+        if (e.getSource() == this.vistaRecepcion.btnReporteConsultas) {
+            pdf();
         }
     }
 
@@ -130,11 +153,11 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
         String columnas[] = {"Id", "Presión (mmHg)", "Altura (m)", "Peso (lbs)", "Temperatura °C", "Frecuencia Cardíaca (lat/min)", "Motivo visita", "Observaciones", "Empleado encargado", "Prioridad"};
         tabla.setColumnIdentifiers(columnas);
         this.colaPrioridad = this.recepcionDao.mostrar();
-        if(this.colaPrioridad !=null){
-        for (Recepcion r : this.colaPrioridad.toArray()) {
-            Object datos[] = {r.getIdRecepcion(), r.getPresion(), r.getAltura(), r.getPeso(), r.getTemperatura(), r.getFrecuenciaCardiaca(), r.getMotivoVisita(), r.getObservaciones(), r.getEmpleado().getNombre() + " " + r.getEmpleado().getApellido(), r.getPrioridad()};
-            tabla.addRow(datos);
-        }
+        if (this.colaPrioridad != null) {
+            for (Recepcion r : this.colaPrioridad.toArray()) {
+                Object datos[] = {r.getIdRecepcion(), r.getPresion(), r.getAltura(), r.getPeso(), r.getTemperatura(), r.getFrecuenciaCardiaca(), r.getMotivoVisita(), r.getObservaciones(), r.getEmpleado().getNombre() + " " + r.getEmpleado().getApellido(), r.getPrioridad()};
+                tabla.addRow(datos);
+            }
         }
         this.vistaRecepcion.tablaRecepciones.setModel(tabla);
     }
@@ -187,7 +210,6 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
         String prioridadBuscar = prioridad(seleccion);
         ABinarioBusqueda<Recepcion> recepcionesPr = this.recepcionDao.buscarTodasRecepcionesPrioridad(prioridadBuscar);
 
-         
         if (!recepcionesPr.isEmpty()) {
             DefaultTableModel tabla = new DefaultTableModel();
 
@@ -204,13 +226,52 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
             DesktopNotify.setDefaultTheme(NotifyTheme.Green);
             DesktopNotify.showDesktopMessage("Recepciones con prioridad: " + prioridadBuscar, "Encontradas con exito",
                     DesktopNotify.SUCCESS, 6000);
-           
 
         } else {
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Recepciones con prioridad: " + prioridadBuscar, "No se encontraron en el sistema",
                     DesktopNotify.INFORMATION, 6000);
-            
+
         }
     }
+
+    // para el reporte (cambiarlo a vista de consultas)
+    private void pdf() {
+        try {
+            
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("Reporte_Consultas.pdf"));
+            document.open();
+
+           
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaActual = formatoFecha.format(new Date());
+
+           
+            document.add(new Paragraph("Reporte de Consultas por sus ingresos de cada especialidad", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
+            document.add(new Paragraph("Fecha: " + fechaActual + "\n\n", FontFactory.getFont(FontFactory.HELVETICA, 12)));
+
+           
+            PdfPTable tabla = new PdfPTable(2); 
+            tabla.addCell("Especialidad");
+            tabla.addCell("Ingresos");
+
+           
+            for (Consulta c : this.recepcionDao.getConsultasPDF().toArray()) {
+                tabla.addCell(c.getMedicoEspecialista().getIdEspecialidad().getEspecialidad());
+                tabla.addCell(String.valueOf(c.getPrecio()));
+            }
+
+           
+            document.add(tabla);
+            document.close();
+
+           
+            Desktop.getDesktop().open(new File("Reporte_Consultas.pdf"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }

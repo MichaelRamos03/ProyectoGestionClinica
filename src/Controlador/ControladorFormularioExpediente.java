@@ -25,6 +25,7 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
     public ControladorFormularioExpediente(ControladorConsultaExpediente ctlConsultarExpediente, VistaFormularioExpediente frmExpediente) {
         this.ctlConsultarExpediente = ctlConsultarExpediente;
         this.frmExpediente = frmExpediente;
+        this.frmExpediente.setDefaultCloseOperation(frmExpediente.DISPOSE_ON_CLOSE);
         this.daoExpediente = new ExpedienteDao();
         this.frmExpediente.btnGuardar.addActionListener(this);
         this.expedienteSeleccionado = null;
@@ -33,6 +34,7 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
     public ControladorFormularioExpediente(ControladorConsultaExpediente ctlConsultarExpediente, VistaFormularioExpediente frmExpediente, Expediente expedienteSeleccionado) {
         this.frmExpediente = frmExpediente;
         this.ctlConsultarExpediente = ctlConsultarExpediente;
+        this.frmExpediente.setDefaultCloseOperation(frmExpediente.DISPOSE_ON_CLOSE);
         this.expedienteSeleccionado = expedienteSeleccionado;
         this.daoExpediente = new ExpedienteDao();
         this.frmExpediente.btnGuardar.addActionListener(this);

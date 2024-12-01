@@ -21,6 +21,7 @@ public class ControladorViewInicio extends MouseAdapter implements ActionListene
     private VistaLogin vistaLogin;
     private ControladorViewInicio controladorView;
     private ViewInicio vistaInicio;
+   
 
     public ControladorViewInicio(ViewInicio vistaInicio) {
         
