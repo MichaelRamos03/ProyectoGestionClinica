@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.util.ArrayList;
@@ -8,8 +7,8 @@ import java.util.Date;
  *
  * @author karla
  */
-public class Empleado implements Comparable<Empleado>{
-    
+public class Empleado implements Comparable<Empleado> {
+
     private int idEmpleado;
     private String dui;
     private String nombre;
@@ -22,7 +21,6 @@ public class Empleado implements Comparable<Empleado>{
     private String Prioridad;
     private ArrayList<Usuario> usuarios;
     private ArrayList<MedicoEspecialista> especialistas;
-    
 
     public Empleado() {
         this.usuarios = new ArrayList();
@@ -40,8 +38,6 @@ public class Empleado implements Comparable<Empleado>{
         this.rol = rol;
         this.Prioridad = Prioridad;
     }
-
- 
 
     public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol, String Prioridad) {
         this.idEmpleado = idEmpleado;
@@ -151,21 +147,17 @@ public class Empleado implements Comparable<Empleado>{
     public void setEspecialistas(ArrayList<MedicoEspecialista> especialistas) {
         this.especialistas = especialistas;
     }
-    
-    
-   
+
     @Override
     public int compareTo(Empleado o) {
-       Empleado actual=this;
-    return actual.nombre.compareToIgnoreCase(o.nombre);
-    
-   }
-    
- @Override
-public String toString() {
-    return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
-}
+        Empleado actual = this;
+        return actual.nombre.compareToIgnoreCase(o.nombre);
 
+    }
 
+    @Override
+    public String toString() {
+        return "Id:" + this.idEmpleado + " " + this.nombre + " " + this.apellido;
+    }
 
 }

@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.util.ArrayList;
@@ -7,8 +6,9 @@ import java.util.Date;
 /**
  *
  * @author Michael Ramos;
-**/
-public class Expediente implements Comparable<Expediente>{
+*
+ */
+public class Expediente implements Comparable<Expediente> {
 
     private int idExpediente;
     private String nombre;
@@ -24,7 +24,7 @@ public class Expediente implements Comparable<Expediente>{
     private ArrayList<Consulta> consultas;
 
     public Expediente() {
-        this.consultas = new ArrayList(); 
+        this.consultas = new ArrayList();
     }
 
     public Expediente(String nombre, String apellido, Date fechaNacimiento, String sexo, String telefono, String informacionMedica, String tratamiento, String notaMedica, String alergias, String medicamentos) {
@@ -154,7 +154,12 @@ public class Expediente implements Comparable<Expediente>{
     @Override
     public int compareTo(Expediente o) {
         Expediente actual = this;
-        
+
         return actual.nombre.compareToIgnoreCase(o.nombre);
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido; // Expediente
     }
 }

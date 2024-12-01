@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author MINEDUCYT
  */
-public class Consulta {
+public class Consulta implements Comparable<Consulta>{
     private int idConsulta;
     private int consultorio;
     private String diagnostico;
@@ -99,4 +99,11 @@ public class Consulta {
     public void setRecetas(ArrayList<Receta> recetas) {
         this.recetas = recetas;
     }  
+
+    @Override
+    public int compareTo(Consulta otraConsulta) {
+        // Comparar por idConsulta (suponiendo que es un número o Comparable)
+        return Integer.compare(this.idConsulta, otraConsulta.idConsulta);
+    }
+
 }

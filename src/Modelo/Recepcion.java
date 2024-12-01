@@ -162,5 +162,12 @@ private int getPrioridadValor(String prioridad) {
     }
 }
 
+    @Override
+    public String toString() {
+        return idRecepcion +" "+ prioridad + " " + empleado.getNombre();
+    }
+
+
+
 
 }
