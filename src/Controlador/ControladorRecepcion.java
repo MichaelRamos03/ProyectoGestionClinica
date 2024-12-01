@@ -65,7 +65,7 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
         this.vistaRecepcion.ComboBuscarPrioridad.addActionListener(this);
         this.vistaRecepcion.btnMostrarTodos.addActionListener(this);
 
-        this.vistaRecepcion.btnReporteConsultas.addActionListener(this);
+        //this.vistaRecepcion.btnReporteConsultas.addActionListener(this);
         this.recepcionDao = new RecepcionDao();
         this.colaPrioridad = new ColaPrioridad(4);
 
@@ -117,9 +117,7 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
             mostrarDatos();
         }
 
-        if (e.getSource() == this.vistaRecepcion.btnReporteConsultas) {
-            pdf();
-        }
+        
     }
 
     @Override

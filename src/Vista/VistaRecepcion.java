@@ -41,7 +41,6 @@ public class VistaRecepcion extends javax.swing.JFrame {
         btnMostrarTodos = new javax.swing.JButton();
         btnEliminarRecepcion = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnReporteConsultas = new javax.swing.JButton();
         btnAgregarRecepcion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,9 +96,6 @@ public class VistaRecepcion extends javax.swing.JFrame {
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modify icon.png"))); // NOI18N
         btnModificar.setText("Modificar ");
         jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 130, 40));
-
-        btnReporteConsultas.setText("Reporte consulas");
-        jPanel1.add(btnReporteConsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
 
         btnAgregarRecepcion.setBackground(new java.awt.Color(0, 255, 255));
         btnAgregarRecepcion.setForeground(new java.awt.Color(0, 0, 0));
@@ -165,7 +161,6 @@ public class VistaRecepcion extends javax.swing.JFrame {
     public javax.swing.JButton btnEliminarRecepcion;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnMostrarTodos;
-    public javax.swing.JButton btnReporteConsultas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
