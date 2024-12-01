@@ -64,31 +64,34 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
         tablaMedicamentos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tablaMedicamentos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 660, 450));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 810, 450));
 
-        btnRegistrarMedicamento.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrarMedicamento.setBackground(new java.awt.Color(102, 255, 255));
         btnRegistrarMedicamento.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         btnRegistrarMedicamento.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistrarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-park--add.png"))); // NOI18N
         btnRegistrarMedicamento.setText("Registrar Medicamento");
         btnRegistrarMedicamento.setToolTipText("Registro de nuevo medicamento");
         btnRegistrarMedicamento.setFocusable(false);
-        jPanel1.add(btnRegistrarMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
+        jPanel1.add(btnRegistrarMedicamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 40));
 
-        btnModificar.setBackground(new java.awt.Color(255, 255, 255));
+        btnModificar.setBackground(new java.awt.Color(102, 255, 255));
         btnModificar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modify icon.png"))); // NOI18N
         btnModificar.setText("Modificar medicamento ");
         btnModificar.setToolTipText("Seleccione un medicamento");
         btnModificar.setFocusable(false);
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 25));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 40));
 
-        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setBackground(new java.awt.Color(102, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Sitka Heading", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-park--delete-one (1).png"))); // NOI18N
         btnEliminar.setText("Eliminar medicamento");
         btnEliminar.setToolTipText("Seleccione un medicamento");
         btnEliminar.setFocusable(false);
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 220, 40));
 
         labelMedicine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ant-design--medicine-box-filled (2).png"))); // NOI18N
         jPanel1.add(labelMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 0, -1, -1));
@@ -97,10 +100,13 @@ public class VistaCrudMedicamentos extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Administrar Medicamentos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, 160, 30));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 90, 120, 30));
 
+        btnBuscar.setBackground(new java.awt.Color(102, 255, 255));
+        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon-park--search.png"))); // NOI18N
         btnBuscar.setText("Buscar Medicamento");
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, -1, 30));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, 210, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
