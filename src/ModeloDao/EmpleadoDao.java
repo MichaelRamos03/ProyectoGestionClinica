@@ -43,14 +43,14 @@ public class EmpleadoDao implements IEmpleado {
 
     @Override
     public boolean insert(Empleado obj) {
-        String sql = "INSERT INTO empleado( dui, nombre, apellido, genero, fecha_nacimiento, correo, estado, id_rol, prioridad) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO empleado( dui, nombre, apellido, genero, fecha_nacimiento, correo, estado, id_rol) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 
         return alterarRegistro(sql, obj);
     }
 
     @Override
     public boolean update(Empleado obj) {
-        String sql = "UPDATE empleado SET dui=?, nombre=?, apellido=?, genero=?, fecha_nacimiento=?, correo=?, estado=?, id_rol=?, prioridad=? WHERE id_empleado="
+        String sql = "UPDATE empleado SET dui=?, nombre=?, apellido=?, genero=?, fecha_nacimiento=?, correo=?, estado=?, id_rol=? WHERE id_empleado="
                 + obj.getIdEmpleado();
         return alterarRegistro(sql, obj);
     }
@@ -106,7 +106,7 @@ public class EmpleadoDao implements IEmpleado {
                 r.setIdRol(rs.getInt("id_rol"));
                 r.setRol(rs.getString("rol"));
                 e.setRol(r);
-                e.setPrioridad(rs.getString("prioridad"));
+               // e.setPrioridad(rs.getString("prioridad"));
                 listaBusqueda.insertar(e);
 
             }
@@ -147,7 +147,7 @@ public class EmpleadoDao implements IEmpleado {
                 r.setIdRol(rs.getInt("id_rol"));
                 r.setRol(rs.getString("rol"));
                 e.setRol(r);
-
+/*
                 e.setPrioridad(rs.getString("prioridad") != null ? rs.getString("prioridad") : "Sin asignar");
 
                 switch (e.getPrioridad()) {
@@ -166,7 +166,8 @@ public class EmpleadoDao implements IEmpleado {
                 }
 
             }
-
+*/
+            }
         } catch (SQLException ex) {
 
             DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
@@ -198,7 +199,7 @@ public class EmpleadoDao implements IEmpleado {
             ps.setString(6, obj.getCorreo());
             ps.setBoolean(7, obj.isEstado());
             ps.setInt(8, obj.getRol().getIdRol());
-            ps.setString(9, obj.getPrioridad());
+           // ps.setString(9, obj.getPrioridad());
             ps.execute();
 
             return true;

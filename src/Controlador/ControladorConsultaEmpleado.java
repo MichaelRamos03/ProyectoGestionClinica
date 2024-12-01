@@ -70,7 +70,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  activo,
                                  x.getRol().
                                  getRol(),
-                                 x.getPrioridad()
+                                 
                                 };
             modelo.addRow(datos);
         }
@@ -140,7 +140,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  activo,
                                  empleado.getRol().
                                  getRol(),
-                                 empleado.getPrioridad()
+                                 
                                 };
                 modelo.addRow(datos);
 ///

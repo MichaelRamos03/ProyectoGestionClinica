@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.ControladorConsulta;
 import Controlador.ControladorConsultaExpediente;
 import Controlador.ControladorMedicamentos;
 import Controlador.ControladorRecepcion;
@@ -38,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
         menuExpediente = new javax.swing.JMenu();
         menuMedicamento = new javax.swing.JMenu();
         menuRecepcion = new javax.swing.JMenu();
+        menuConsultas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -120,6 +122,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuRecepcion);
 
+        menuConsultas.setText("Consultas");
+        menuConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultasActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(menuConsultas);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -147,6 +157,11 @@ public class Menu extends javax.swing.JFrame {
         VistaRecepcion vistaRecepcion= new VistaRecepcion();
         ControladorRecepcion controladorRecepcion= new ControladorRecepcion(vistaRecepcion);
     }//GEN-LAST:event_menuRecepcionMousePressed
+
+    private void menuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasActionPerformed
+        VistaConsulta frm = new VistaConsulta();
+        ControladorConsulta ctrl = new ControladorConsulta(frm);
+    }//GEN-LAST:event_menuConsultasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -184,6 +199,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Fondo;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menuConsultas;
     private javax.swing.JMenu menuExpediente;
     private javax.swing.JMenu menuMedicamento;
     private javax.swing.JMenu menuRecepcion;

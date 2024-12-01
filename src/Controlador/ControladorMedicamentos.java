@@ -145,6 +145,7 @@ public class ControladorMedicamentos extends MouseAdapter implements ActionListe
         DefaultTableModel md = new DefaultTableModel();
         String columnas[] = {"Id", "Nombre", "Cantidad Disponible", "Fecha-caducidad", "Descripcion", "Precio $"};
         md.setColumnIdentifiers(columnas);
+        System.out.println("--"+this.daoMedicamento.mostrar());
         this.medicamentoList = this.daoMedicamento.mostrar();
         if (this.medicamentoList.toArray() != null) {
             for (Medicamento m : this.medicamentoList.toArray()) {

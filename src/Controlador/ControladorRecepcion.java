@@ -238,7 +238,7 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
     // para el reporte (cambiarlo a vista de consultas)
     private void pdf() {
         try {
-            
+             if(this.recepcionDao.getConsultasPDF().toArray()!=null){
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("Reporte_Consultas.pdf"));
             document.open();
@@ -256,18 +256,23 @@ public class ControladorRecepcion extends MouseAdapter implements ActionListener
             tabla.addCell("Especialidad");
             tabla.addCell("Ingresos");
 
-           
+          
             for (Consulta c : this.recepcionDao.getConsultasPDF().toArray()) {
                 tabla.addCell(c.getMedicoEspecialista().getIdEspecialidad().getEspecialidad());
                 tabla.addCell(String.valueOf(c.getPrecio()));
             }
-
+           
            
             document.add(tabla);
             document.close();
 
            
             Desktop.getDesktop().open(new File("Reporte_Consultas.pdf"));
+             }else{
+                 DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Reporete sin consultas","No se encontraron consultas registradas",
+                    DesktopNotify.INFORMATION, 5000);
+           }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             e.printStackTrace();

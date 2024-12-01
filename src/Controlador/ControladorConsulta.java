@@ -16,12 +16,24 @@ import ModeloDao.ExpedienteDao;
 import ModeloDao.MedicoEspecialistaDao;
 import ModeloDao.RecepcionDao;
 import Vista.VistaConsulta;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import ds.desktop.notify.DesktopNotify;
+import ds.desktop.notify.NotifyTheme;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectoclase.utilidades.Render;
@@ -54,6 +66,7 @@ public class ControladorConsulta extends MouseAdapter implements ActionListener,
         this.frm.btnAgregar.addActionListener(this);
         this.frm.btnEliminar.addActionListener(this);
         this.frm.btnEditar.addActionListener(this);
+        this.frm.btnReporteConsultas.addActionListener(this);
         this.cola = new ColaPrioridad(4);
 
         this.frm.tbDatos.addMouseListener(this);
@@ -156,6 +169,12 @@ public class ControladorConsulta extends MouseAdapter implements ActionListener,
                 JOptionPane.showMessageDialog(frm, "Error al actualizar la consulta.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        
+         if (e.getSource() == this.frm.btnReporteConsultas) {
+            pdf();
+        }
+        
+        
     }
 
     public void mostrar(Lista<Consulta> lista) {
@@ -232,6 +251,49 @@ public class ControladorConsulta extends MouseAdapter implements ActionListener,
                     break;
                 }
             }
+        }
+    }
+    
+    private void pdf() {
+        try {
+             if(this.daoConsulta.getConsultasPDF().toArray()!=null){
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("Reporte_Consultas.pdf"));
+            document.open();
+
+           
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaActual = formatoFecha.format(new Date());
+
+           
+            document.add(new Paragraph("Reporte de Consultas por sus ingresos de cada especialidad", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
+            document.add(new Paragraph("Fecha: " + fechaActual + "\n\n", FontFactory.getFont(FontFactory.HELVETICA, 12)));
+
+           
+            PdfPTable tabla = new PdfPTable(2); 
+            tabla.addCell("Especialidad");
+            tabla.addCell("Ingresos");
+
+          
+            for (Consulta c : this.daoConsulta.getConsultasPDF().toArray()) {
+                tabla.addCell(c.getMedicoEspecialista().getIdEspecialidad().getEspecialidad());
+                tabla.addCell(String.valueOf(c.getPrecio()));
+            }
+           
+           
+            document.add(tabla);
+            document.close();
+
+           
+            Desktop.getDesktop().open(new File("Reporte_Consultas.pdf"));
+             }else{
+                 DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Reporte sin consultas","No se encontraron consultas registradas",
+                    DesktopNotify.INFORMATION, 5000);
+           }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

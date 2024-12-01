@@ -27,7 +27,7 @@ public class Empleado implements Comparable<Empleado> {
         this.especialistas = new ArrayList();
     }
 
-    public Empleado(String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol, String Prioridad) {
+    public Empleado(String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol) {
         this.dui = dui;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,7 +36,7 @@ public class Empleado implements Comparable<Empleado> {
         this.correo = correo;
         this.estado = estado;
         this.rol = rol;
-        this.Prioridad = Prioridad;
+        
     }
 
     public Empleado(int idEmpleado, String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol, String Prioridad) {

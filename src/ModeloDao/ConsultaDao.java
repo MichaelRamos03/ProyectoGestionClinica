@@ -5,10 +5,12 @@
 package ModeloDao;
 
 import Estructuras.Lista;
+import Estructuras.ListaCircular;
 import Interfaces.IConsulta;
 import Modelo.Conexion;
 import Modelo.Consulta;
 import Modelo.Empleado;
+import Modelo.Especialidad;
 import Modelo.Expediente;
 import Modelo.MedicoEspecialista;
 import Modelo.Recepcion;
@@ -210,5 +212,50 @@ public class ConsultaDao implements IConsulta {
 //        }
 //        return false;
 //    }
+public ListaCircular<Consulta> getConsultasPDF() {
 
+        ListaCircular<Consulta> listaConsultas = new ListaCircular<Consulta>();
+
+        try {
+            String sql = "select e.especialidad,sum(cn.precio) AS total_ingresos\n"
+                    + "from consulta cn\n"
+                    + "inner join medico_especialista me\n"
+                    + "on cn.id_medico_especialista = me.id_medico_especialista\n"
+                    + "inner join especialidad e\n"
+                    + "on e.id_especialidad = me.id_especialidad\n"
+                    + "group by e.especialidad";
+            accesoDB = conexion.getConexion();
+            ps = accesoDB.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+               Especialidad esp = new Especialidad();
+               Consulta consulta = new Consulta();
+               MedicoEspecialista med = new MedicoEspecialista();
+               esp.setEspecialidad(rs.getString("especialidad"));
+               consulta.setPrecio(rs.getDouble("total_ingresos"));
+               med.setIdEspecialidad(esp);
+               consulta.setMedicoEspecialista(med);
+               listaConsultas.insertar(consulta);
+               
+               
+            }
+
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.showDesktopMessage("Error", "Error en la base",
+                    DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+
+            }
+            conexion.closeConexion(accesoDB);
+
+        }
+
+        return listaConsultas;
+
+    }
 }

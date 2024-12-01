@@ -8,8 +8,11 @@ import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaCircular;
 import Interfaces.IMedicamento;
 import Modelo.Conexion;
+import Modelo.Consulta;
+import Modelo.Especialidad;
 import Modelo.Expediente;
 import Modelo.Medicamento;
+import Modelo.MedicoEspecialista;
 import ds.desktop.notify.DesktopNotify;
 import ds.desktop.notify.NotifyTheme;
 import java.sql.Connection;
@@ -84,7 +87,7 @@ public class MedicamentoDao implements IMedicamento {
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
-        
+
             //ps.setInt(1, medicamento.getIdMedicamento());
             ps.setString(1, medicamento.getNombre());
             ps.setInt(2, medicamento.getCantidadDisponible());
@@ -115,7 +118,8 @@ public class MedicamentoDao implements IMedicamento {
     @Override
     public ListaCircular<Medicamento> mostrar() {
 
-        String sql = "select * from medicamento";
+        String sql = "select * from medicamento\n"
+                + "order by medicamento.fecha_caducidad ASC";
         return select(sql);
     }
 
@@ -187,7 +191,7 @@ public class MedicamentoDao implements IMedicamento {
     public boolean verificarExiste(String nombre) {
         boolean encontrada = false;
         try {
-            String sql = "select * from medicamento where medicamento.nombre ='"+nombre+"'";
+            String sql = "select * from medicamento where medicamento.nombre ='" + nombre + "'";
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -211,16 +215,16 @@ public class MedicamentoDao implements IMedicamento {
         }
         return encontrada;
     }
-    
-    public ABinarioBusqueda<Medicamento> buscarTodosMedicamentos(){
-         ABinarioBusqueda<Medicamento> listaBusqueda = new ABinarioBusqueda();
-       String sql = "select * from medicamento";
+
+    public ABinarioBusqueda<Medicamento> buscarTodosMedicamentos() {
+        ABinarioBusqueda<Medicamento> listaBusqueda = new ABinarioBusqueda();
+        String sql = "select * from medicamento";
         try {
             this.con = conectar.getConexion();
-            this.ps=con.prepareStatement(sql);
+            this.ps = con.prepareStatement(sql);
             this.rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Medicamento medicamento = new Medicamento();
                 medicamento.setIdMedicamento(rs.getInt("id_medicamento"));
                 medicamento.setNombre(rs.getString("nombre"));
@@ -228,15 +232,15 @@ public class MedicamentoDao implements IMedicamento {
                 medicamento.setFechaCaducidad(rs.getDate("fecha_caducidad"));
                 medicamento.setDescripcion(rs.getString("descripcion"));
                 medicamento.setPrecio(rs.getDouble("precio"));
-               listaBusqueda.insertar(medicamento);
+                listaBusqueda.insertar(medicamento);
             }
-            
+
         } catch (SQLException ex) {
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
             DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
             ex.printStackTrace();
             java.util.logging.Logger.getLogger(ExpedienteDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             try {
                 ps.close();
             } catch (SQLException ex) {
@@ -247,5 +251,6 @@ public class MedicamentoDao implements IMedicamento {
         return listaBusqueda;
     }
     
+     
 
 }

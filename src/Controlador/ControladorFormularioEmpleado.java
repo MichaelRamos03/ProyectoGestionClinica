@@ -86,8 +86,8 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
                 this.vistaFormulario.rsFecha.getDatoFecha(),
                 this.vistaFormulario.tfCorreo.getText(),
                 this.vistaFormulario.chEstado.isSelected(),
-                new Rol(lista.get(0).getIdRol(), this.vistaFormulario.cbRol.getSelectedItem().toString()),
-                prioridad(this.vistaFormulario.cbPrioridad.getSelectedIndex())
+                new Rol(lista.get(0).getIdRol(), this.vistaFormulario.cbRol.getSelectedItem().toString())
+                
         );
 
         if (this.daoEmpleado.insert(empleado)) {
