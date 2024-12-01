@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.util.ArrayList;
@@ -7,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author Michael Ramos;
 **/
-public class Receta {
+public class Receta implements Comparable<Receta> {
     private int idReceta;
     private int cantidad;
     private int dosis;
@@ -18,6 +17,11 @@ public class Receta {
         this.entregaMedicina = new ArrayList();
     }
 
+    public Receta(int idReceta, int cantidad) {
+        this.idReceta = idReceta;
+        this.cantidad = cantidad;
+    }  
+    
     public Receta(int idReceta, int cantidad, int dosis, Consulta consulta, ArrayList<EntregaMedicina> entregaMedicina) {
         this.idReceta = idReceta;
         this.cantidad = cantidad;
@@ -25,6 +29,10 @@ public class Receta {
         this.consulta = consulta;
         this.entregaMedicina = entregaMedicina;
         this.entregaMedicina = new ArrayList();
+    }
+    
+    public String Nombre(){
+        return consulta.getExpediente().getNombre();
     }
 
     public int getIdReceta() {
@@ -65,5 +73,11 @@ public class Receta {
 
     public void setEntregaMedicina(ArrayList<EntregaMedicina> entregaMedicina) {
         this.entregaMedicina = entregaMedicina;
+    }
+
+    @Override
+    public int compareTo(Receta o) {
+        
+        return Integer.compare(this.cantidad, o.cantidad);
     }
 }

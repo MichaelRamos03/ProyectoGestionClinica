@@ -82,6 +82,11 @@ public class MedicamentoDao implements IMedicamento {
                 + "where id_medicamento='" + obj.getIdMedicamento() + "'";
         return alterarRegistro(sql, obj);
     }
+    
+    public ListaCircular<Medicamento> selectAllTo(String atributo, String condicion) {
+        String sql = "SELECT * FROM medicamento WHERE " + atributo + " ='" + condicion + "'";
+        return select(sql);
+    }
 
     private boolean alterarRegistro(String sql, Medicamento medicamento) {
         try {

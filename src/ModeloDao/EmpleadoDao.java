@@ -1,7 +1,7 @@
 package ModeloDao;
 
 import Estructuras.ABinarioBusqueda;
-import Estructuras.ColaPrioridad;
+import Estructuras.ListaDoble;
 import Interfaces.IEmpleado;
 import Modelo.Conexion;
 import Modelo.Empleado;
@@ -30,14 +30,14 @@ public class EmpleadoDao implements IEmpleado {
     }
 
     @Override
-    public ColaPrioridad<Empleado> selectAll() {
-        String sql = "SELECT e.id_empleado,e.dui,e.nombre,e.apellido,e.genero,e.fecha_nacimiento,e.correo,e.estado,r.id_rol, r.rol, e.prioridad FROM empleado e INNER JOIN rol r ON r.id_rol = e.id_rol";
+    public ListaDoble<Empleado> selectAll() {
+        String sql = "SELECT e.id_empleado,e.dui,e.nombre,e.apellido,e.genero,e.fecha_nacimiento,e.correo,e.estado,r.id_rol, r.rol FROM empleado e INNER JOIN rol r ON r.id_rol = e.id_rol";
         return select(sql);
     }
 
     @Override
-    public ColaPrioridad<Empleado> selectAllTo(String atributo, String condicion) {
-        String sql = "SELECT * FROM empleado WHERE " + atributo + " ='" + condicion + "'";
+    public ListaDoble<Empleado> selectAllTo(String atributo, String condicion) {
+       String sql = "SELECT e.id_empleado,e.dui,e.nombre,e.apellido,e.genero,e.fecha_nacimiento,e.correo,e.estado,r.id_rol, r.rol FROM empleado e INNER JOIN rol r ON r.id_rol = e.id_rol WHERE " + atributo + " ='" + condicion + "'";
         return select(sql);
     }
 
@@ -86,7 +86,7 @@ public class EmpleadoDao implements IEmpleado {
     @Override
     public ABinarioBusqueda<Empleado> buscar() {
         ABinarioBusqueda<Empleado> listaBusqueda = new ABinarioBusqueda();
-        String sql = "SELECT e.id_empleado,e.dui,e.nombre,e.apellido,e.genero,e.fecha_nacimiento,e.correo,e.estado,r.id_rol, r.rol, e.prioridad FROM empleado e INNER JOIN rol r ON r.id_rol = e.id_rol";
+        String sql = "SELECT e.id_empleado,e.dui,e.nombre,e.apellido,e.genero,e.fecha_nacimiento,e.correo,e.estado,r.id_rol, r.rol FROM empleado e INNER JOIN rol r ON r.id_rol = e.id_rol";
         try {
             this.con = conectar.getConexion();
             this.ps = con.prepareStatement(sql);
@@ -106,7 +106,6 @@ public class EmpleadoDao implements IEmpleado {
                 r.setIdRol(rs.getInt("id_rol"));
                 r.setRol(rs.getString("rol"));
                 e.setRol(r);
-               // e.setPrioridad(rs.getString("prioridad"));
                 listaBusqueda.insertar(e);
 
             }
@@ -126,48 +125,32 @@ public class EmpleadoDao implements IEmpleado {
         return listaBusqueda;
     }
 
-    private ColaPrioridad<Empleado> select(String sql) {
-        ColaPrioridad<Empleado> colaprioridad = new ColaPrioridad(4);
+    private ListaDoble<Empleado> select(String sql) {
+        ListaDoble<Empleado> lista = new ListaDoble();
         Empleado obj = null;
         try {
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Empleado e = new Empleado();
-                e.setIdEmpleado(rs.getInt("id_empleado"));
-                e.setDui(rs.getString("dui"));
-                e.setNombre(rs.getString("nombre"));
-                e.setApellido(rs.getString("apellido"));
-                e.setGenero(rs.getString("genero"));
-                e.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
-                e.setCorreo(rs.getString("correo"));
-                e.setEstado(rs.getBoolean("estado"));
+                obj = new Empleado();
+                obj.setIdEmpleado(rs.getInt("id_empleado"));
+                obj.setDui(rs.getString("dui"));
+                obj.setNombre(rs.getString("nombre"));
+                obj.setApellido(rs.getString("apellido"));
+                obj.setGenero(rs.getString("genero"));
+                obj.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+                obj.setCorreo(rs.getString("correo"));
+                obj.setEstado(rs.getBoolean("estado"));
                 Rol r = new Rol();
                 r.setIdRol(rs.getInt("id_rol"));
                 r.setRol(rs.getString("rol"));
-                e.setRol(r);
-/*
-                e.setPrioridad(rs.getString("prioridad") != null ? rs.getString("prioridad") : "Sin asignar");
-
-                switch (e.getPrioridad()) {
-                    case "Alta":
-                        colaprioridad.offer(e, 0);
-                        break;
-                    case "Media":
-                        colaprioridad.offer(e, 1);
-                        break;
-                    case "Baja":
-                        colaprioridad.offer(e, 2);
-                        break;
-                    default:
-                        System.out.println("Prioridad no asignada: " + e.getPrioridad());
-                        break;
-                }
+                obj.setRol(r);
+                
+                lista.insertar(obj);
 
             }
-*/
-            }
+
         } catch (SQLException ex) {
 
             DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
@@ -183,7 +166,7 @@ public class EmpleadoDao implements IEmpleado {
             }
             conectar.closeConexion(con);
         }
-        return colaprioridad;
+        return lista;
     }
 
     private boolean alterarRegistro(String sql, Empleado obj) {
@@ -199,7 +182,6 @@ public class EmpleadoDao implements IEmpleado {
             ps.setString(6, obj.getCorreo());
             ps.setBoolean(7, obj.isEstado());
             ps.setInt(8, obj.getRol().getIdRol());
-           // ps.setString(9, obj.getPrioridad());
             ps.execute();
 
             return true;

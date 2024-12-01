@@ -34,7 +34,10 @@ public class Medicamento implements Comparable<Medicamento>{
         this.precio = precio;
     }
 
-    
+    public Medicamento(int idMedicamento, String nombre) {
+        this.idMedicamento = idMedicamento;
+        this.nombre = nombre;
+    }
     
     public Medicamento(int idMedicamento, String nombre, int cantidadDisponible) {
         this.idMedicamento = idMedicamento;

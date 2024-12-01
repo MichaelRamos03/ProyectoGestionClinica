@@ -5,20 +5,26 @@ package Modelo;
  *
  * @author Michael Ramos;
 **/
-public class EntregaMedicina {
+public class EntregaMedicina implements Comparable<EntregaMedicina>{
     private int idEntregaMedicina;
-    private Receta receta;
-    private Recepcion recepcion;
     private Medicamento medicamento;
+    private Receta receta;
+    private Empleado empleado;
 
-    public EntregaMedicina() {
+    public EntregaMedicina(){
     }
 
-    public EntregaMedicina(int idEntregaMedicina, Receta receta, Recepcion recepcion, Medicamento medicamento) {
+    public EntregaMedicina(int idEntregaMedicina, Medicamento medicamento, Receta receta, Empleado empleado) {
         this.idEntregaMedicina = idEntregaMedicina;
-        this.receta = receta;
-        this.recepcion = recepcion;
         this.medicamento = medicamento;
+        this.receta = receta;
+        this.empleado = empleado;
+    }
+
+    public EntregaMedicina(Medicamento medicamento, Receta receta, Empleado empleado) {
+        this.medicamento = medicamento;
+        this.receta = receta;
+        this.empleado = empleado;
     }
 
     public int getIdEntregaMedicina() {
@@ -37,19 +43,24 @@ public class EntregaMedicina {
         this.receta = receta;
     }
 
-    public Recepcion getRecepcion() {
-        return recepcion;
-    }
-
-    public void setRecepcion(Recepcion recepcion) {
-        this.recepcion = recepcion;
-    }
-
     public Medicamento getMedicamento() {
         return medicamento;
     }
 
     public void setMedicamento(Medicamento medicamento) {
         this.medicamento = medicamento;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    @Override
+    public int compareTo(EntregaMedicina o) {
+        return Integer.compare(this.idEntregaMedicina, o.idEntregaMedicina);
     }
 }

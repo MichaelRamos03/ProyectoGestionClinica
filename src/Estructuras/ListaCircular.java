@@ -1,6 +1,5 @@
 package Estructuras;
 
-
 import Modelo.Medicamento;
 import ModeloDao.MedicamentoDao;
 import java.util.ArrayList;
@@ -19,11 +18,12 @@ public class ListaCircular<T> {
     //private NodoDoble<T> lista1;
     private Nodo<T> lista;
     private MedicamentoDao medicamentoDao;
+
     public ListaCircular() {
         lista = null;
         //medicamentoDao= new MedicamentoDao();
-    }  
-    
+    }
+
     /*
      public <T extends Comparable> void insertarMedicamento(T contenido) {
         Nodo nodito = new Nodo(contenido);
@@ -49,7 +49,6 @@ public class ListaCircular<T> {
          medicamentoDao.insert(medicamento);
     }
      */
-
     public <T extends Comparable> void insertar(T contenido) {
         Nodo nodito = new Nodo(contenido);
 
@@ -62,7 +61,7 @@ public class ListaCircular<T> {
             nodito.setSiguiente(lista);
             lista = nodito;
             aux.setSiguiente(nodito);
-            
+
         } else {
             Nodo aux = ubicar(contenido);
             nodito.setSiguiente(aux.getSiguiente());
@@ -91,17 +90,19 @@ public class ListaCircular<T> {
 
     public <T extends Comparable> Nodo buscarNodo(T contenido) {
         Nodo aux = lista;
-        if(isEmpty()) return null;
-        
-        do{
-        
+        if (isEmpty()) {
+            return null;
+        }
+
+        do {
+
             if (contenido.compareTo(aux.getDato()) == 0) {
                 return aux;
             }
             aux = aux.getSiguiente();
-        
-        }while (aux!=lista);
-        
+
+        } while (aux != lista);
+
         return null;
     }
 
@@ -109,14 +110,14 @@ public class ListaCircular<T> {
         Nodo delete = buscarNodo(contenido);
         if (delete != null) {
             if (lista == delete) {
-                if(lista.getSiguiente()!=lista){
-                    Nodo aux= fin();
+                if (lista.getSiguiente() != lista) {
+                    Nodo aux = fin();
                     lista = delete.getSiguiente();
                     aux.setSiguiente(lista);
-                }else {
-                    lista=null;
+                } else {
+                    lista = null;
                 }
-                
+
             } else {
                 Nodo anterior = ubicar(contenido);
                 anterior.setSiguiente(delete.getSiguiente());
@@ -144,8 +145,6 @@ public class ListaCircular<T> {
         return anterior;
     }
 
-    
-    
     public <T extends Comparable> Nodo fin() {
         Nodo next = lista;
         // si y solo si la lista esta vacia
@@ -156,7 +155,6 @@ public class ListaCircular<T> {
         while (next.getSiguiente() != lista) {
 
             next = next.getSiguiente();
-            
 
         }
 
@@ -182,6 +180,25 @@ public class ListaCircular<T> {
         } while (actual != lista);
         return array;
 
+    }
+
+    public T get(int index) {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException("La lista está vacía");
+        }
+
+        int contador = 0;
+        Nodo<T> actual = lista;
+
+        do {
+            if (contador == index) {
+                return actual.getDato();
+            }
+            actual = actual.getSiguiente();
+            contador++;
+        } while (actual != lista);
+
+        throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
     }
 
 }

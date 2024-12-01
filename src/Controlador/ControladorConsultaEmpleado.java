@@ -1,9 +1,8 @@
 
-
 package Controlador;
 
 import Estructuras.ABinarioBusqueda;
-import Estructuras.ColaPrioridad;
+import Estructuras.ListaDoble;
 import Modelo.Empleado;
 import ModeloDao.EmpleadoDao;
 import RSMaterialComponent.RSSwitch;
@@ -45,12 +44,12 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
     
     
     
-     public void mostrar(ColaPrioridad<Empleado> lista) {
+     public void mostrar(ListaDoble<Empleado> lista) {
 
         DefaultTableModel modelo;
         this.vistaConsulta.tbDatos.setDefaultRenderer(Object.class, new Render());
         modelo = new DefaultTableModel();
-        String titulos[] = {"N","DUI","NOMBRE", "APELLIDO", "GENERO", "FECHA NACIMIENTO", "CORREO", "ESTADO", "ROL", "PRIORIDAD"};
+        String titulos[] = {"N","DUI","NOMBRE", "APELLIDO", "GENERO", "FECHA NACIMIENTO", "CORREO", "ESTADO", "ROL"};
         modelo.setColumnIdentifiers(titulos);
         int i = 0;
 
@@ -70,7 +69,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  activo,
                                  x.getRol().
                                  getRol(),
-                                 
+//                                 x.getPrioridad()
                                 };
             modelo.addRow(datos);
         }
@@ -140,7 +139,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  activo,
                                  empleado.getRol().
                                  getRol(),
-                                 
+                                 empleado.getPrioridad()
                                 };
                 modelo.addRow(datos);
 ///
@@ -161,7 +160,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == this.vistaConsulta.tbDatos) {
-            ColaPrioridad<Empleado> lista = daoEmpleado.selectAll();
+            ListaDoble<Empleado> lista = daoEmpleado.selectAll();
             int colum = this.vistaConsulta.tbDatos.getColumnModel().getColumnIndexAtX(e.getX());
             int row = this.vistaConsulta.tbDatos.getSelectedRow();
             Object value = this.vistaConsulta.tbDatos.getValueAt(row, colum);

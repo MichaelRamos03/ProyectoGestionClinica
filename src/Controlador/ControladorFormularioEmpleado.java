@@ -1,7 +1,6 @@
 package Controlador;
 
 import Estructuras.Cola;
-import Estructuras.ColaPrioridad;
 import Modelo.Empleado;
 import Modelo.Rol;
 import ModeloDao.EmpleadoDao;
@@ -34,7 +33,7 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
         this.daoRol = new RolDao();
         this.vistaFormulario.btnGuardar.addActionListener(this);
         this.empleadoSeleccionado = null;
-        LlenarCombo();
+//        LlenarCombo();
         comboRol();
     }
 
@@ -46,13 +45,15 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
         this.daoRol = new RolDao();
         this.vistaFormulario.btnGuardar.addActionListener(this);
         this.empleadoSeleccionado = empleadoSeleccionado;
-        LlenarCombo();
+//        LlenarCombo();
         comboRol();
         llenarVista();
     }
 
     public void guardar() {
 
+//        && this.vistaFormulario.cbPrioridad.getSelectedIndex() != 0
+        
         if (!this.vistaFormulario.tfDui.getText().isEmpty()
                 && !this.vistaFormulario.tfNombre.getText().isEmpty()
                 && !this.vistaFormulario.tfApellido.getText().isEmpty()
@@ -60,7 +61,7 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
                 && this.vistaFormulario.rsFecha.getDatoFecha() != null
                 && !this.vistaFormulario.tfCorreo.getText().isEmpty()
                 && this.vistaFormulario.cbRol.getSelectedIndex() != 0
-                && this.vistaFormulario.cbPrioridad.getSelectedIndex() != 0) {
+                ) {
 
             if (this.empleadoSeleccionado == null) {
                 nuevoEmpleado();
@@ -87,7 +88,7 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
                 this.vistaFormulario.tfCorreo.getText(),
                 this.vistaFormulario.chEstado.isSelected(),
                 new Rol(lista.get(0).getIdRol(), this.vistaFormulario.cbRol.getSelectedItem().toString())
-                
+//                prioridad(this.vistaFormulario.cbPrioridad.getSelectedIndex())
         );
 
         if (this.daoEmpleado.insert(empleado)) {
@@ -111,38 +112,38 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
         }
     }
 
-    private void editar() {
+        private void editar() {
 
-        Cola<Rol> lista = this.daoRol.selectAllTo("rol", this.vistaFormulario.cbRol.getSelectedItem().toString());
+            Cola<Rol> lista = this.daoRol.selectAllTo("rol", this.vistaFormulario.cbRol.getSelectedItem().toString());
 
-        this.empleadoSeleccionado.setDui(this.vistaFormulario.tfDui.getText());
-        this.empleadoSeleccionado.setNombre(this.vistaFormulario.tfNombre.getText());
-        this.empleadoSeleccionado.setApellido(this.vistaFormulario.tfApellido.getText());
+            this.empleadoSeleccionado.setDui(this.vistaFormulario.tfDui.getText());
+            this.empleadoSeleccionado.setNombre(this.vistaFormulario.tfNombre.getText());
+            this.empleadoSeleccionado.setApellido(this.vistaFormulario.tfApellido.getText());
 
-        if (this.vistaFormulario.rbHombre.isSelected()) {
-            this.empleadoSeleccionado.setGenero("Hombre");
-        } else if (this.vistaFormulario.rbMujer.isSelected()) {
-            this.empleadoSeleccionado.setGenero("Mujer");
+            if (this.vistaFormulario.rbHombre.isSelected()) {
+                this.empleadoSeleccionado.setGenero("Hombre");
+            } else if (this.vistaFormulario.rbMujer.isSelected()) {
+                this.empleadoSeleccionado.setGenero("Mujer");
+            }
+            this.empleadoSeleccionado.setFechaNacimiento(this.vistaFormulario.rsFecha.getDatoFecha());
+            this.empleadoSeleccionado.setCorreo(this.vistaFormulario.tfCorreo.getText());
+            this.empleadoSeleccionado.setEstado(this.vistaFormulario.chEstado.isSelected());
+            this.empleadoSeleccionado.setRol(new Rol(lista.get(0).getIdRol(), this.vistaFormulario.cbRol.getSelectedItem().toString()));
+    //        this.empleadoSeleccionado.setPrioridad(this.vistaFormulario.cbPrioridad.getSelectedItem().toString());
+
+            if (daoEmpleado.update(empleadoSeleccionado)) {
+                DesktopNotify.setDefaultTheme(NotifyTheme.Green);
+                DesktopNotify.showDesktopMessage("exito", "Actualizado",
+                        DesktopNotify.ERROR, 3000);
+
+                this.vistaFormulario.dispose();
+                this.ctl.mostrar(this.daoEmpleado.selectAll());
+            } else {
+                DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+                DesktopNotify.showDesktopMessage("Error", "No guardo",
+                        DesktopNotify.ERROR, 3000);
+            }
         }
-        this.empleadoSeleccionado.setFechaNacimiento(this.vistaFormulario.rsFecha.getDatoFecha());
-        this.empleadoSeleccionado.setCorreo(this.vistaFormulario.tfCorreo.getText());
-        this.empleadoSeleccionado.setEstado(this.vistaFormulario.chEstado.isSelected());
-        this.empleadoSeleccionado.setRol(new Rol(lista.get(0).getIdRol(), this.vistaFormulario.cbRol.getSelectedItem().toString()));
-        this.empleadoSeleccionado.setPrioridad(this.vistaFormulario.cbPrioridad.getSelectedItem().toString());
-
-        if (daoEmpleado.update(empleadoSeleccionado)) {
-            DesktopNotify.setDefaultTheme(NotifyTheme.Green);
-            DesktopNotify.showDesktopMessage("exito", "Actualizado",
-                    DesktopNotify.ERROR, 3000);
-
-            this.vistaFormulario.dispose();
-            this.ctl.mostrar(this.daoEmpleado.selectAll());
-        } else {
-            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
-            DesktopNotify.showDesktopMessage("Error", "No guardo",
-                    DesktopNotify.ERROR, 3000);
-        }
-    }
 
     private void llenarVista() {
         this.vistaFormulario.tfDui.setText(this.empleadoSeleccionado.getDui());
@@ -156,31 +157,31 @@ public class ControladorFormularioEmpleado extends MouseAdapter implements Actio
         this.vistaFormulario.rsFecha.setDatoFecha(this.empleadoSeleccionado.getFechaNacimiento());
         this.vistaFormulario.tfCorreo.setText(this.empleadoSeleccionado.getCorreo());
         this.vistaFormulario.cbRol.setSelectedItem(this.empleadoSeleccionado.getRol().getRol());
-        this.vistaFormulario.cbPrioridad.setSelectedItem(this.empleadoSeleccionado.getPrioridad());
+//        this.vistaFormulario.cbPrioridad.setSelectedItem(this.empleadoSeleccionado.getPrioridad());
         this.vistaFormulario.chEstado.setSelected(this.empleadoSeleccionado.isEstado());
     }
 
-    public String prioridad(int n) {
+//    public String prioridad(int n) {
+//
+//        switch (n) {
+//            case 1:
+//                return "Alta";
+//            case 2:
+//                return "Media";
+//            case 3:
+//                return "Baja";
+//            default:
+//                return "Sin asignar";
+//        }
+//    }
 
-        switch (n) {
-            case 1:
-                return "Alta";
-            case 2:
-                return "Media";
-            case 3:
-                return "Baja";
-            default:
-                return "Sin asignar";
-        }
-    }
-
-    public void LlenarCombo() {
-        this.vistaFormulario.cbPrioridad.removeAllItems();
-        this.vistaFormulario.cbPrioridad.addItem("Sin asignar");
-        this.vistaFormulario.cbPrioridad.addItem("Alta");
-        this.vistaFormulario.cbPrioridad.addItem("Media");
-        this.vistaFormulario.cbPrioridad.addItem("Baja");
-    }
+//    public void LlenarCombo() {
+//        this.vistaFormulario.cbPrioridad.removeAllItems();
+//        this.vistaFormulario.cbPrioridad.addItem("Sin asignar");
+//        this.vistaFormulario.cbPrioridad.addItem("Alta");
+//        this.vistaFormulario.cbPrioridad.addItem("Media");
+//        this.vistaFormulario.cbPrioridad.addItem("Baja");
+//    }
 
     public void comboRol() {
         Cola<Rol> lista = daoRol.selectAll();

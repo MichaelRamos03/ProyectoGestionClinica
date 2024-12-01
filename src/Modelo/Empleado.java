@@ -27,6 +27,11 @@ public class Empleado implements Comparable<Empleado> {
         this.especialistas = new ArrayList();
     }
 
+    public Empleado(int idEmpleado, String nombre) {
+        this.idEmpleado = idEmpleado;
+        this.nombre = nombre;
+    }
+
     public Empleado(String dui, String nombre, String apellido, String genero, Date fechaNacimiento, String correo, boolean estado, Rol rol) {
         this.dui = dui;
         this.nombre = nombre;
