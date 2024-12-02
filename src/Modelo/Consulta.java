@@ -26,6 +26,13 @@ public class Consulta implements Comparable<Consulta>{
         this.recetas = new ArrayList();
     }
 
+    public Consulta(int idConsulta, int consultorio) {
+        this.idConsulta = idConsulta;
+        this.consultorio = consultorio;
+    }
+
+  
+    
     public Consulta(int idConsulta, int consultorio, String diagnostico, Recepcion recepcion, MedicoEspecialista medicoEspecialista, Expediente expediente) {
         this.idConsulta = idConsulta;
         this.consultorio = consultorio;

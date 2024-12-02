@@ -7,7 +7,7 @@ package Vista;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

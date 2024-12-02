@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author karla
  */
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
     private int idUsuario;
     private String usuario;
     private String contrasenia;
@@ -17,6 +17,12 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String usuario, String contrasenia, Empleado empleado) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.empleado = empleado;
+    }
+    
     public Usuario(int idUsuario, String usuario, String contrasenia, Empleado empleado) {
         this.idUsuario = idUsuario;
         this.usuario = usuario;
@@ -55,4 +61,10 @@ public class Usuario {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     } 
+
+    @Override
+    public int compareTo(Usuario o) {
+     
+        return this.usuario.compareTo(o.usuario);
+    }
 }

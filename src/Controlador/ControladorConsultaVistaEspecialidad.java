@@ -3,6 +3,7 @@ package Controlador;
 import Estructuras.ListaDoble;
 import Modelo.Especialidad;
 import ModeloDao.EspecialidadDao;
+import Utilidades.Render;
 import Vista.VistaEspecialidad;
 import Vista.VistaFormularioEspecialiad;
 import ds.desktop.notify.DesktopNotify;
@@ -14,7 +15,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyectoclase.utilidades.Render;
 
 /**
  *

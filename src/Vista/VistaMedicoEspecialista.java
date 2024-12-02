@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

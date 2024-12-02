@@ -99,7 +99,7 @@ public class Lista<T> {
         return lista == null;
     }
 
-    public ArrayList toArray() {
+    public ArrayList<T> toArray() {
         ArrayList<T> list = new ArrayList<>();
         Nodo<T> aux = lista;
         while (aux != null) {
@@ -109,4 +109,36 @@ public class Lista<T> {
 
         return list;
     }
+    
+   public T get(int index) {
+    if (index < 0 || index >= this.size()) {
+        throw new IndexOutOfBoundsException("Índice fuera de rango.");
+    }
+
+    Nodo<T> current = lista;
+    int counter = 0;
+
+    while (current != null) {
+        if (counter == index) {
+            return current.getDato();
+        }
+        current = current.getSiguiente();
+        counter++;
+    }
+
+    return null;
+}
+
+    
+    public int size() {
+    int count = 0;
+    Nodo<T> current = lista;
+    while (current != null) {
+        count++;
+        current = current.getSiguiente();
+    }
+    return count;
+}
+
+    
 }

@@ -10,7 +10,7 @@ import Controlador.ControladorMedicamentos;
 import Controlador.ControladorRecepcion;
 import Controlador.ControladorRol;
 import javax.swing.JFrame;
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

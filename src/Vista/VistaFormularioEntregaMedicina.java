@@ -3,7 +3,7 @@ package Vista;
 
 
 import javax.swing.JFrame;
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

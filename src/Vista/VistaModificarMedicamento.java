@@ -9,7 +9,7 @@ import ds.desktop.notify.NotifyTheme;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

@@ -7,7 +7,7 @@ package Vista;
 import Modelo.Empleado;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

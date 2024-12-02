@@ -15,8 +15,6 @@ import java.awt.event.MouseListener;
  *
  * @author Gaby Laínez
  */
-
-
 public class ControladorFormularioEspecialidad extends MouseAdapter implements ActionListener, MouseListener {
    VistaFormularioEspecialiad vistaEspecialidad;
    ControladorConsultaVistaEspecialidad crtVista;

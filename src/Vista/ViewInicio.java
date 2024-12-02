@@ -4,7 +4,7 @@
  */
 package Vista;
 
-import utilidades.Fondo;
+import Utilidades.Fondo;
 
 /**
  *

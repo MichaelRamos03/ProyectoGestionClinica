@@ -15,6 +15,7 @@ public interface IConsulta {
     //010011001001100
 
     public Lista<Consulta> selectAll();
+    public Lista<Consulta> selectAllTo(String atributo, String condicion);
 
     public boolean insert(Consulta obj);
 
