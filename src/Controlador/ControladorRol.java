@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import javax.swing.table.DefaultTableModel;
-import proyectoclase.utilidades.Render;
+import Utilidades.Render;
 
 /**
  *

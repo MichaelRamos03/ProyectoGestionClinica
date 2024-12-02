@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import proyectoclase.utilidades.Render;
+import Utilidades.Render;
 
 /**
  *

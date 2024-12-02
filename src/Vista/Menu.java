@@ -7,8 +7,10 @@ import Controlador.ControladorConsultaEntregaMedicina;
 import Controlador.ControladorConsultaExpediente;
 import Controlador.ControladorConsultaVistaEspecialidad;
 import Controlador.ControladorMedicamentos;
+import Controlador.ControladorMedicoEspecialista;
 import Controlador.ControladorRecepcion;
 import Controlador.ControladorRol;
+import Controlador.ControladorVistaUsuario;
 import javax.swing.JFrame;
 import Utilidades.Fondo;
 
@@ -40,11 +42,13 @@ public class Menu extends javax.swing.JFrame {
         Especialidad = new javax.swing.JMenu();
         Expediente = new javax.swing.JMenu();
         Medicamento = new javax.swing.JMenu();
-        Recepcion = new javax.swing.JMenu();
         Empleados = new javax.swing.JMenu();
-        Consultas = new javax.swing.JMenu();
-        Farmacia = new javax.swing.JMenu();
+        Recepcion = new javax.swing.JMenu();
         Usuarios = new javax.swing.JMenu();
+        Especialista = new javax.swing.JMenu();
+        Consultas = new javax.swing.JMenu();
+        Receta = new javax.swing.JMenu();
+        Farmacia = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -62,7 +66,7 @@ public class Menu extends javax.swing.JFrame {
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FondoLayout.createSequentialGroup()
                 .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 717, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 827, Short.MAX_VALUE)
                 .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         FondoLayout.setVerticalGroup(
@@ -74,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(rSLabelFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 490));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1480, 490));
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -135,6 +139,19 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(Medicamento);
 
+        Empleados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleado.png"))); // NOI18N
+        Empleados.setText("Empleados");
+        Empleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Empleados.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
+        Empleados.setPreferredSize(new java.awt.Dimension(140, 40));
+        Empleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                EmpleadosMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(Empleados);
+
         Recepcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         Recepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/escritorio.png"))); // NOI18N
         Recepcion.setText("Recepción");
@@ -148,18 +165,27 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(Recepcion);
 
-        Empleados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleado.png"))); // NOI18N
-        Empleados.setText("Empleados");
-        Empleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Empleados.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
-        Empleados.setPreferredSize(new java.awt.Dimension(140, 40));
-        Empleados.addMouseListener(new java.awt.event.MouseAdapter() {
+        Usuarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nueva-cuenta.png"))); // NOI18N
+        Usuarios.setText("Usuario");
+        Usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Usuarios.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
+        Usuarios.setPreferredSize(new java.awt.Dimension(140, 40));
+        jMenuBar1.add(Usuarios);
+
+        Especialista.setBackground(new java.awt.Color(0, 0, 0));
+        Especialista.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        Especialista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medico.png"))); // NOI18N
+        Especialista.setText("Especialista");
+        Especialista.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Especialista.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
+        Especialista.setPreferredSize(new java.awt.Dimension(140, 40));
+        Especialista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                EmpleadosMousePressed(evt);
+                EspecialistaMousePressed(evt);
             }
         });
-        jMenuBar1.add(Empleados);
+        jMenuBar1.add(Especialista);
 
         Consultas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         Consultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Consulta_1.png"))); // NOI18N
@@ -174,6 +200,20 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(Consultas);
 
+        Receta.setBackground(new java.awt.Color(0, 0, 0));
+        Receta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        Receta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/receta.png"))); // NOI18N
+        Receta.setText("Receta");
+        Receta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Receta.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
+        Receta.setPreferredSize(new java.awt.Dimension(130, 40));
+        Receta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                RecetaMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(Receta);
+
         Farmacia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         Farmacia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/farmacia.png"))); // NOI18N
         Farmacia.setText("Farmacia");
@@ -186,14 +226,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(Farmacia);
-
-        Usuarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nueva-cuenta.png"))); // NOI18N
-        Usuarios.setText("Usuario");
-        Usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Usuarios.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
-        Usuarios.setPreferredSize(new java.awt.Dimension(140, 40));
-        jMenuBar1.add(Usuarios);
 
         setJMenuBar(jMenuBar1);
 
@@ -241,10 +273,23 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultasMousePressed
 
     private void EspecialidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EspecialidadMousePressed
-         VistaEspecialidad v = new VistaEspecialidad();
-        ControladorConsultaVistaEspecialidad c = new ControladorConsultaVistaEspecialidad(v);
-        v.iniciar();
+         VistaEspecialidad vi = new  VistaEspecialidad();
+         ControladorConsultaVistaEspecialidad C = new ControladorConsultaVistaEspecialidad(vi);
+         vi.setVisible(true);
     }//GEN-LAST:event_EspecialidadMousePressed
+
+    private void RecetaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RecetaMousePressed
+
+//         VistaReceta v = new VistaReceta(); 
+//         ControladorVistaReceta c = new ControladorVistaReceta(v);
+//         v.setVisible(true);
+    }//GEN-LAST:event_RecetaMousePressed
+
+    private void EspecialistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EspecialistaMousePressed
+        // TODO add your handling code here:
+        VistaMedicoEspecialista vista = new VistaMedicoEspecialista();
+        ControladorMedicoEspecialista  ctrl = new ControladorMedicoEspecialista(vista);
+    }//GEN-LAST:event_EspecialistaMousePressed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -282,11 +327,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu Consultas;
     private javax.swing.JMenu Empleados;
     private javax.swing.JMenu Especialidad;
+    private javax.swing.JMenu Especialista;
     private javax.swing.JMenu Expediente;
     private javax.swing.JMenu Farmacia;
     private javax.swing.JPanel Fondo;
     private javax.swing.JMenu Medicamento;
     private javax.swing.JMenu Recepcion;
+    private javax.swing.JMenu Receta;
     public javax.swing.JMenu Rol;
     private javax.swing.JMenu Usuarios;
     private javax.swing.JMenuBar jMenuBar1;

@@ -202,4 +202,9 @@ public class EmpleadoDao implements IEmpleado {
         }
         return false;
     }
+    
+     public ListaDoble<Empleado> selectAllEmp() {
+        String sql = "SELECT e.id_empleado, e.dui, e. nombre, e.apellido, e.correo FROM empleado e";
+        return select(sql);
+    }
 }

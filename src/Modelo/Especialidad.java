@@ -58,4 +58,9 @@ public class Especialidad implements Comparable<Especialidad> {
          Especialidad actual = this;
         return actual.especialidad.compareToIgnoreCase(o.especialidad);
     }
+    
+    @Override
+    public String toString() {
+    return especialidad; // Muestra el nombre de la especialidad
+}
 }
