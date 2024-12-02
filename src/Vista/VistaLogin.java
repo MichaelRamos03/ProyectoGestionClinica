@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import javax.swing.JFrame;
 import utilidades.Fondo;
 
 /**
@@ -17,7 +18,8 @@ public class VistaLogin extends javax.swing.JFrame {
      */
     public VistaLogin() {
         initComponents();
-         this.setLocationRelativeTo(this);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(this);
         this.jPanel2.setBorder(new Fondo("/imagenes/LoginFondo.jpg"));
     
     }

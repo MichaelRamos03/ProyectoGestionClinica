@@ -104,7 +104,7 @@ public class ControladorLogin extends MouseAdapter implements ActionListener, Mo
 
             Menu m = new Menu();
             m.setVisible(true);
-            m.menuRol.setVisible(false);
+            m.Rol.setVisible(false);
              
              
         }
