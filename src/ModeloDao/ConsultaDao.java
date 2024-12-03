@@ -261,8 +261,7 @@ public ListaCircular<Consulta> getConsultasPDF() {
 
     @Override
     public Lista<Consulta> selectAllTo(String atributo, String condicion) {
-    String sql = "SELECT c.id_consulta,c.consultorio,c.diagnostico,e.id_expediente, e.nombre, me.id_medico_especialista, em.id_empleado, em.nombre FROM consulta c INNER JOIN expediente e ON e.id_expediente = c.id_expediente INNER JOIN medico_especialista me ON me.id_medico_especialista = c.id_medico_especialista INNER JOIN recepcion ON recepcion.id_recepcion = c.id_recepcion INNER JOIN empleado em ON em.id_empleado = me.id_empleado WHERE"  + atributo + " ='" + condicion + "'";
-
+    String sql = "SELECT c.id_consulta,c.consultorio,c.diagnostico,e.id_expediente, e.nombre, me.id_medico_especialista, em.id_empleado, em.nombre FROM consulta c INNER JOIN expediente e ON e.id_expediente = c.id_expediente INNER JOIN medico_especialista me ON me.id_medico_especialista = c.id_medico_especialista INNER JOIN recepcion ON recepcion.id_recepcion = c.id_recepcion INNER JOIN empleado em ON em.id_empleado = me.id_empleado WHERE " + atributo + " ='" + condicion + "'";
     return select(sql);
     }
 }

@@ -44,7 +44,7 @@ public class RecetaDao implements IReceta{
 
     @Override
     public boolean insert(Receta obj) {
-        String sql ="INSERT INTO usuario(usuario, contrasenia, id_empleado) VALUES (?, ?, ?)";
+        String sql ="INSERT INTO receta(id_receta, cantidad, dosis, id_consulta) VALUES (?, ?, ?, ?)";
          return alterarRegistro(sql, obj);
     }
 
@@ -55,7 +55,29 @@ public class RecetaDao implements IReceta{
 
     @Override
     public boolean delete(Receta obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql ="DELETE FROM receta WHERE id_receta ='" + obj.getIdReceta() + "'";
+       try {
+            con = conectar.getConexion();
+            ps = con.prepareStatement(sql); // prepara sql
+            ps.execute(); // ejecuta la consulta (result set)
+
+            return true;
+
+        } catch (Exception e) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red); // mandamos un mensaje si da error
+            DesktopNotify.showDesktopMessage("Error", "Error en el sql",
+                    DesktopNotify.ERROR, 3000);
+            e.printStackTrace();
+
+        } finally { //cerrando conexion
+            try {
+                ps.close();
+                conectar.closeConexion(con);
+            } catch (SQLException ex) {
+
+            }
+        }
+        return false;
     }
 
     @Override
@@ -116,16 +138,17 @@ public class RecetaDao implements IReceta{
             con = conectar.getConexion();
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, obj.getCantidad());
-            ps.setInt(2, obj.getDosis());
-            ps.setInt(3, obj.getConsulta().getIdConsulta());
+            ps.setInt(1,obj.getIdReceta());
+            ps.setInt(2, obj.getCantidad());
+            ps.setInt(3, obj.getDosis());
+            ps.setInt(4, obj.getConsulta().getIdConsulta());
             ps.execute();
 
             return true;
 
         } catch (Exception e) {
             DesktopNotify.setDefaultTheme(NotifyTheme.Red);
-            DesktopNotify.showDesktopMessage("Error", "Error en el sql",
+            DesktopNotify.showDesktopMessage("Error", "Error en el sql alterar",
                     DesktopNotify.ERROR, 3000);
             e.printStackTrace();
 

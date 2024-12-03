@@ -1,3 +1,4 @@
+
 package Modelo;
 
 import java.util.ArrayList;
@@ -17,23 +18,29 @@ public class Receta implements Comparable<Receta> {
         this.entregaMedicina = new ArrayList();
     }
 
-    public Receta(int idReceta, int cantidad) {
-        this.idReceta = idReceta;
-        this.cantidad = cantidad;
-    }  
-    
-    public Receta(int idReceta, int cantidad, int dosis, Consulta consulta, ArrayList<EntregaMedicina> entregaMedicina) {
+
+    public Receta(int idReceta, int cantidad, int dosis, Consulta consulta) {
         this.idReceta = idReceta;
         this.cantidad = cantidad;
         this.dosis = dosis;
         this.consulta = consulta;
-        this.entregaMedicina = entregaMedicina;
-        this.entregaMedicina = new ArrayList();
+        
     }
     
-    public String Nombre(){
-        return consulta.getExpediente().getNombre();
+    public Receta(int idReceta, int cantidad) {
+        this.idReceta = idReceta;
+        this.cantidad = cantidad;
     }
+
+    public Receta(int cantidad, int dosis, Consulta consulta, ArrayList<EntregaMedicina> entregaMedicina) {
+        this.cantidad = cantidad;
+        this.dosis = dosis;
+        this.consulta = consulta;
+        this.entregaMedicina = entregaMedicina;
+    }
+    
+    
+    
 
     public int getIdReceta() {
         return idReceta;
