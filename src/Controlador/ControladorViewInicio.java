@@ -41,7 +41,7 @@ public class ControladorViewInicio extends MouseAdapter implements ActionListene
     public void actionPerformed(ActionEvent e) {
          
            if(e.getSource()==this.vistaInicio.btnLogin){
-            System.out.println("BTNLOGIN");
+          
             VistaLogin vistaLogin= new VistaLogin();
             ControladorLogin controladorLogin= new ControladorLogin(vistaLogin);
             

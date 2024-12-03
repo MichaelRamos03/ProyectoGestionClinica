@@ -67,4 +67,6 @@ public class Usuario implements Comparable<Usuario>{
      
         return this.usuario.compareTo(o.usuario);
     }
+
+   
 }

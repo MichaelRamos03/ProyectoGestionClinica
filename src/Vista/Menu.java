@@ -324,18 +324,18 @@ public class Menu extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Consultas;
-    private javax.swing.JMenu Empleados;
-    private javax.swing.JMenu Especialidad;
-    private javax.swing.JMenu Especialista;
-    private javax.swing.JMenu Expediente;
-    private javax.swing.JMenu Farmacia;
+    public javax.swing.JMenu Consultas;
+    public javax.swing.JMenu Empleados;
+    public javax.swing.JMenu Especialidad;
+    public javax.swing.JMenu Especialista;
+    public javax.swing.JMenu Expediente;
+    public javax.swing.JMenu Farmacia;
     private javax.swing.JPanel Fondo;
-    private javax.swing.JMenu Medicamento;
-    private javax.swing.JMenu Recepcion;
-    private javax.swing.JMenu Receta;
+    public javax.swing.JMenu Medicamento;
+    public javax.swing.JMenu Recepcion;
+    public javax.swing.JMenu Receta;
     public javax.swing.JMenu Rol;
-    private javax.swing.JMenu Usuarios;
+    public javax.swing.JMenu Usuarios;
     private javax.swing.JMenuBar jMenuBar1;
     private rojeru_san.componentes.RSLabelFecha rSLabelFecha1;
     private rojeru_san.componentes.RSLabelHora rSLabelHora1;
