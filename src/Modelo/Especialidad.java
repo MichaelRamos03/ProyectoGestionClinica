@@ -1,4 +1,3 @@
-
 package Modelo;
 
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.ArrayList;
  * @author MINEDUCYT
  */
 public class Especialidad implements Comparable<Especialidad> {
+
     private int idEspecialidad;
     private String especialidad;
     private ArrayList<MedicoEspecialista> listMedicoEspecialista;
@@ -21,8 +21,6 @@ public class Especialidad implements Comparable<Especialidad> {
         this.listMedicoEspecialista = new ArrayList();
     }
 
-    
-     
     public Especialidad(int idEspecialidad, String especialidad, ArrayList<MedicoEspecialista> listMedicoEspecialista) {
         this.idEspecialidad = idEspecialidad;
         this.especialidad = especialidad;
@@ -55,12 +53,12 @@ public class Especialidad implements Comparable<Especialidad> {
 
     @Override
     public int compareTo(Especialidad o) {
-         Especialidad actual = this;
+        Especialidad actual = this;
         return actual.especialidad.compareToIgnoreCase(o.especialidad);
     }
-    
+
     @Override
     public String toString() {
-    return especialidad; // Muestra el nombre de la especialidad
-}
+        return especialidad; // Muestra el nombre de la especialidad
+    }
 }

@@ -155,7 +155,7 @@ public class UsuarioDao implements IUsuario {
     }
 
     @Override
-    public ABinarioBusqueda<Usuario> buscar() {
+    public ABinarioBusqueda<Usuario>buscar() {
         ABinarioBusqueda<Usuario> listaBusqueda = new ABinarioBusqueda();
         String sql = "SELECT u.id_usuario,u.usuario,u.contrasenia,e.id_empleado,e.dui,e.nombre FROM usuario u INNER JOIN empleado e ON e.id_empleado = u.id_empleado";
 

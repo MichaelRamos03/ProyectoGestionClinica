@@ -47,7 +47,8 @@ public class ControladorVistaUsuario extends MouseAdapter implements ActionListe
         this.vistaUsuario.tblusuarios.addMouseListener(this);
         this.vistaUsuario.btnEliminar.addActionListener(this);
         this.vistaUsuario.btnBUscar.addActionListener(this);
-        mostrarUsuario(this.daoUsuario.selectAll());   
+        
+        mostrarUsuario(daoUsuario.selectAll());   
     }
     
     public void mostrarUsuario(Cola<Usuario>lista){
@@ -117,7 +118,7 @@ public class ControladorVistaUsuario extends MouseAdapter implements ActionListe
             DefaultTableModel modelo;
             this.vistaUsuario.tblusuarios.setDefaultRenderer(Object.class, new Render());
             modelo = new DefaultTableModel();
-             String nombre =this.vistaUsuario.buscarUsuariolb.getText();
+             String nombre = this.vistaUsuario.buscarUsuariolb.getText();
              
             // Obtener la lista de empleados desde el DAO
             ABinarioBusqueda<Usuario> listaBusqueda = daoUsuario.buscar();
@@ -127,15 +128,15 @@ public class ControladorVistaUsuario extends MouseAdapter implements ActionListe
             usuario.setUsuario(nombre);
             
              // Buscar el empleado en el árbol binario
-            if (listaBusqueda.buscar(nombre) != null) {
-                usuario = (Usuario) listaBusqueda.buscar(nombre).getClave();
+            if (listaBusqueda.buscar(usuario) != null) {
+                usuario = (Usuario) listaBusqueda.buscar(usuario).getClave();
                 // Definir los títulos de las columnas de la tabla
              String titulo[]={"NOMBRE","CONTRASEÑA","ID EMPLEADO",
                  "DUI EMPLEADO","NOMBRE EMPLEADO"};
 
                 modelo.setColumnIdentifiers(titulo);
                
-           Object dato[]={usuario.getUsuario(),
+           Object dato[ ]= {usuario.getUsuario(),
                usuario.getContrasenia(),
                usuario.getEmpleado().getIdEmpleado(),
                usuario.getEmpleado().getDui(),

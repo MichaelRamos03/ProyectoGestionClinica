@@ -67,6 +67,7 @@ public class ControladorFormularioExpediente extends MouseAdapter implements Act
     }
 
     private void nuevoExpediente() {
+        
         this.expediente = new Expediente(
                 this.frmExpediente.tfNombre.getText(),
                 this.frmExpediente.tfApellido.getText(),

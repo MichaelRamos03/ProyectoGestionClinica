@@ -1,5 +1,7 @@
 package Controlador;
 
+import Controlador.ControladorFormularioEspecialidad;
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaDoble;
 import Modelo.Especialidad;
 import ModeloDao.EspecialidadDao;
@@ -34,6 +36,7 @@ public class ControladorConsultaVistaEspecialidad extends MouseAdapter implement
         this.vista.btnAgregarEspecialidad.addActionListener(this);
         this.vista.btnEditarEspecialidad.addActionListener(this);
         this.vista.btnEliminarEspecialidad.addActionListener(this);
+        this.vista.btnBuscar.addActionListener(this);
         this.vista.tblEspecialidades.addMouseListener(this);
         mostrarEspecialidad(this.daoEspecialidad.selectAll());
     }
@@ -98,6 +101,50 @@ public class ControladorConsultaVistaEspecialidad extends MouseAdapter implement
                     DesktopNotify.ERROR, 3000);
         }
     }
+    
+     public void buscar() {
+         // Verificar que el campo de búsqueda no esté vacío
+        if (!this.vista.buscarUsuario.getText().isEmpty()) {
+            DefaultTableModel modelo;
+            this.vista.tblEspecialidades.setDefaultRenderer(Object.class, new Render());
+            modelo = new DefaultTableModel();
+             String especialidad = this.vista.buscarUsuario.getText();
+             
+            // Obtener la lista de empleados desde el DAO
+            ABinarioBusqueda<Especialidad> listaBusqueda = daoEspecialidad.buscar();
+            Especialidad espe = new Especialidad();
+            
+            // Establecer el ID del empleado a buscar
+            espe.setEspecialidad(especialidad);
+            
+             // Buscar el empleado en el árbol binario
+            if (listaBusqueda.buscar(espe) != null) {
+                espe = (Especialidad) listaBusqueda.buscar(espe).getClave();
+                // Definir los títulos de las columnas de la tabla
+                String titulo [] ={"NOMBRE ESPECIALIDAD"};
+                
+                 modelo.setColumnIdentifiers(titulo);
+
+                // Agregar los datos del empleado al modelo de la tabla
+
+            
+            Object datos[] ={espe.getEspecialidad()};
+            
+                modelo.addRow(datos);
+///
+                // Mostrar los datos en la tabla
+                this.vista.tblEspecialidades.setModel(modelo);
+                this.vista.buscarUsuario.setText("");
+            } else {
+                mostrarEspecialidad(daoEspecialidad.selectAll());
+                JOptionPane.showMessageDialog(null, "DATO NO ENCONTRADO");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this.vista, "campo vacío");
+            mostrarEspecialidad(this.daoEspecialidad.selectAll());
+        }
+
+    }
 
      
     
@@ -111,6 +158,8 @@ public class ControladorConsultaVistaEspecialidad extends MouseAdapter implement
             modificar();
         }else if(e.getSource() == this.vista.btnEliminarEspecialidad){
             eliminar();
+        } else if (e.getSource() == this.vista.btnBuscar) {
+            buscar();
         }
     }
 

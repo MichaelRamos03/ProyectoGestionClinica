@@ -67,8 +67,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
                                  x.getFechaNacimiento(),
                                  x.getCorreo(), 
                                  activo,
-                                 x.getRol().
-                                 getRol(),
+                                 x.getRol().getRol()
 //                                 x.getPrioridad()
                                 };
             modelo.addRow(datos);
@@ -130,6 +129,7 @@ public class ControladorConsultaEmpleado extends MouseAdapter implements ActionL
             activo.setSize(60, 30);
             activo.setActivado(empleado.isEstado()); 
             activo.addMouseListener(this); 
+            
             Object datos[] = { empleado.getDui(),
                                  empleado.getNombre(), 
                                  empleado.getApellido(), 

@@ -64,9 +64,9 @@ public class Usuario implements Comparable<Usuario>{
 
     @Override
     public int compareTo(Usuario o) {
+        
+        Usuario actual = this;
      
-        return this.usuario.compareTo(o.usuario);
+        return actual.usuario.compareToIgnoreCase(o.usuario);
     }
-
-   
 }

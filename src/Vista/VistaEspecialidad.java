@@ -39,12 +39,16 @@ public class VistaEspecialidad extends javax.swing.JFrame {
         Fondo = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEspecialidades = new RSMaterialComponent.RSTableMetroCustom();
+        btnBuscar = new javax.swing.JButton();
         btnAgregarEspecialidad = new RSMaterialComponent.RSButtonMaterialIconTwo();
+        buscarUsuario = new RSMaterialComponent.RSTextFieldMaterial();
         btnEliminarEspecialidad = new RSMaterialComponent.RSButtonMaterialIconTwo();
         btnEditarEspecialidad = new RSMaterialComponent.RSButtonMaterialIconTwo();
-        buscarUsuario = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblEspecialidades.setBackground(new java.awt.Color(204, 153, 255));
         tblEspecialidades.setForeground(new java.awt.Color(0, 0, 0));
@@ -74,23 +78,19 @@ public class VistaEspecialidad extends javax.swing.JFrame {
         tblEspecialidades.setOpaque(false);
         jScrollPane2.setViewportView(tblEspecialidades);
 
+        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 792, 381));
+
+        btnBuscar.setBackground(new java.awt.Color(0, 153, 153));
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBuscar.setText("BUSCAR");
+        Fondo.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, -1, 42));
+
         btnAgregarEspecialidad.setBackground(new java.awt.Color(51, 51, 255));
         btnAgregarEspecialidad.setForeground(new java.awt.Color(102, 0, 255));
         btnAgregarEspecialidad.setText("AGREGAR");
         btnAgregarEspecialidad.setBackgroundHover(new java.awt.Color(204, 0, 255));
         btnAgregarEspecialidad.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.ACCOUNT_CIRCLE);
-
-        btnEliminarEspecialidad.setBackground(new java.awt.Color(255, 102, 102));
-        btnEliminarEspecialidad.setForeground(new java.awt.Color(102, 0, 255));
-        btnEliminarEspecialidad.setText("ELIMINAR");
-        btnEliminarEspecialidad.setBackgroundHover(new java.awt.Color(204, 0, 255));
-        btnEliminarEspecialidad.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE_SWEEP);
-
-        btnEditarEspecialidad.setBackground(new java.awt.Color(255, 255, 153));
-        btnEditarEspecialidad.setForeground(new java.awt.Color(102, 0, 255));
-        btnEditarEspecialidad.setText("EDITAR");
-        btnEditarEspecialidad.setBackgroundHover(new java.awt.Color(204, 0, 255));
-        btnEditarEspecialidad.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_SHARED);
+        Fondo.add(btnAgregarEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 443, 126, -1));
 
         buscarUsuario.setForeground(new java.awt.Color(153, 0, 204));
         buscarUsuario.setCaretColor(new java.awt.Color(204, 255, 255));
@@ -100,54 +100,23 @@ public class VistaEspecialidad extends javax.swing.JFrame {
                 buscarUsuarioActionPerformed(evt);
             }
         });
+        Fondo.add(buscarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 447, 258, -1));
 
-        javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
-        Fondo.setLayout(FondoLayout);
-        FondoLayout.setHorizontalGroup(
-            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FondoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(buscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(FondoLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
-        FondoLayout.setVerticalGroup(
-            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAgregarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEliminarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEditarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        btnEliminarEspecialidad.setBackground(new java.awt.Color(255, 102, 102));
+        btnEliminarEspecialidad.setForeground(new java.awt.Color(102, 0, 255));
+        btnEliminarEspecialidad.setText("ELIMINAR");
+        btnEliminarEspecialidad.setBackgroundHover(new java.awt.Color(204, 0, 255));
+        btnEliminarEspecialidad.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE_SWEEP);
+        Fondo.add(btnEliminarEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 443, 122, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        btnEditarEspecialidad.setBackground(new java.awt.Color(255, 255, 153));
+        btnEditarEspecialidad.setForeground(new java.awt.Color(102, 0, 255));
+        btnEditarEspecialidad.setText("EDITAR");
+        btnEditarEspecialidad.setBackgroundHover(new java.awt.Color(204, 0, 255));
+        btnEditarEspecialidad.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.FOLDER_SHARED);
+        Fondo.add(btnEditarEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 443, 119, -1));
+
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 912, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,6 +164,7 @@ public class VistaEspecialidad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
     public RSMaterialComponent.RSButtonMaterialIconTwo btnAgregarEspecialidad;
+    public javax.swing.JButton btnBuscar;
     public RSMaterialComponent.RSButtonMaterialIconTwo btnEditarEspecialidad;
     public RSMaterialComponent.RSButtonMaterialIconTwo btnEliminarEspecialidad;
     public RSMaterialComponent.RSTextFieldMaterial buscarUsuario;

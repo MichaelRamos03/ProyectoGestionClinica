@@ -171,6 +171,11 @@ public class Menu extends javax.swing.JFrame {
         Usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Usuarios.setFont(new java.awt.Font("Unispace", 1, 12)); // NOI18N
         Usuarios.setPreferredSize(new java.awt.Dimension(140, 40));
+        Usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                UsuariosMousePressed(evt);
+            }
+        });
         jMenuBar1.add(Usuarios);
 
         Especialista.setBackground(new java.awt.Color(0, 0, 0));
@@ -290,6 +295,12 @@ public class Menu extends javax.swing.JFrame {
         VistaMedicoEspecialista vista = new VistaMedicoEspecialista();
         ControladorMedicoEspecialista  ctrl = new ControladorMedicoEspecialista(vista);
     }//GEN-LAST:event_EspecialistaMousePressed
+
+    private void UsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuariosMousePressed
+        VistaUsuario v = new VistaUsuario();
+        ControladorVistaUsuario cr = new ControladorVistaUsuario(v);
+        v.setVisible(true);
+    }//GEN-LAST:event_UsuariosMousePressed
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

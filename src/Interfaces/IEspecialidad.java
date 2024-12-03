@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaDoble;
 import Modelo.Especialidad;
 import Modelo.Expediente;
@@ -17,6 +18,6 @@ public interface IEspecialidad {
     public boolean insert(Especialidad obj);
     public boolean update(Especialidad obj);
     public boolean delete(Especialidad obj);
-    public ListaDoble<Especialidad> buscar(String dato);
+    public ABinarioBusqueda<Especialidad> buscar();
     
 }

@@ -1,8 +1,10 @@
 package ModeloDao;
 
+import Estructuras.ABinarioBusqueda;
 import Estructuras.ListaDoble;
 import Interfaces.IEspecialidad;
 import Modelo.Conexion;
+import Modelo.Empleado;
 import Modelo.Especialidad;
 import Modelo.Expediente;
 import ds.desktop.notify.DesktopNotify;
@@ -78,8 +80,36 @@ public class EspecialidadDao implements IEspecialidad {
     }
 
     @Override
-    public ListaDoble<Especialidad> buscar(String dato) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ABinarioBusqueda<Especialidad> buscar() {
+        ABinarioBusqueda<Especialidad> listaBusqueda = new ABinarioBusqueda();
+        String sql = "SELECT * FROM especialidad";
+        try {
+            this.con = conectar.getConexion();
+            this.ps = con.prepareStatement(sql);
+            this.rs = ps.executeQuery();
+
+            while (rs.next()) {
+               Especialidad obj = new Especialidad();
+                obj.setIdEspecialidad(rs.getInt("id_especialidad"));
+                obj.setEspecialidad(rs.getString("especialidad"));
+                
+                listaBusqueda.insertar(obj);
+
+            }
+        } catch (SQLException ex) {
+            DesktopNotify.setDefaultTheme(NotifyTheme.Red);
+            DesktopNotify.showDesktopMessage("Error", "Error en sql", DesktopNotify.ERROR, 3000);
+            ex.printStackTrace();
+            java.util.logging.Logger.getLogger(EspecialidadDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(EspecialidadDao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            conectar.closeConexion(con);
+        }
+        return listaBusqueda;   
     }
     
      private ListaDoble<Especialidad> select(String sql) {
