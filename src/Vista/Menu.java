@@ -10,6 +10,7 @@ import Controlador.ControladorMedicamentos;
 import Controlador.ControladorMedicoEspecialista;
 import Controlador.ControladorRecepcion;
 import Controlador.ControladorRol;
+import Controlador.ControladorVistaReceta;
 import Controlador.ControladorVistaUsuario;
 import javax.swing.JFrame;
 import Utilidades.Fondo;
@@ -285,9 +286,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void RecetaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RecetaMousePressed
 
-//         VistaReceta v = new VistaReceta(); 
-//         ControladorVistaReceta c = new ControladorVistaReceta(v);
-//         v.setVisible(true);
+         VistaReceta v = new VistaReceta(); 
+         ControladorVistaReceta c = new ControladorVistaReceta(v);
+         v.setVisible(true);
     }//GEN-LAST:event_RecetaMousePressed
 
     private void EspecialistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EspecialistaMousePressed

@@ -1,3 +1,5 @@
+package Iniciar;
+
 
 import Controlador.ControladorLogin;
 import Controlador.ControladorViewInicio;
